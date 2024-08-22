@@ -3,7 +3,7 @@ export const METADATA = {
   title: "Portfolio | Abdallah Elsobky",
   description:
     "Abdallah Elsobky is a passionate Mobile Developer, dedicated to crafting seamless and innovative mobile applications that captivate and engage users.",
-  siteUrl: "https://www.shubhporwal.me/",
+  siteUrl: "",
   twitterHandle: "@AbdallahElsobk4",
   keywords: [
     "Abdallah Elsobky",
