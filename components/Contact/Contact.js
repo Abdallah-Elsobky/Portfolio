@@ -26,7 +26,7 @@ const empty = () =>
   });
 
 const error = () =>
-  toast.error("Error sending your message", {
+  toast.error("Error sending your message. Please contact me via email.", {
     id: "error",
   });
 
