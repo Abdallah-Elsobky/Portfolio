@@ -124,7 +124,7 @@ export const PROJECTS = [
     image: "/projects/music.jpg",
     blurImage: "/projects/blur/music-blur.jpg",
     description: "Music Player app offers easy playback with a sleek design and customizable features.🎵",
-    gradient: ["#FFA62E", "#EA4D2C"],
+    gradient: ["#6D6D6D", "#1A1A1A"],
     url: "https://github.com/Abdallah-Elsobky/Music_player",
     tech: ["github", "android", "java", "sqlite"],
   },
