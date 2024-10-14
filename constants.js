@@ -70,6 +70,10 @@ export const SOCIAL_LINKS = [
     name: "twitter",
     url: "https://twitter.com/AbdallahElsobk4",
   },
+  {
+    name: "youtube",
+    url: "https://www.youtube.com/@Abdallah_Elsobky",
+  },
 ];
 
 export const SKILLS = {
@@ -77,12 +81,12 @@ export const SKILLS = {
     "android",
     "java",
     "kotlin",
+    "dart",
+    "flutter",
+    "figma",
     "python",
     "c++",
     "codeforces",
-    "firebase",
-    "sqlite",
-    "figma",
   ],
   librariesAndFrameworks: [
     "soon",
@@ -94,7 +98,7 @@ export const SKILLS = {
     // "antdesign",
     // "chakra-ui",
   ],
-  databases: ["mysql", "sqlite"],
+  databases: ["mysql", "sqlite","firebase"],
   other: ["git", "github"],
 };
 
@@ -118,6 +122,15 @@ export const PROJECTS = [
     gradient: ["#4CAF50", "#1B5E20"],
     url: "https://github.com/Abdallah-Elsobky/Natiga",
     tech: ["sqlite", "java", "android", "github"],
+  },
+  {
+    name: "BMI Calculator",
+    image: "/projects/bmi.jpg",
+    blurImage: "/projects/blur/bmi-blur.jpg",
+    description: "The BMI Calculator app provides quick and accurate body mass index calculations with an intuitive interface and personalized theme options. 📊",
+    gradient: ["#4A90E2", "#0033A0"],
+    url: "https://github.com/Abdallah-Elsobky/BMI_APP",
+    tech: ["github", "android", "flutter", "dart"],
   },
   {
     name: "Music Player",

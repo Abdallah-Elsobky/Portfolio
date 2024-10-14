@@ -5,6 +5,7 @@ import {
   IconTwitter,
   IconGithub,
   IconExternal,
+  IconYoutube,
 } from "@/components/Icons";
 
 const Icon = ({ name }) => {
@@ -19,6 +20,8 @@ const Icon = ({ name }) => {
       return <IconInstagram />;
     case "twitter":
       return <IconTwitter />;
+    case "youtube":
+      return <IconYoutube />;
     default:
       return <IconExternal />;
   }
