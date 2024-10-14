@@ -74,6 +74,10 @@ export const SOCIAL_LINKS = [
     name: "youtube",
     url: "https://www.youtube.com/@Abdallah_Elsobky",
   },
+  {
+    name: "upwork",
+    url: "https://www.upwork.com/freelancers/~01c2d80e703288ef2f",
+  },
 ];
 
 export const SKILLS = {
@@ -109,19 +113,10 @@ export const PROJECTS = [
     image: "/projects/tictacc.jpg",
     blurImage: "/projects/blur/tictac-blur.jpg",
     description: "Experience Tic Tac Toe with customizable modes, AI challenges 🎮",
-    gradient: ["#4A90E2", "#0033A0"],
+    gradient: ["#FF6347", "#CC4F39"],
+    
     url: "https://github.com/Abdallah-Elsobky/Tic-Tac-toe",
     tech: ["java", "android", "sqlite", "github"],
-  },
-
-  {
-    name: "Natiga",
-    image: "/projects/natiga.jpg",
-    blurImage: "/projects/blur/natiga-blur.jpg",
-    description: "Natiga lets secondary students easily check their exam results by ID or name. 🧑‍🎓",
-    gradient: ["#4CAF50", "#1B5E20"],
-    url: "https://github.com/Abdallah-Elsobky/Natiga",
-    tech: ["sqlite", "java", "android", "github"],
   },
   {
     name: "BMI Calculator",
@@ -131,6 +126,15 @@ export const PROJECTS = [
     gradient: ["#4A90E2", "#0033A0"],
     url: "https://github.com/Abdallah-Elsobky/BMI_APP",
     tech: ["github", "android", "flutter", "dart"],
+  },
+  {
+    name: "Natiga",
+    image: "/projects/natiga.jpg",
+    blurImage: "/projects/blur/natiga-blur.jpg",
+    description: "Natiga lets secondary students easily check their exam results by ID or name. 🧑‍🎓",
+    gradient: ["#4CAF50", "#1B5E20"],
+    url: "https://github.com/Abdallah-Elsobky/Natiga",
+    tech: ["sqlite", "java", "android", "github"],
   },
   {
     name: "Music Player",

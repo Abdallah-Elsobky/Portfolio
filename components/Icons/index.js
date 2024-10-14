@@ -5,4 +5,5 @@ export { default as IconInstagram} from "./instagram";
 export { default as IconTwitter} from "./twitter";
 export { default as IconExternal } from "./external";
 export { default as IconYoutube } from "./youtube";
+export { default as IconUpwork } from "./upwork";
 export { default as Icon } from './icon';
