@@ -149,7 +149,7 @@ export const PROJECTS = [
     name: "Coming soon",
     image: "/projects/coming.png",
     blurImage: "/projects/blur/music-blur.jpg",
-    description: "Under development. 🧑‍💻",
+    description: "Under development. 💻",
     gradient: ["#FF4B5C", "#FF4B5C"],
     url: "https://github.com/Abdallah-Elsobky",
     tech: ["question", "question", "question", "question"],
