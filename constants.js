@@ -115,7 +115,7 @@ export const PROJECTS = [
     description: "Experience Tic Tac Toe with customizable modes, AI challenges 🎮",
     gradient: ["#FF6347", "#CC4F39"],
     
-    url: "https://github.com/Abdallah-Elsobky/Tic-Tac-toe",
+    url: "https://www.amazon.com/dp/B0DNCNV9SD/ref=apps_sf_sta",
     tech: ["java", "android", "sqlite", "github"],
   },
   {
