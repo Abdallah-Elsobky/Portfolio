@@ -83,8 +83,9 @@ export const SOCIAL_LINKS = [
 export const SKILLS = {
   languagesAndTools: [
     "android",
-    "java",
     "kotlin",
+    "api",
+    "java",
     "dart",
     "flutter",
     "figma",
@@ -107,7 +108,35 @@ export const SKILLS = {
 };
 
 export const PROJECTS = [
+  {
+    name: "Coming soon",
+    image: "/projects/coming.png",
+    blurImage: "/projects/blur/music-blur.jpg",
+    description: "Under development. 👨🏻‍💻",
+    gradient: ["#FF4B5C", "#FF4B5C"],
+    url: "https://github.com/Abdallah-Elsobky",
+    tech: ["question", "question", "question", "question"],
+  },
+  {
+    name: "Trendify",
+    image: "/projects/trendify.png",
+    blurImage: "/projects/blur/tictac-blur.jpg",
+    description: "📰 Trendify – Fast, reliable news at your fingertips! 🚀",
+    gradient: ["#4B0082", "#2E004D"],
 
+    url: "https://github.com/Abdallah-Elsobky/Trendify",
+    tech: ["kotlin", "android", "api", "sqlite", "github"],
+  },
+  {
+    name: "Tasko",
+    image: "/projects/tasko.jpg",
+    blurImage: "/projects/blur/tictac-blur.jpg",
+    description: "📝 Tasko – Organize, prioritize, and track your tasks effortlessly! 🚀",
+    gradient: ["#2F4F4F", "#1C2E2E"],
+
+    url: "https://github.com/Abdallah-Elsobky/Tasko",
+    tech: ["flutter", "android", "sqlite", "github"],
+  },
   {
     name: "Tic Tac Game",
     image: "/projects/tictacc.jpg",
@@ -125,7 +154,7 @@ export const PROJECTS = [
     description: "The BMI Calculator app provides quick and accurate body mass index calculations with an intuitive interface and personalized theme options. 📊",
     gradient: ["#4A90E2", "#0033A0"],
     url: "https://github.com/Abdallah-Elsobky/BMI_APP",
-    tech: ["github", "android", "flutter", "dart"],
+    tech: ["flutter", "android", "github", "dart"],
   },
   {
     name: "Natiga",
@@ -134,7 +163,7 @@ export const PROJECTS = [
     description: "Natiga lets secondary students easily check their exam results by ID or name. 🧑‍🎓",
     gradient: ["#4CAF50", "#1B5E20"],
     url: "https://github.com/Abdallah-Elsobky/Natiga",
-    tech: ["sqlite", "java", "android", "github"],
+    tech: ["java", "android", "sqlite", "github"],
   },
   {
     name: "Music Player",
@@ -143,19 +172,8 @@ export const PROJECTS = [
     description: "Music Player app offers easy playback with a sleek design and customizable features.🎵",
     gradient: ["#6D6D6D", "#1A1A1A"],
     url: "https://github.com/Abdallah-Elsobky/Music_player",
-    tech: ["github", "android", "java", "sqlite"],
-  },
-  {
-    name: "Coming soon",
-    image: "/projects/coming.png",
-    blurImage: "/projects/blur/music-blur.jpg",
-    description: "Under development. 👨🏻‍💻",
-    gradient: ["#FF4B5C", "#FF4B5C"],
-    url: "https://github.com/Abdallah-Elsobky",
-    tech: ["question", "question", "question", "question"],
-  },
-  
-  
+    tech: ["java", "android", "github", "sqlite"],
+  }
 ];
 
 // export const WORK = [
