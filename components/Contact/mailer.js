@@ -1,12 +1,17 @@
 import emailjs from "@emailjs/browser";
+import emailConfig from "./emailConfig";
 
 const mail = ({ name, email, message }) =>
   emailjs.send(
-    process.env.NEXT_PUBLIC_SERVICE_ID,
-    process.env.NEXT_PUBLIC_TEMPLATE_ID,
-    { name, email, message },
+    emailConfig.SERVICE_ID,
+    emailConfig.TEMPLATE_ID,
+    { 
+      from_name: name, 
+      from_email: email, 
+      message : message
+     },
     {
-      publicKey: process.env.NEXT_PUBLIC_USER_ID,
+      publicKey: emailConfig.PUBLIC_KEY,
       limitRate: {
         throttle: 10000, // 10s
       },

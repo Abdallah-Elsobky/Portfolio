@@ -165,15 +165,15 @@ export const PROJECTS = [
     url: "https://github.com/Abdallah-Elsobky/Natiga",
     tech: ["java", "android", "sqlite", "github"],
   },
-  {
-    name: "Music Player",
-    image: "/projects/music.jpg",
-    blurImage: "/projects/blur/music-blur.jpg",
-    description: "Music Player app offers easy playback with a sleek design and customizable features.🎵",
-    gradient: ["#6D6D6D", "#1A1A1A"],
-    url: "https://github.com/Abdallah-Elsobky/Music_player",
-    tech: ["java", "android", "github", "sqlite"],
-  }
+  // {
+  //   name: "Music Player",
+  //   image: "/projects/music.jpg",
+  //   blurImage: "/projects/blur/music-blur.jpg",
+  //   description: "Music Player app offers easy playback with a sleek design and customizable features.🎵",
+  //   gradient: ["#6D6D6D", "#1A1A1A"],
+  //   url: "https://github.com/Abdallah-Elsobky/Music_player",
+  //   tech: ["java", "android", "github", "sqlite"],
+  // }
 ];
 
 // export const WORK = [
@@ -311,3 +311,7 @@ export const WORK_CONTENTS = {
 };
 
 export const GTAG = "G-5HCTL2TJ5W";
+
+const SERVICE_ID = "your_service_id";
+const TEMPLATE_ID = "your_template_id";
+const PUBLIC_KEY = "your_public_key";
