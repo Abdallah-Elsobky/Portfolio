@@ -31,7 +31,7 @@ const Work = ({ isDesktop }) => {
         ),
       },
       {
-        title: "Coming_Soon",
+        title: "Coming Soon",
         value: "Coming Soon",
         content: (
           <StickyScroll

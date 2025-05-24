@@ -276,27 +276,48 @@ export const WORK_CONTENTS = {
     },
   ],
   Route: [
-  {
-    title: "Learning the Fundamentals",
-    description:
-      "My journey began at Route Academy, where I was introduced to the fundamentals of Android development. I learned the basics of Java and Kotlin, explored UI/UX design principles, and understood the core structure of Android applications. This phase helped me build a strong technical foundation and develop a passion for mobile app development.",
-    content: (
-      <div className="h-full w-full flex items-center justify-center text-white px-4 text-center">
-        Building a Strong Android Foundation
-      </div>
-    ),
-  },
-  {
-    title: "Hands-On Projects & Skill Growth",
-    description:
-      "In the second phase of my Route Academy journey, I applied what I learned by building real-world projects such as a To-Do List app, a News app, and a Quran app. These projects sharpened my problem-solving skills and taught me how to integrate APIs, debug efficiently, and follow Android best practices to write clean and maintainable code.",
-    content: (
-      <div className="h-full w-full flex items-center justify-center text-white px-4 text-center">
-        Real Projects. Real Progress.
-      </div>
-    ),
-  },
-],
+    {
+      title: "Route Academy Experience",
+      description:
+        "During my time at Route Academy, I underwent focused training in Android development, starting from the fundamentals of Java and Kotlin to advanced UI/UX design. The program laid a strong technical foundation and ignited my passion for building mobile applications.",
+      content: (
+        <div className="h-full w-full flex items-center justify-center text-white px-4">
+          Android Development Trainee
+        </div>
+      ),
+    },
+    {
+      title: "Technical Skill Building",
+      description:
+        "The Route Academy course provided deep insights into Android architecture, design patterns, and best practices. I enhanced my ability to create scalable, efficient apps by learning how to work with APIs, manage state, and implement intuitive user interfaces.",
+      content: (
+        <div className="h-full w-full flex items-center justify-center text-white px-4">
+          Strengthening Development Skills
+        </div>
+      ),
+    },
+    {
+      title: "Project-Based Learning",
+      description:
+        "I worked on several real-world applications during the training, including a To-Do List app, News app, and Quran app. These projects allowed me to apply my knowledge, improve my debugging skills, and gain hands-on experience in delivering functional mobile solutions.",
+      content: (
+        <div className="h-full w-full flex items-center justify-center text-white px-4">
+          Practical Android Projects
+        </div>
+      ),
+    },
+    {
+      title: "Career Readiness",
+      description:
+        "By the end of the Route Academy program, I was able to confidently build complete Android apps independently. This experience equipped me with the skills and mindset needed to take on internships, freelance work, or full-time roles in the mobile development field.",
+      content: (
+        <div className="h-full w-full flex items-center justify-center text-white px-4">
+          Ready for Real-World Challenges
+        </div>
+      ),
+    },
+  ],
+  
 
   Coming_Soon: [
     {
