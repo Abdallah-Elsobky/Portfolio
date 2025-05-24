@@ -21,6 +21,16 @@ const Work = ({ isDesktop }) => {
         ),
       },
       {
+        title: "Route Academy",
+        value: "route academy",
+        content: (
+          <StickyScroll
+            isDesktop={isDesktop}
+            contentItems={WORK_CONTENTS.Route}
+          />
+        ),
+      },
+      {
         title: "Coming_Soon",
         value: "Coming Soon",
         content: (

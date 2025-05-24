@@ -118,11 +118,22 @@ export const PROJECTS = [
   //   tech: ["question", "question", "question", "question"],
   // },
   {
+    name: "Weather 🌦️",
+    image: "/projects/weather.png",
+    blurImage: "/projects/blur/weather.jpg",
+    description: "Real- time weather and 5 - day forecast based on your GPS location, with refresh and offline support.",
+    gradient: ["#4B0082", "#2E004D"],
+
+    url: "https://github.com/Abdallah-Elsobky/instabug_task",
+    tech: ["kotlin", "android", "api", "location", "github"],
+  },
+  {
     name: "Trendify",
     image: "/projects/trendify.png",
-    blurImage: "/projects/blur/tictac-blur.jpg",
+    blurImage: "/projects/blur/trendify.jpg",
     description: "📰 Trendify – Fast, reliable news at your fingertips! 🚀",
-    gradient: ["#4B0082", "#2E004D"],
+    gradient: ["#1E3C72", "#2A5298"]
+,
 
     url: "https://github.com/Abdallah-Elsobky/Trendify",
     tech: ["kotlin", "android", "api", "sqlite", "github"],
@@ -151,7 +162,7 @@ export const PROJECTS = [
     name: "BMI Calculator",
     image: "/projects/bmi.jpg",
     blurImage: "/projects/blur/bmi-blur.jpg",
-    description: "The BMI Calculator app provides quick and accurate body mass index calculations with an intuitive interface and personalized theme options. 📊",
+    description: "Quick, accurate BMI results with a simple interface and custom themes.",
     gradient: ["#4A90E2", "#0033A0"],
     url: "https://github.com/Abdallah-Elsobky/BMI_APP",
     tech: ["flutter", "android", "github", "dart"],
@@ -161,7 +172,7 @@ export const PROJECTS = [
     image: "/projects/natiga.jpg",
     blurImage: "/projects/blur/natiga-blur.jpg",
     description: "Natiga lets secondary students easily check their exam results by ID or name. 🧑‍🎓",
-    gradient: ["#4CAF50", "#1B5E20"],
+    gradient: ["#0F2027", "#203A43"],
     url: "https://github.com/Abdallah-Elsobky/Natiga",
     tech: ["java", "android", "sqlite", "github"],
   },
@@ -176,50 +187,50 @@ export const PROJECTS = [
   // }
 ];
 
-// export const WORK = [
-//   {
-//     id: 1,
-//     company: "Dukaan",
-//     title: "Mobile Developer",
-//     location: "Bangalore, Karnataka",
-//     range: "December - Current",
-//     responsibilities: [
-//       "Led creation of a captivating cross-platform e-commerce solution.",
-//       "Enhanced UX with gamification and personalized push notifications ensuring an ever-improving shopping journey.",
-//       "The app boasts a DAU base of 32k and an extensive MAU count of 180k.",
-//     ],
-//     url: "https://mydukaan.io/",
-//     video: "/work/dukaan.mp4",
-//   },
-//   {
-//     id: 2,
-//     company: "Aviate",
-//     title: "Mobile Developer Intern",
-//     location: "Goa",
-//     range: "May - October 2022",
-//     responsibilities: [
-//       "Built their flagship product Q-Rate, a voice-based applicant screening platform.",
-//       "Developed pixel-perfect responsive web applications achieving daily traffic of 1000-2000 users.",
-//       "Successfully rolled out an error-logging and bug reporting system that cut user-reported bugs by 30%.",
-//     ],
-//     url: "https://www.aviate.jobs/",
-//     video: "/work/aviate.mp4",
-//   },
-//   {
-//     id: 3,
-//     company: "Spacenos",
-//     title: "Web Developer Intern",
-//     location: "Bangalore, Karnataka",
-//     range: "September - December 2021",
-//     responsibilities: [
-//       "Led the Full Stack revamp on the Admin Portal.",
-//       "Developed app integration with REST APIs, Google Maps, User Auth, Stripe and other libraries.",
-//       "Implemented CRUD features for all the services and providers.",
-//     ],
-//     url: "https://spacenos.com/",
-//     video: "/work/spacenos.mp4",
-//   },
-// ];
+export const WORK = [
+  // {
+  //   id: 1,
+  //   company: "Dukaan",
+  //   title: "Mobile Developer",
+  //   location: "Bangalore, Karnataka",
+  //   range: "December - Current",
+  //   responsibilities: [
+  //     "Led creation of a captivating cross-platform e-commerce solution.",
+  //     "Enhanced UX with gamification and personalized push notifications ensuring an ever-improving shopping journey.",
+  //     "The app boasts a DAU base of 32k and an extensive MAU count of 180k.",
+  //   ],
+  //   url: "https://mydukaan.io/",
+  //   video: "/work/dukaan.mp4",
+  // },
+  // {
+  //   id: 2,
+  //   company: "Aviate",
+  //   title: "Mobile Developer Intern",
+  //   location: "Goa",
+  //   range: "May - October 2022",
+  //   responsibilities: [
+  //     "Built their flagship product Q-Rate, a voice-based applicant screening platform.",
+  //     "Developed pixel-perfect responsive web applications achieving daily traffic of 1000-2000 users.",
+  //     "Successfully rolled out an error-logging and bug reporting system that cut user-reported bugs by 30%.",
+  //   ],
+  //   url: "https://www.aviate.jobs/",
+  //   video: "/work/aviate.mp4",
+  // },
+  // {
+  //   id: 3,
+  //   company: "Spacenos",
+  //   title: "Web Developer Intern",
+  //   location: "Bangalore, Karnataka",
+  //   range: "September - December 2021",
+  //   responsibilities: [
+  //     "Led the Full Stack revamp on the Admin Portal.",
+  //     "Developed app integration with REST APIs, Google Maps, User Auth, Stripe and other libraries.",
+  //     "Implemented CRUD features for all the services and providers.",
+  //   ],
+  //   url: "https://spacenos.com/",
+  //   video: "/work/spacenos.mp4",
+  // },
+];
 
 export const WORK_CONTENTS = {
   DEPI: [
@@ -264,6 +275,29 @@ export const WORK_CONTENTS = {
       ),
     },
   ],
+  Route: [
+  {
+    title: "Learning the Fundamentals",
+    description:
+      "My journey began at Route Academy, where I was introduced to the fundamentals of Android development. I learned the basics of Java and Kotlin, explored UI/UX design principles, and understood the core structure of Android applications. This phase helped me build a strong technical foundation and develop a passion for mobile app development.",
+    content: (
+      <div className="h-full w-full flex items-center justify-center text-white px-4 text-center">
+        Building a Strong Android Foundation
+      </div>
+    ),
+  },
+  {
+    title: "Hands-On Projects & Skill Growth",
+    description:
+      "In the second phase of my Route Academy journey, I applied what I learned by building real-world projects such as a To-Do List app, a News app, and a Quran app. These projects sharpened my problem-solving skills and taught me how to integrate APIs, debug efficiently, and follow Android best practices to write clean and maintainable code.",
+    content: (
+      <div className="h-full w-full flex items-center justify-center text-white px-4 text-center">
+        Real Projects. Real Progress.
+      </div>
+    ),
+  },
+],
+
   Coming_Soon: [
     {
       title: "Upcoming Internship",
