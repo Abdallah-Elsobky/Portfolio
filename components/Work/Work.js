@@ -31,12 +31,12 @@ const Work = ({ isDesktop }) => {
         ),
       },
       {
-        title: "Coming Soon",
-        value: "Coming Soon",
+        title: "ITI 9-Months Training",
+        value: "iti 9-months training",
         content: (
           <StickyScroll
             isDesktop={isDesktop}
-            contentItems={WORK_CONTENTS.Coming_Soon}
+            contentItems={WORK_CONTENTS.ITI}
           />
         ),
       },

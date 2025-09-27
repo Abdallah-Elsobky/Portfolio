@@ -319,28 +319,28 @@ export const WORK_CONTENTS = {
   ],
   
 
-  Coming_Soon: [
+  ITI: [
     {
-      title: "Upcoming Internship",
+      title: "ITI 9-Month Training",
       description:
-        "I'm preparing to embark on an internship at ITI to gain valuable experience and sharpen my skills for success in the freelance market.",
+        "I am preparing to join the prestigious 9-Month Professional Training Program at ITI in the Mobile Development (Native) track. This intensive program is designed to provide a solid foundation in Android development using Kotlin, advanced programming concepts, design patterns, and mobile architecture. Throughout the training, I will gain hands-on experience with building scalable and high-performance applications, integrating APIs, managing databases, and applying best practices in UI/UX. In addition, the program focuses on problem-solving, teamwork, communication, and freelancing skills, helping me become a well-rounded professional ready for both the local and global markets.",
       content: (
         <div className="h-full w-full flex items-center justify-center text-white px-4">
-          Navigating the Path to Freelance Success
+          ITI Mobile Development (Native) – 9-Month Journey
         </div>
       ),
     },
     {
-      title: "Skill Enhancement",
+      title: "Professional Growth",
       description:
-        "I am preparing to undertake an internship at ITI, where I aim to enhance my mobile development skills and gain hands-on experience. This internship will also help me build a strong foundation for entering the freelance market, focusing on innovative solutions and real-world application development.",
+        "This 9-month journey at ITI is not only about technical excellence, but also about personal and professional growth. I will be working on real-world projects, collaborating with peers, and learning from industry experts. The program aims to sharpen my problem-solving abilities, enhance my freelancing and entrepreneurship skills, and prepare me to compete in both local and international markets. By the end of this training, I will be equipped with the technical expertise, soft skills, and confidence to pursue a successful career in mobile development.",
       content: (
         <div className="h-full w-full flex items-center justify-center text-white px-4">
-          ITI Mobile Developer Intern
+          From Learning to Professional Readiness 🚀
         </div>
       ),
     },
-  ],
+  ]
   // SPACENOS: [
   //   {
   //     title: "Spacenos",
