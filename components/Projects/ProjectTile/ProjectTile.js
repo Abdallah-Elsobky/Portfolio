@@ -1,102 +1,245 @@
-import { useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
-import VanillaTilt from "vanilla-tilt";
+import { motion, AnimatePresence } from "framer-motion";
 import styles from "./ProjectTile.module.scss";
 
+// Android Emulator Screen Component (1080 × 2400 aspect ratio)
+// - Full-bleed display: image fills 100% of the screen area
+// - Real-device header: Clock 9:41 on left, Battery on right (Wi-Fi & SIM removed)
+// - iPhone Dynamic Island: Sleek solid black pill
+// - Smooth Animated Transition: Silky cross-fade when images cycle
+const AndroidEmulatorScreen = ({
+  src,
+  blurDataURL,
+  alt,
+  isCenter = false,
+  customKey,
+}) => {
+  return (
+    <div
+      className={`relative w-full aspect-[9/20] rounded-[1.5rem] sm:rounded-[1.7rem] p-[3px] bg-gradient-to-b from-white/30 via-white/10 to-white/20 shadow-[0_20px_45px_rgba(0,0,0,0.9)] border border-white/20 backdrop-blur-sm transition-all duration-500 ${
+        isCenter
+          ? "ring-1 ring-white/30 shadow-[0_25px_55px_-10px_rgba(0,0,0,0.95)]"
+          : "opacity-85 brightness-90"
+      }`}
+    >
+      {/* Screen Frame Bezel */}
+      <div className="relative w-full h-full rounded-[1.3rem] sm:rounded-[1.5rem] overflow-hidden bg-black select-none">
+        {/* Mockup Image Container: Fills 100% with smooth fade transition */}
+        <div className="absolute inset-0 w-full h-full overflow-hidden">
+          <AnimatePresence mode="popLayout" initial={false}>
+            <motion.div
+              key={customKey || src}
+              initial={{ opacity: 0, scale: 1.04 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.98 }}
+              transition={{ duration: 0.7, ease: [0.25, 1, 0.5, 1] }}
+              className="absolute inset-0 w-full h-full"
+            >
+              <Image
+                src={src}
+                alt={alt || "App Screen"}
+                fill
+                placeholder={blurDataURL ? "blur" : "empty"}
+                blurDataURL={blurDataURL}
+                className="object-cover object-top"
+                sizes="(max-width: 768px) 160px, 220px"
+                priority={isCenter}
+              />
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        {/* Real Device Top Header Scrim Overlay */}
+        <div className="absolute top-0 inset-x-0 z-20 px-2.5 pt-1.5 pb-2 flex items-center justify-between pointer-events-none bg-gradient-to-b from-black/40 via-black/10 to-transparent">
+          {/* Real Device Time on Left */}
+          <span className="text-[7px] sm:text-[7.5px] font-semibold text-white tracking-tight drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]">
+            9:41
+          </span>
+
+          {/* Real Device Battery on Right */}
+          <div className="flex items-center gap-1 text-[7px] text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]">
+            <div className="w-3 h-1.5 rounded-[2px] border border-white/90 p-[0.5px] flex items-center">
+              <div className="w-2 h-full bg-white rounded-[0.5px]" />
+            </div>
+          </div>
+        </div>
+
+        {/* iPhone Dynamic Island: Sleek solid black pill */}
+        <div className="absolute top-1.5 left-1/2 -translate-x-1/2 w-10 h-2.5 sm:w-11 sm:h-2.5 bg-black rounded-full z-30 border border-white/[0.08] shadow-[0_1px_3px_rgba(0,0,0,0.8)] pointer-events-none" />
+
+        {/* Screen Glare Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/[0.03] to-transparent pointer-events-none z-10" />
+
+      </div>
+    </div>
+  );
+};
+
 const ProjectTile = ({ project, classes, isDesktop }) => {
-  const { name, image, blurImage, description, gradient, url, tech } = project;
-  const projectCard = useRef(null);
-  let additionalClasses = "";
-  if (classes) {
-    additionalClasses = classes;
-  }
+  const {
+    name,
+    image,
+    images = [],
+    blurImage,
+    description,
+    gradient,
+    url,
+    tech,
+  } = project;
 
-  const options = {
-    max: 10,
-    speed: 400,
-    glare: true,
-    "max-glare": 0.2,
-    gyroscope: false,
-  };
+  const imagesList =
+    images && images.length > 0
+      ? images
+      : [image, image, image].filter(Boolean);
 
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const additionalClasses = classes || "";
+
+  // Automatic scrolling: Cycles images every 4 seconds (4000ms) continuously
   useEffect(() => {
-    VanillaTilt.init(projectCard.current, options);
-  }, [projectCard]);
+    if (imagesList.length <= 1) return;
+
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % imagesList.length);
+    }, 4000); // Exactly 4 seconds
+
+    return () => clearInterval(interval);
+  }, [imagesList.length]);
+
+  // Indices for the 3 visible phones: Left, Center, Right
+  const total = imagesList.length;
+  const leftIndex = (currentIndex - 1 + total) % total;
+  const centerIndex = currentIndex;
+  const rightIndex = (currentIndex + 1) % total;
 
   return (
     <a
       href={url}
-      className={`overflow-hidden rounded-3xl ${additionalClasses}`}
-      ref={projectCard}
+      className={`group block flex-shrink-0 overflow-hidden rounded-[2rem] transition-all duration-300 ${additionalClasses}`}
       target="_blank"
       rel="noreferrer"
       style={{
         maxWidth: isDesktop ? "calc(100vw - 2rem)" : "calc(100vw - 4rem)",
-        flex: "1 0 auto",
-        WebkitMaskImage: "-webkit-radial-gradient(white, black)",
       }}
     >
       <div
-        className={`h-[25rem] w-[38rem] bg-black ${styles.ProjectTile} rounded-3xl relative p-6 flex flex-col justify-between max-w-full`}
+        className={`h-[31rem] sm:h-[33rem] w-[21.5rem] sm:w-[25.5rem] md:w-[28rem] bg-[#0c1017] ${styles.projectTile} rounded-[2rem] relative p-5 sm:p-6 flex flex-col justify-between max-w-full border border-white/[0.08] hover:border-purple/60 hover:shadow-[0_25px_60px_-10px_rgba(127,82,255,0.35)] transition-all duration-300 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.85)]`}
         style={{
-          background: `linear-gradient(90deg, ${gradient[0]} 0%, ${gradient[1]} 100%)`,
+          background: `linear-gradient(150deg, ${gradient[0]}33 0%, #0A0D14 55%, #05070A 100%)`,
         }}
       >
+        {/* Ambient Top Glow */}
+        <div
+          className="absolute -top-24 -right-24 w-64 h-64 rounded-full blur-[80px] opacity-30 pointer-events-none transition-opacity duration-500 group-hover:opacity-60"
+          style={{ background: gradient[0] }}
+        />
+
+        {/* Ambient Grid Pattern */}
         <img
           src="/project-bg.svg"
-          alt="project"
-          className="absolute w-full h-full top-0 left-0 object-cover opacity-30"
+          alt=""
+          className="absolute w-full h-full top-0 left-0 object-cover opacity-10 pointer-events-none"
         />
-        <Image
-          src={image}
-          alt={name}
-          fill
-          placeholder="blur"
-          blurDataURL={blurImage}
-          className={`${styles.projectImage} z-0`}
-        />
-        <div
-          className="absolute top-0 left-0 w-full h-20"
-          style={{
-            background: `linear-gradient(180deg, ${gradient[0]} 0%, rgba(0,0,0,0) 100%)`,
-          }}
-        />
-        <div
-          className="absolute bottom-0 left-0 w-full h-32"
-          style={{
-            background: `linear-gradient(0deg, ${gradient[0]} 10%, rgba(0,0,0,0) 100%)`,
-          }}
-        />
-        <h1
-          className="font-medium text-3xl sm:text-4xl z-10 pl-2 transform-gpu"
-          style={{ transform: "translateZ(3rem)" }}
-        >
-          {name}
-        </h1>
-        <div
-          className={`
-            ${styles.techIcons} w-1/2 h-full absolute left-24 top-0 sm:flex items-center hidden
-          `}
-        >
-          <div className="flex flex-col pb-8">
-            {project.tech.map((el, i) => (
-              <img
-                className={`${i % 2 === 0 && "ml-16"} mb-4`}
-                src={`/projects/tech/${el}.svg`}
-                alt={el}
-                height={45}
-                width={45}
-                key={el}
-              />
-            ))}
+
+        {/* Top Header: Compact Android Badge (No Overlap with Mockup) */}
+        <div className="flex items-center justify-center z-20 w-full mb-1">
+          <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.06] border border-white/10 backdrop-blur-md shadow-sm">
+            <span
+              className="w-1.5 h-1.5 rounded-full animate-pulse"
+              style={{ background: gradient[0] || "#3DDC84" }}
+            />
+            <span className="text-[10px] font-semibold tracking-wider uppercase text-gray-light-2">
+              Android App
+            </span>
           </div>
         </div>
-        <h2
-          className="text-lg z-10 tracking-wide font-medium text-white transform-gpu"
-          style={{ transform: "translateZ(0.8rem)" }}
-        >
-          {description}
-        </h2>
+
+        {/* Center: Trio Android Phone Emulators (Comfortable spacing below badge) */}
+        <div className="relative w-full flex-1 flex items-center justify-center my-1 z-10 select-none">
+          <div className="relative w-full h-[15.5rem] sm:h-[17rem] flex items-center justify-center">
+            {/* 1. LEFT PHONE */}
+            <div
+              className="absolute w-[7.4rem] sm:w-[8.6rem] -translate-x-[4rem] sm:-translate-x-[4.8rem] scale-[0.84] z-10 transition-all duration-300"
+              style={{
+                filter: "drop-shadow(0 15px 25px rgba(0,0,0,0.85))",
+              }}
+            >
+              <AndroidEmulatorScreen
+                src={imagesList[leftIndex]}
+                alt={`${name} screen left`}
+                isCenter={false}
+                customKey={`left-${leftIndex}`}
+              />
+            </div>
+
+            {/* 2. RIGHT PHONE */}
+            <div
+              className="absolute w-[7.4rem] sm:w-[8.6rem] translate-x-[4rem] sm:translate-x-[4.8rem] scale-[0.84] z-10 transition-all duration-300"
+              style={{
+                filter: "drop-shadow(0 15px 25px rgba(0,0,0,0.85))",
+              }}
+            >
+              <AndroidEmulatorScreen
+                src={imagesList[rightIndex]}
+                alt={`${name} screen right`}
+                isCenter={false}
+                customKey={`right-${rightIndex}`}
+              />
+            </div>
+
+            {/* 3. CENTER PHONE */}
+            <div
+              className="relative w-[8.6rem] sm:w-[10rem] z-20 transition-all duration-300 group-hover:scale-[1.03]"
+              style={{
+                filter: "drop-shadow(0 25px 40px rgba(0,0,0,0.95))",
+              }}
+            >
+              <AndroidEmulatorScreen
+                src={imagesList[centerIndex]}
+                blurDataURL={blurImage}
+                alt={`${name} screen center`}
+                isCenter={true}
+                customKey={`center-${centerIndex}`}
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Section: Small Title with Refined Shadow & Tech Stack */}
+        <div className="relative z-20 flex flex-col gap-2 p-3.5 sm:p-4 rounded-2xl bg-gradient-to-b from-white/[0.08] to-white/[0.02] border border-white/10 backdrop-blur-xl shadow-[0_12px_32px_rgba(0,0,0,0.85)] group-hover:border-purple/30 group-hover:shadow-[0_15px_35px_rgba(127,82,255,0.2)] transition-all duration-300">
+          <div className="flex items-center justify-between gap-3">
+            <h3 className="font-semibold text-base sm:text-lg text-white tracking-tight group-hover:text-purple-300 transition-colors drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
+              {name}
+            </h3>
+
+            {/* Tech stack badge icons */}
+            <div className="flex items-center gap-1.5 flex-shrink-0">
+              {tech.slice(0, 4).map((el) => (
+                <div
+                  key={el}
+                  className="w-6 h-6 rounded-lg bg-white/[0.06] border border-white/10 p-1 flex items-center justify-center hover:scale-110 hover:border-purple/50 transition-transform"
+                  title={el}
+                >
+                  <img
+                    src={`/projects/tech/${el}.svg`}
+                    alt={el}
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+              ))}
+              {tech.length > 4 && (
+                <span className="text-[10px] text-gray-light-3 font-medium px-1">
+                  +{tech.length - 4}
+                </span>
+              )}
+            </div>
+          </div>
+
+          <p className="text-xs text-gray-light-2 line-clamp-1 font-normal drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]">
+            {description}
+          </p>
+        </div>
       </div>
     </a>
   );

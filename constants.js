@@ -137,47 +137,57 @@ export const PROJECTS = [
   {
     name: "Weather 🌦️",
     image: "/projects/weather.png",
+    images: [
+      "/projects/weather.png",
+    ],
     blurImage: "/projects/blur/weather.jpg",
-    description: "Real- time weather and 5 - day forecast based on your GPS location, with refresh and offline support.",
+    description: "Real-time weather and 5-day forecast based on your GPS location, with refresh and offline support.",
     gradient: ["#4B0082", "#2E004D"],
-
     url: "https://github.com/Abdallah-Elsobky/instabug_task",
     tech: ["kotlin", "android", "api", "location", "github"],
   },
   {
     name: "Trendify",
     image: "/projects/trendify.png",
+    images: [
+      "/projects/trendify.png",
+    ],
     blurImage: "/projects/blur/trendify.jpg",
     description: "📰 Trendify – Fast, reliable news at your fingertips! 🚀",
-    gradient: ["#1E3C72", "#2A5298"]
-,
-
+    gradient: ["#1E3C72", "#2A5298"],
     url: "https://github.com/Abdallah-Elsobky/Trendify",
     tech: ["kotlin", "android", "api", "sqlite", "github"],
   },
   {
     name: "Tasko",
     image: "/projects/tasko.jpg",
+    images: [
+      "/projects/tasko.jpg",
+    ],
     blurImage: "/projects/blur/tictac-blur.jpg",
     description: "📝 Tasko – Organize, prioritize, and track your tasks effortlessly! 🚀",
     gradient: ["#2F4F4F", "#1C2E2E"],
-
     url: "https://github.com/Abdallah-Elsobky/Tasko",
     tech: ["flutter", "android", "sqlite", "github"],
   },
   {
     name: "Tic Tac Game",
     image: "/projects/tictacc.jpg",
+    images: [
+      "/projects/tictacc.jpg",
+    ],
     blurImage: "/projects/blur/tictac-blur.jpg",
     description: "Experience Tic Tac Toe with customizable modes, AI challenges 🎮",
     gradient: ["#FF6347", "#CC4F39"],
-    
     url: "https://www.amazon.com/dp/B0DNCNV9SD/ref=apps_sf_sta",
     tech: ["java", "android", "sqlite", "github"],
   },
   {
     name: "BMI Calculator",
     image: "/projects/bmi.jpg",
+    images: [
+      "/projects/bmi.jpg",
+    ],
     blurImage: "/projects/blur/bmi-blur.jpg",
     description: "Quick, accurate BMI results with a simple interface and custom themes.",
     gradient: ["#4A90E2", "#0033A0"],
@@ -187,6 +197,9 @@ export const PROJECTS = [
   {
     name: "Natiga",
     image: "/projects/natiga.jpg",
+    images: [
+      "/projects/natiga.jpg",
+    ],
     blurImage: "/projects/blur/natiga-blur.jpg",
     description: "Natiga lets secondary students easily check their exam results by ID or name. 🧑‍🎓",
     gradient: ["#0F2027", "#203A43"],
@@ -334,7 +347,7 @@ export const WORK_CONTENTS = {
       ),
     },
   ],
-  
+
 
   ITI: [
     {
