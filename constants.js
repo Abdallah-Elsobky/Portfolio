@@ -125,32 +125,131 @@ export const SKILLS = {
 };
 
 export const PROJECTS = [
-  // {
-  //   name: "Coming soon",
-  //   image: "/projects/coming.png",
-  //   blurImage: "/projects/blur/music-blur.jpg",
-  //   description: "Under development. 👨🏻‍💻",
-  //   gradient: ["#FF4B5C", "#FF4B5C"],
-  //   url: "https://github.com/Abdallah-Elsobky",
-  //   tech: ["question", "question", "question", "question"],
-  // },
   {
-    name: "Weather 🌦️",
-    image: "/projects/weather.png",
+    name: "Awan ⏳",
+    type: "Android App",
+    image: "/projects/awan15.jpg",
     images: [
-      "/projects/weather.png",
+      "/projects/awan15.jpg",
+      "/projects/awan11.jpg",
+      "/projects/awan1.jpg",
+      "/projects/awan2.jpg",
+      "/projects/awan4.jpg",
+      "/projects/awan5.jpg",
+      "/projects/awan6.jpg",
+      "/projects/awan7.jpg",
+      "/projects/awan8.jpg",
+      "/projects/awan9.jpg",
+      "/projects/awan10.jpg",
+      "/projects/awan12.jpg",
+      "/projects/awan13.jpg",
+      "/projects/awan14.jpg",
+      "/projects/awan3.jpg",
+    ],
+    blurImage: "/projects/blur/tictac-blur.jpg",
+    description: "⏳ AI-assisted adaptive scheduling Android app with Clean Architecture, 100% Jetpack Compose, Zone routines, and gamification.",
+    gradient: ["#6366F1", "#3730A3"],
+    url: "https://github.com/Awan-app/Awan-Android",
+    tech: ["kotlin", "android", "sqlite", "api", "github"],
+  },
+  {
+    name: "Carto 🛍️",
+    type: "Android App",
+    image: "/projects/carto8.jpg",
+    images: [
+      "/projects/carto8.jpg",
+      "/projects/carto5.jpg",
+      "/projects/carto3.jpg",
+      "/projects/carto4.jpg",
+      "/projects/carto2.jpg",
+      "/projects/carto6.jpg",
+      "/projects/carto7.jpg",
+      "/projects/carto1.jpg",
+      "/projects/carto9.jpg",
+      "/projects/carto10.png",
+      "/projects/carto11.png",
+      "/projects/carto12.jpg",
+      "/projects/carto13.jpg",
+      "/projects/carto14.jpg",
+    ],
+    blurImage: "/projects/blur/tictac-blur.jpg",
+    description: "🏆 1st Place Winner – JETS MobileX 2026. Native Shopify e-commerce platform with embedded AI Shopping Assistant, Clean Architecture, and Compose.",
+    gradient: ["#8B5CF6", "#4C1D95"],
+    url: "https://github.com/Big-OO/carto",
+    tech: ["kotlin", "android", "api", "sqlite", "github"],
+  },
+  {
+    name: "Trendo",
+    type: "CMP App",
+    image: "/projects/trendo1.jpg",
+    images: [
+      "/projects/trendo1.jpg",
+      "/projects/trendo2.jpg",
+      "/projects/trendo3.jpg",
+    ],
+    blurImage: "/projects/blur/trendify.jpg",
+    description: "📰 Real-time trending news app with category filtering, region picker, offline-first Room caching, and favorites.",
+    gradient: ["#1E3C72", "#2A5298"],
+    url: "https://github.com/Abdallah-Elsobky/Trendo",
+    tech: ["kotlin", "cmp", "api", "sqlite", "github"],
+  },
+  {
+    name: "Tempo 🌦️",
+    type: "Android App",
+    image: "/projects/tempo3.jpg",
+    images: [
+      "/projects/tempo3.jpg",
+      "/projects/tempo2.jpg",
+      "/projects/tempo5.jpg",
+      "/projects/tempo4.jpg",
+      "/projects/tempo1.jpg",
     ],
     blurImage: "/projects/blur/weather.jpg",
-    description: "Real-time weather and 5-day forecast based on your GPS location, with refresh and offline support.",
+    description: "🌦️ Modern Android weather app with Jetpack Compose, detailed forecasts, map location picker, and smart WorkManager alerts.",
     gradient: ["#4B0082", "#2E004D"],
-    url: "https://github.com/Abdallah-Elsobky/instabug_task",
-    tech: ["kotlin", "android", "api", "location", "github"],
+    url: "https://github.com/Abdallah-Elsobky/Tempo",
+    tech: ["kotlin", "android", "sqlite", "api", "github"],
+  },
+  {
+    name: "Foodo",
+    type: "Android App",
+    image: "/projects/fodo1.png",
+    images: [
+      "/projects/fodo1.png",
+      "/projects/fodo2.png",
+      "/projects/fodo3.png",
+      "/projects/fodo4.png",
+      "/projects/fodo5.png",
+    ],
+    blurImage: "/projects/blur/tictac-blur.jpg",
+    description: "🍽️ Feature-rich Android meal planner & recipe management app with global recipes, date planning, favorites, and shopping cart.",
+    gradient: ["#E64A19", "#BF360C"],
+    url: "https://github.com/Abdallah-Elsobky/Foodo",
+    tech: ["android", "java", "sqlite", "api", "github"],
+  },
+  {
+    name: "Islami 📖",
+    type: "Android App",
+    image: "/projects/quran1.png",
+    images: [
+      "/projects/quran1.png",
+      "/projects/quran2.png",
+      "/projects/quran3.png",
+    ],
+    blurImage: "/projects/blur/tictac-blur.jpg",
+    description: "🕌 Comprehensive Islamic Android app featuring the complete Holy Quran, Ahadith, electronic Sebha, and Islamic radio streams.",
+    gradient: ["#B8860B", "#705305"],
+    url: "https://github.com/Abdallah-Elsobky/Islami",
+    tech: ["kotlin", "android", "sqlite", "api", "github"],
   },
   {
     name: "Trendify",
-    image: "/projects/trendify.png",
+    type: "Android App",
+    image: "/projects/trendify3.png",
     images: [
-      "/projects/trendify.png",
+      "/projects/trendify3.png",
+      "/projects/trendify2.png",
+      "/projects/trendify1.png",
     ],
     blurImage: "/projects/blur/trendify.jpg",
     description: "📰 Trendify – Fast, reliable news at your fingertips! 🚀",
@@ -159,22 +258,15 @@ export const PROJECTS = [
     tech: ["kotlin", "android", "api", "sqlite", "github"],
   },
   {
-    name: "Tasko",
-    image: "/projects/tasko.jpg",
-    images: [
-      "/projects/tasko.jpg",
-    ],
-    blurImage: "/projects/blur/tictac-blur.jpg",
-    description: "📝 Tasko – Organize, prioritize, and track your tasks effortlessly! 🚀",
-    gradient: ["#2F4F4F", "#1C2E2E"],
-    url: "https://github.com/Abdallah-Elsobky/Tasko",
-    tech: ["flutter", "android", "sqlite", "github"],
-  },
-  {
     name: "Tic Tac Game",
-    image: "/projects/tictacc.jpg",
+    type: "Android App",
+    image: "/projects/xo1.png",
     images: [
-      "/projects/tictacc.jpg",
+      "/projects/xo1.png",
+      "/projects/xo2.png",
+      "/projects/xo3.png",
+      "/projects/xo4.png",
+      "/projects/xo5.png",
     ],
     blurImage: "/projects/blur/tictac-blur.jpg",
     description: "Experience Tic Tac Toe with customizable modes, AI challenges 🎮",
@@ -183,7 +275,23 @@ export const PROJECTS = [
     tech: ["java", "android", "sqlite", "github"],
   },
   {
+    name: "Tasko",
+    type: "Flutter App",
+    image: "/projects/tasko3.jpg",
+    images: [
+      "/projects/tasko3.jpg",
+      "/projects/tasko1.jpg",
+      "/projects/tasko2.jpg",
+    ],
+    blurImage: "/projects/blur/tictac-blur.jpg",
+    description: "📝 Tasko – Organize, prioritize, and track your tasks effortlessly! 🚀",
+    gradient: ["#2F4F4F", "#1C2E2E"],
+    url: "https://github.com/Abdallah-Elsobky/Tasko",
+    tech: ["flutter", "android", "sqlite", "github"],
+  },
+  {
     name: "BMI Calculator",
+    type: "Flutter App",
     image: "/projects/bmi.jpg",
     images: [
       "/projects/bmi.jpg",
@@ -196,6 +304,7 @@ export const PROJECTS = [
   },
   {
     name: "Natiga",
+    type: "Android App",
     image: "/projects/natiga.jpg",
     images: [
       "/projects/natiga.jpg",
@@ -266,111 +375,72 @@ export const WORK_CONTENTS = {
   DEPI: [
     {
       title: "Digital Egypt Platform Initiative (DEPI)",
+      image: "/work/depi.png", // 👈 Replace with your image file (e.g. "/work/your-depi-image.png")
       description:
         "As part of the Digital Egypt Platform Initiative, I participated in a comprehensive training program focusing on mobile development. This initiative aims to transform Egypt into a digital society by leveraging modern technology in various sectors.",
-      content: (
-        <div className="h-full w-full flex items-center justify-center text-white px-4">
-          Mobile Developer Trainee
-        </div>
-      ),
     },
     {
       title: "Mobile Development Training",
       description:
         "Throughout the DEPI training, I gained hands-on experience in mobile app development, working with industry-standard frameworks and tools. I contributed to the development of user-centric mobile applications, enhancing my skills in creating seamless digital experiences.",
-      content: (
-        <div className="h-full w-full flex items-center justify-center text-white px-4">
-          Enhancing Digital Solutions
-        </div>
-      ),
     },
     {
       title: "Project Contributions",
       description:
         "During the training, I collaborated with a team of professionals to design and implement mobile applications that address real-world challenges. This experience allowed me to refine my technical skills and contribute to the initiative's goal of digital transformation.",
-      content: (
-        <div className="h-full w-full flex items-center justify-center text-white px-4">
-          Collaborative Development
-        </div>
-      ),
     },
     {
       title: "Skill Development",
       description:
         "The DEPI program provided me with the opportunity to work on multiple projects, allowing me to develop a deep understanding of mobile development practices. This experience has prepared me for future roles in the tech industry, where I can continue to contribute to digital innovation.",
-      content: (
-        <div className="h-full w-full flex items-center justify-center text-white px-4">
-          Preparing for the Future
-        </div>
-      ),
     },
   ],
   Route: [
     {
       title: "Route Academy Experience",
+      image: "/work/route.png", // 👈 Replace with your image file (e.g. "/work/your-route-image.png")
       description:
         "During my time at Route Academy, I underwent focused training in Android development, starting from the fundamentals of Java and Kotlin to advanced UI/UX design. The program laid a strong technical foundation and ignited my passion for building mobile applications.",
-      content: (
-        <div className="h-full w-full flex items-center justify-center text-white px-4">
-          Android Development Trainee
-        </div>
-      ),
     },
     {
       title: "Technical Skill Building",
       description:
         "The Route Academy course provided deep insights into Android architecture, design patterns, and best practices. I enhanced my ability to create scalable, efficient apps by learning how to work with APIs, manage state, and implement intuitive user interfaces.",
-      content: (
-        <div className="h-full w-full flex items-center justify-center text-white px-4">
-          Strengthening Development Skills
-        </div>
-      ),
     },
     {
       title: "Project-Based Learning",
       description:
         "I worked on several real-world applications during the training, including a To-Do List app, News app, and Quran app. These projects allowed me to apply my knowledge, improve my debugging skills, and gain hands-on experience in delivering functional mobile solutions.",
-      content: (
-        <div className="h-full w-full flex items-center justify-center text-white px-4">
-          Practical Android Projects
-        </div>
-      ),
     },
     {
       title: "Career Readiness",
       description:
         "By the end of the Route Academy program, I was able to confidently build complete Android apps independently. This experience equipped me with the skills and mindset needed to take on internships, freelance work, or full-time roles in the mobile development field.",
-      content: (
-        <div className="h-full w-full flex items-center justify-center text-white px-4">
-          Ready for Real-World Challenges
-        </div>
-      ),
     },
   ],
-
-
   ITI: [
     {
-      title: "ITI 9-Month Training",
+      title: "ITI Native Mobile Development Diploma",
+      image: "/work/iti.png", // 👈 Replace with your image file (e.g. "/work/your-iti-image.png")
       description:
-        "I am preparing to join the prestigious 9-Month Professional Training Program at ITI in the Mobile Development (Native) track. This intensive program is designed to provide a solid foundation in Android development using Kotlin, advanced programming concepts, design patterns, and mobile architecture. Throughout the training, I will gain hands-on experience with building scalable and high-performance applications, integrating APIs, managing databases, and applying best practices in UI/UX. In addition, the program focuses on problem-solving, teamwork, communication, and freelancing skills, helping me become a well-rounded professional ready for both the local and global markets.",
-      content: (
-        <div className="h-full w-full flex items-center justify-center text-white px-4">
-          ITI Mobile Development (Native) – 9-Month Journey
-        </div>
-      ),
+        "Graduated from the prestigious 9-Month Professional Diploma in Mobile Applications Development (Native) at the Information Technology Institute (ITI), Smart Village (MCIT) — specializing in enterprise-grade native Android, reactive UI, clean architectures, and modern mobile engineering in Agile teams.",
     },
     {
-      title: "Professional Growth",
+      title: "1st Place Winner – JETS MobileX Challenge 2026",
       description:
-        "This 9-month journey at ITI is not only about technical excellence, but also about personal and professional growth. I will be working on real-world projects, collaborating with peers, and learning from industry experts. The program aims to sharpen my problem-solving abilities, enhance my freelancing and entrepreneurship skills, and prepare me to compete in both local and international markets. By the end of this training, I will be equipped with the technical expertise, soft skills, and confidence to pursue a successful career in mobile development.",
-      content: (
-        <div className="h-full w-full flex items-center justify-center text-white px-4">
-          From Learning to Professional Readiness 🚀
-        </div>
-      ),
+        "Awarded 1st Place across the Android track at ITI Smart Village for architecting and building 'Carto' — a cutting-edge native e-commerce platform using Jetpack Compose, Clean Architecture, MVI, Hilt, Shopify API via Apollo GraphQL, embedded AI shopping assistant, and Paymob payment integration.",
     },
-  ]
+    {
+      title: "Scalable Architectures & Reactive Stack",
+      description:
+        "Architected and delivered multiple full-featured applications (including Tempo and Foodo) mastering MVI/MVVM, Clean Architecture, Kotlin Coroutines, Flow, Hilt, Room offline-first caching, Retrofit/Ktor networking, and background task scheduling with WorkManager.",
+    },
+    {
+      title: "Algorithmic Excellence & Production Engineering",
+      description:
+        "Ranked in the Top 35 nationwide in the ITI Problem-Solving Assessment (and 2-time ECPC Finalist). Applied rigorous Data Structures, SOLID principles, automated testing (JUnit, Mockk), Firebase cloud services, GitFlow, and CI/CD pipelines to ensure enterprise software reliability.",
+    },
+  ],
   // SPACENOS: [
   //   {
   //     title: "Spacenos",

@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
-// Comprehensive tour guide & interactive messages by section & rotation
+// Comprehensive tour guide & interactive messages by section
 const SECTION_GUIDES = {
   home: [
     {
@@ -16,14 +16,8 @@ const SECTION_GUIDES = {
       src: "/kotlin_mascot/jumping.svg",
       tag: "⚡ Pro Guide",
       title: "Android Excellence",
-      message: "Specialized in Jetpack Compose, Kotlin Multiplatform & Clean Architecture ✨",
+      message: "Specialized in Jetpack Compose, Clean Architecture & Reactive UI ✨",
       action: { label: "See Projects 📱", target: "projects" },
-    },
-    {
-      src: "/kotlin_mascot/sharing.svg",
-      tag: "💡 Tip",
-      title: "Interactive Companion",
-      message: "I will guide you through sections as you scroll! Click me anytime to minimize or expand.",
     },
   ],
   skills: [
@@ -31,42 +25,42 @@ const SECTION_GUIDES = {
       src: "/kotlin_mascot/jumping.svg",
       tag: "⚡ Tech Stack",
       title: "Supercharged Arsenal",
-      message: "Kotlin, Jetpack Compose, Coroutines, Flow, Dagger-Hilt, Room & KMP!",
+      message: "Advanced Kotlin, Jetpack Compose, Coroutines, Flow, Hilt, Room DB & GraphQL!",
       action: { label: "View Projects 📱", target: "projects" },
     },
     {
       src: "/kotlin_mascot/regular.svg",
       tag: "🛡️ Architecture",
       title: "Clean & Bulletproof",
-      message: "MVI & MVVM patterns crafted with SOLID principles and 100% testability.",
+      message: "MVI & MVVM patterns crafted with SOLID principles and modularization.",
     },
   ],
   projects: [
     {
       src: "/kotlin_mascot/in-love.svg",
-      tag: "📱 Showcase",
-      title: "Handcrafted Apps",
-      message: "Browse native Android apps built with passion, fluid UI, and production quality ❤️",
+      tag: "🏆 1st Place Winner",
+      title: "JETS MobileX 2026",
+      message: "Check out Carto (1st Place winner) & other native Android production apps!",
+      action: { label: "Work Experience 💼", target: "work" },
     },
     {
       src: "/kotlin_mascot/sitting.svg",
       tag: "🔍 Deep Dive",
       title: "Source Code & Demos",
       message: "Tap on any project card to inspect GitHub source repositories and live previews!",
-      action: { label: "Work Experience 💼", target: "work" },
     },
   ],
   work: [
     {
       src: "/kotlin_mascot/regular.svg",
-      tag: "💼 Experience",
+      tag: "💼 ITI & DEPI",
       title: "Proven Track Record",
-      message: "Delivering resilient, enterprise-grade mobile features and scaling user impact.",
+      message: "ITI 9-Month Professional Mobile Diploma & DEPI Mobile Development Trainee.",
     },
     {
       src: "/kotlin_mascot/sharing.svg",
       tag: "🤝 Collaboration",
-      title: "Agile & Product Focused",
+      title: "Agile & Team Ready",
       message: "Thrives in cross-functional teams, CI/CD pipelines, and high-velocity sprints.",
       action: { label: "Let's Connect ✉️", target: "contact" },
     },
@@ -83,70 +77,71 @@ const SECTION_GUIDES = {
       src: "/kotlin_mascot/in-love.svg",
       tag: "📬 Quick Response",
       title: "Always Reachable",
-      message: "Abdallah replies promptly to emails and LinkedIn messages. Let's create magic!",
+      message: "Abdallah replies promptly to emails and LinkedIn messages. Let's connect!",
     },
   ],
 };
 
-const FUN_TIDBITS = [
-  {
-    src: "/kotlin_mascot/naughty.svg",
-    tag: "💡 Kotlin Fact",
-    title: "Zero NPEs! 🛡️",
-    message: "Kotlin's null safety helps prevent billions of crashes worldwide!",
-  },
-  {
-    src: "/kotlin_mascot/in-love.svg",
-    tag: "❤️ Compose Fan",
-    title: "Declarative Magic",
-    message: "Jetpack Compose makes UI development 10x faster and infinitely smoother!",
-  },
-  {
-    src: "/kotlin_mascot/jumping.svg",
-    tag: "🚀 High Performance",
-    title: "Coroutines & Flow",
-    message: "Smooth 120Hz asynchronous rendering without ever blocking the main thread!",
-  },
-  {
-    src: "/kotlin_mascot/sharing.svg",
-    tag: "🌟 Open to Work",
-    title: "Ready for Challenges",
-    message: "Looking for a top-tier Android developer? You found the right profile!",
-    action: { label: "Contact Abdallah ✉️", target: "contact" },
-  },
-];
-
-const AUTO_ROTATE_INTERVAL = 7000; // 7 seconds per message
+const DISPLAY_DURATION = 5500; // 5.5 seconds open before auto-closing
 
 const KotlinMascot = () => {
   const [currentSection, setCurrentSection] = useState("home");
-  const [isMinimized, setIsMinimized] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [userDismissed, setUserDismissed] = useState(false); // If true, never auto-open on scroll
   const [messageIndex, setMessageIndex] = useState(0);
   const [currentPool, setCurrentPool] = useState(SECTION_GUIDES.home);
   const [bubbleKey, setBubbleKey] = useState(0);
   const [isMascotHovered, setIsMascotHovered] = useState(false);
 
-  // Determine current active message
-  const activeMessage = currentPool[messageIndex % currentPool.length] || SECTION_GUIDES.home[0];
+  const autoCloseTimerRef = useRef(null);
+  const isInitialMount = useRef(true);
 
-  // Advance to next message with smooth transition
-  const nextMessage = useCallback(() => {
+  // Helper to start the auto-close countdown
+  const startAutoCloseTimer = useCallback((duration = DISPLAY_DURATION) => {
+    if (autoCloseTimerRef.current) {
+      clearTimeout(autoCloseTimerRef.current);
+    }
+    autoCloseTimerRef.current = setTimeout(() => {
+      setIsOpen(false);
+    }, duration);
+  }, []);
+
+  // Helper to clear the auto-close countdown
+  const clearAutoCloseTimer = useCallback(() => {
+    if (autoCloseTimerRef.current) {
+      clearTimeout(autoCloseTimerRef.current);
+      autoCloseTimerRef.current = null;
+    }
+  }, []);
+
+  // Current active message from pool
+  const activeMessage =
+    currentPool[messageIndex % currentPool.length] || SECTION_GUIDES.home[0];
+
+  // Advance to next message in current section
+  const nextMessage = (e) => {
+    if (e) e.stopPropagation();
     setMessageIndex((prev) => (prev + 1) % currentPool.length);
     setBubbleKey((prev) => prev + 1);
-  }, [currentPool.length]);
+    startAutoCloseTimer(DISPLAY_DURATION);
+  };
 
-  // Auto-cycle message timer
+  // Initial visit greeting: Open on load for 5.5s then auto-close
   useEffect(() => {
-    if (isMinimized) return;
+    const initialTimer = setTimeout(() => {
+      if (!userDismissed) {
+        setIsOpen(true);
+        startAutoCloseTimer(DISPLAY_DURATION);
+      }
+    }, 1200);
 
-    const timer = setInterval(() => {
-      nextMessage();
-    }, AUTO_ROTATE_INTERVAL);
+    return () => {
+      clearTimeout(initialTimer);
+      clearAutoCloseTimer();
+    };
+  }, [userDismissed, startAutoCloseTimer, clearAutoCloseTimer]);
 
-    return () => clearInterval(timer);
-  }, [isMinimized, nextMessage, messageIndex]);
-
-  // Detect active section on scroll & update message pool
+  // Detect active section on scroll: Open, display message, and auto-close (unless user manually dismissed)
   useEffect(() => {
     const handleScroll = () => {
       const scrollPos = window.scrollY + window.innerHeight / 3;
@@ -160,10 +155,16 @@ const KotlinMascot = () => {
           if (scrollPos >= top && scrollPos < top + height) {
             if (currentSection !== sectionId) {
               setCurrentSection(sectionId);
-              const guides = SECTION_GUIDES[sectionId] || FUN_TIDBITS;
+              const guides = SECTION_GUIDES[sectionId] || SECTION_GUIDES.home;
               setCurrentPool(guides);
               setMessageIndex(0);
               setBubbleKey((prev) => prev + 1);
+
+              // If the user hasn't permanently dismissed it, open for this section and auto-close
+              if (!userDismissed) {
+                setIsOpen(true);
+                startAutoCloseTimer(DISPLAY_DURATION);
+              }
             }
             break;
           }
@@ -172,22 +173,35 @@ const KotlinMascot = () => {
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [currentSection]);
+  }, [currentSection, userDismissed, startAutoCloseTimer]);
 
-  // Toggle minimize/maximize on mascot click
+  // User manually closes the speech bubble
+  const handleManualClose = (e) => {
+    if (e) e.stopPropagation();
+    clearAutoCloseTimer();
+    setIsOpen(false);
+    setUserDismissed(true); // Flag that user closed it, so scroll will not re-open automatically
+  };
+
+  // Toggle mascot when avatar button is clicked
   const handleToggleMascot = () => {
-    setIsMinimized((prev) => !prev);
-    if (isMinimized) {
+    if (isOpen) {
+      // User clicked while open -> close and mark as dismissed
+      handleManualClose();
+    } else {
+      // User clicked while closed -> open, reset dismissed state (user wants to interact)
+      setUserDismissed(false);
+      setIsOpen(true);
       setBubbleKey((prev) => prev + 1);
+      startAutoCloseTimer(6500);
     }
   };
 
-  // Smooth scroll helper for interactive guide buttons
+  // Smooth scroll helper for interactive action buttons
   const scrollToSection = (targetId) => {
     const el = document.getElementById(targetId);
     if (el) {
@@ -202,19 +216,21 @@ const KotlinMascot = () => {
     >
       {/* Speech Bubble / Guide Card */}
       <AnimatePresence mode="wait">
-        {!isMinimized && (
+        {isOpen && (
           <motion.div
-            key={`bubble-${bubbleKey}-${messageIndex}`}
+            key={`bubble-${bubbleKey}-${currentSection}-${messageIndex}`}
             initial={{ opacity: 0, y: 14, scale: 0.92 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 8, scale: 0.94 }}
             transition={{ type: "spring", stiffness: 350, damping: 25 }}
-            className="pointer-events-auto mb-3.5 max-w-[270px] sm:max-w-[310px] p-4 rounded-2xl bg-[#120e1c]/95 border border-purple/35 backdrop-blur-xl shadow-[0_12px_40px_rgba(139,49,255,0.28)] text-white text-xs relative overflow-hidden"
+            onMouseEnter={clearAutoCloseTimer} // Pause auto-close while user is reading/hovering
+            onMouseLeave={() => startAutoCloseTimer(3000)} // Resume auto-close when user moves cursor away
+            className="pointer-events-auto mb-3.5 max-w-[270px] sm:max-w-[310px] p-4 rounded-2xl bg-[#120e1c]/95 border border-purple/35 backdrop-blur-xl shadow-[0_12px_40px_rgba(139,49,255,0.3)] text-white text-xs relative overflow-hidden"
           >
             {/* Ambient background glow inside card */}
             <div className="absolute top-0 right-0 w-32 h-32 bg-purple/10 rounded-full blur-2xl pointer-events-none" />
 
-            {/* Header: Tag + Auto-cycle count & next button */}
+            {/* Header: Status Tag + Next Tip + Close Button */}
             <div className="flex items-center justify-between gap-2 mb-1.5 relative z-10">
               <div className="flex items-center gap-1.5">
                 <span className="flex h-2 w-2 relative">
@@ -226,15 +242,27 @@ const KotlinMascot = () => {
                 </span>
               </div>
 
-              <div className="flex items-center gap-1">
+              <div className="flex items-center gap-1.5">
                 {/* Next tip mini-button */}
+                {currentPool.length > 1 && (
+                  <button
+                    onClick={nextMessage}
+                    title="Next tip"
+                    className="px-1.5 py-0.5 rounded-md bg-white/5 hover:bg-purple/30 text-[10px] text-gray-light-3 hover:text-white transition-all flex items-center gap-0.5 cursor-pointer"
+                  >
+                    <span>Next</span>
+                    <span className="text-[9px]">➔</span>
+                  </button>
+                )}
+
+                {/* Explicit Close Button ('✕') */}
                 <button
-                  onClick={nextMessage}
-                  title="Next guide tip"
-                  className="px-1.5 py-0.5 rounded-md bg-white/5 hover:bg-purple/30 text-[10px] text-gray-light-3 hover:text-white transition-all flex items-center gap-1"
+                  onClick={handleManualClose}
+                  title="Close guide"
+                  aria-label="Close guide"
+                  className="w-5 h-5 rounded-full bg-white/10 hover:bg-red-500/80 hover:text-white text-gray-light-3 flex items-center justify-center text-[11px] transition-all cursor-pointer"
                 >
-                  <span>Next</span>
-                  <span className="text-[9px]">➔</span>
+                  ✕
                 </button>
               </div>
             </div>
@@ -254,20 +282,20 @@ const KotlinMascot = () => {
               <div className="relative z-10 pt-1">
                 <button
                   onClick={() => scrollToSection(activeMessage.action.target)}
-                  className="link inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-purple/20 hover:bg-purple/40 border border-purple/40 text-white text-[11px] font-medium transition-all hover:scale-[1.02] active:scale-[0.98]"
+                  className="link inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-purple/25 hover:bg-purple/40 border border-purple/40 text-white text-[11px] font-medium transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
                 >
                   <span>{activeMessage.action.label}</span>
                 </button>
               </div>
             )}
 
-            {/* Auto-cycle progress bar at bottom */}
+            {/* Auto-cycle / Auto-close progress bar at bottom */}
             <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-white/5 overflow-hidden">
               <motion.div
-                key={`progress-${bubbleKey}-${messageIndex}`}
+                key={`progress-${bubbleKey}-${messageIndex}-${isOpen}`}
                 initial={{ width: "0%" }}
                 animate={{ width: "100%" }}
-                transition={{ duration: AUTO_ROTATE_INTERVAL / 1000, ease: "linear" }}
+                transition={{ duration: DISPLAY_DURATION / 1000, ease: "linear" }}
                 className="h-full bg-gradient-to-r from-purple to-indigo-light"
               />
             </div>
@@ -286,44 +314,40 @@ const KotlinMascot = () => {
           onMouseLeave={() => setIsMascotHovered(false)}
           whileHover={{ scale: 1.08 }}
           whileTap={{ scale: 0.92 }}
-          animate={
-            isMinimized
-              ? { y: [0, -3, 0] }
-              : { y: [0, -6, 0] }
-          }
+          animate={{ y: [0, -4, 0] }}
           transition={{
             repeat: Infinity,
-            duration: isMinimized ? 2.5 : 3.5,
+            duration: 3,
             ease: "easeInOut",
           }}
           className={`link group relative cursor-pointer flex items-center justify-center rounded-2xl transition-all duration-300 ${
-            isMinimized
-              ? "p-2 bg-[#14101e]/90 border border-purple/50 hover:border-purple shadow-[0_4px_20px_rgba(139,49,255,0.35)] backdrop-blur-xl"
-              : "p-2.5 sm:p-3 bg-[#130f1c]/90 border border-purple/40 hover:border-purple shadow-[0_8px_32px_rgba(139,49,255,0.35)] backdrop-blur-xl"
+            isOpen
+              ? "p-2.5 sm:p-3 bg-[#130f1c]/90 border border-purple/50 shadow-[0_8px_32px_rgba(139,49,255,0.4)] backdrop-blur-xl"
+              : "p-2 sm:p-2.5 bg-[#14101e]/85 border border-purple/40 hover:border-purple shadow-[0_4px_20px_rgba(139,49,255,0.3)] backdrop-blur-xl"
           }`}
-          title={isMinimized ? "Click to open Kodee Guide ✦" : "Click to minimize Kodee ✦"}
-          aria-label={isMinimized ? "Expand Kodee guide" : "Minimize Kodee guide"}
+          title={isOpen ? "Click to close Kodee" : "Click to open Kodee Guide ✦"}
+          aria-label={isOpen ? "Close Kodee guide" : "Open Kodee guide"}
         >
           {/* Subtle pulsating glow aura */}
           <div className="absolute -inset-1 rounded-2xl bg-gradient-to-tr from-purple/30 via-indigo-light/10 to-transparent blur-md opacity-70 group-hover:opacity-100 transition-opacity pointer-events-none" />
 
-          {/* Expanded State Avatar & Badge */}
-          {!isMinimized ? (
+          {/* Floating Avatar & Badge (Open) VS Minimized Sleek Pill (Closed) */}
+          {isOpen ? (
             <div className="relative flex flex-col items-center">
               {/* Mascot Badge: Kodee */}
-              <div className="absolute -top-4 px-2 py-0.5 rounded-full bg-[#1e1533] border border-purple/50 text-[10px] font-bold text-white shadow-md flex items-center gap-1 z-20 group-hover:border-purple transition-colors">
+              <div className="absolute -top-3.5 px-2 py-0.2 rounded-full bg-[#1e1533] border border-purple/50 text-[9.5px] font-bold text-white shadow-md flex items-center gap-1 z-20 group-hover:border-purple transition-colors">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#00E676] animate-pulse" />
                 <span>Kodee</span>
               </div>
 
-              {/* Avatar SVG Image with transition */}
-              <div className="w-16 h-16 sm:w-20 sm:h-20 relative mt-1 flex items-center justify-center">
+              {/* Avatar SVG Image */}
+              <div className="w-14 h-14 sm:w-16 sm:h-16 relative mt-1 flex items-center justify-center">
                 <Image
                   src={activeMessage.src || "/kotlin_mascot/greeting.svg"}
                   alt="Kodee Kotlin Guide"
-                  width={80}
-                  height={80}
-                  className="w-full h-full object-contain drop-shadow-[0_4px_14px_rgba(139,49,255,0.45)] group-hover:scale-105 transition-transform duration-200"
+                  width={64}
+                  height={64}
+                  className="w-full h-full object-contain drop-shadow-[0_4px_12px_rgba(139,49,255,0.45)] group-hover:scale-105 transition-transform duration-200"
                   priority
                 />
               </div>
@@ -335,22 +359,22 @@ const KotlinMascot = () => {
                     initial={{ opacity: 0, scale: 0.85, y: 5 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.85, y: 5 }}
-                    className="absolute -bottom-6 whitespace-nowrap px-2 py-0.5 rounded-md bg-black/80 border border-white/10 text-[9px] font-mono text-gray-light-2 pointer-events-none z-30"
+                    className="absolute -top-8 right-0 whitespace-nowrap px-2 py-0.5 rounded-md bg-black/90 border border-white/15 text-[9px] font-mono text-gray-light-2 pointer-events-none z-30 shadow-lg"
                   >
-                    Click to minimize
+                    Click to close
                   </motion.div>
                 )}
               </AnimatePresence>
             </div>
           ) : (
             /* Minimized Sleek Pill State */
-            <div className="flex items-center gap-2 px-1">
-              <div className="w-8 h-8 relative flex-shrink-0">
+            <div className="flex items-center gap-2 px-1 py-0.5">
+              <div className="w-7 h-7 relative flex-shrink-0">
                 <Image
                   src={activeMessage.src || "/kotlin_mascot/greeting.svg"}
                   alt="Kodee Guide"
-                  width={32}
-                  height={32}
+                  width={28}
+                  height={28}
                   className="w-full h-full object-contain drop-shadow-[0_2px_8px_rgba(139,49,255,0.5)]"
                 />
               </div>
@@ -362,16 +386,16 @@ const KotlinMascot = () => {
                 <span className="text-[9px] text-gray-light-3">Guide</span>
               </div>
 
-              {/* Tooltip hint on hover for minimized */}
+              {/* Tooltip hint on hover */}
               <AnimatePresence>
                 {isMascotHovered && (
                   <motion.div
                     initial={{ opacity: 0, scale: 0.85, y: 5 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.85, y: 5 }}
-                    className="absolute -top-7 right-0 whitespace-nowrap px-2 py-0.5 rounded-md bg-black/80 border border-white/10 text-[9px] font-mono text-gray-light-2 pointer-events-none z-30"
+                    className="absolute -top-7 right-0 whitespace-nowrap px-2 py-0.5 rounded-md bg-black/90 border border-white/15 text-[9px] font-mono text-gray-light-2 pointer-events-none z-30 shadow-lg"
                   >
-                    Click to open guide
+                    Click for guide ✦
                   </motion.div>
                 )}
               </AnimatePresence>

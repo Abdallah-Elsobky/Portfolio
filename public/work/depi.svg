@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a101f" />
+      <stop offset="50%" stop-color="#0e172e" />
+      <stop offset="100%" stop-color="#050a14" />
+    </linearGradient>
+    <linearGradient id="accentGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3ddc84" />
+      <stop offset="100%" stop-color="#00a884" />
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f6d365" />
+      <stop offset="100%" stop-color="#fda085" />
+    </linearGradient>
+    <pattern id="grid1" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="rgba(255, 255, 255, 0.04)" stroke-width="1" />
+    </pattern>
+    <filter id="glow1" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="30" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="500" fill="url(#bgGrad1)" rx="24" />
+  <rect width="800" height="500" fill="url(#grid1)" rx="24" />
+
+  <!-- Ambient Glows -->
+  <circle cx="680" cy="120" r="140" fill="#3ddc84" opacity="0.15" filter="url(#glow1)" />
+  <circle cx="120" cy="380" r="160" fill="#fda085" opacity="0.12" filter="url(#glow1)" />
+
+  <!-- Top Badge -->
+  <rect x="50" y="45" width="180" height="36" rx="18" fill="rgba(61, 220, 132, 0.12)" stroke="rgba(61, 220, 132, 0.3)" stroke-width="1.5" />
+  <circle cx="70" cy="63" r="5" fill="#3ddc84" />
+  <text x="86" y="68" fill="#3ddc84" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" letter-spacing="1.5">DEPI INITIATIVE</text>
+
+  <!-- Title & Subtitle -->
+  <text x="50" y="130" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="800" letter-spacing="-0.5">Digital Egypt Pioneers</text>
+  <text x="50" y="165" fill="#94a3b8" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="500">Ministry of Communications &amp; Information Tech</text>
+
+  <!-- Tech Card / Android Centerpiece -->
+  <g transform="translate(440, 100)">
+    <!-- Glass Phone / Card Mockup -->
+    <rect width="310" height="340" rx="20" fill="rgba(255, 255, 255, 0.04)" stroke="rgba(255, 255, 255, 0.12)" stroke-width="1.5" />
+    
+    <!-- Inner Phone Screen -->
+    <rect x="15" y="15" width="280" height="310" rx="14" fill="#090d16" stroke="rgba(61, 220, 132, 0.2)" stroke-width="1" />
+    
+    <!-- App Header -->
+    <rect x="25" y="28" width="80" height="12" rx="6" fill="rgba(255, 255, 255, 0.15)" />
+    <circle cx="270" cy="34" r="6" fill="#3ddc84" />
+
+    <!-- Android Bugdroid Mascot Silhouette -->
+    <g transform="translate(110, 80) scale(0.65)">
+      <!-- Android Head -->
+      <path d="M 40 50 A 50 50 0 0 1 140 50 Z" fill="url(#accentGrad1)" />
+      <circle cx="65" cy="30" r="4.5" fill="#090d16" />
+      <circle cx="115" cy="30" r="4.5" fill="#090d16" />
+      <!-- Antennas -->
+      <line x1="58" y1="12" x2="48" y2="-2" stroke="#3ddc84" stroke-width="5" stroke-linecap="round" />
+      <line x1="122" y1="12" x2="132" y2="-2" stroke="#3ddc84" stroke-width="5" stroke-linecap="round" />
+      <!-- Body -->
+      <rect x="40" y="58" width="100" height="85" rx="12" fill="url(#accentGrad1)" />
+      <!-- Arms -->
+      <rect x="16" y="58" width="16" height="65" rx="8" fill="url(#accentGrad1)" />
+      <rect x="148" y="58" width="16" height="65" rx="8" fill="url(#accentGrad1)" />
+      <!-- Legs -->
+      <rect x="62" y="148" width="16" height="40" rx="8" fill="url(#accentGrad1)" />
+      <rect x="102" y="148" width="16" height="40" rx="8" fill="url(#accentGrad1)" />
+    </g>
+
+    <!-- Track Tag -->
+    <rect x="35" y="240" width="240" height="38" rx="10" fill="rgba(61, 220, 132, 0.08)" stroke="rgba(61, 220, 132, 0.25)" />
+    <text x="155" y="264" fill="#3ddc84" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="600" text-anchor="middle">Mobile Native Track</text>
+
+    <!-- Secondary Tag -->
+    <text x="155" y="302" fill="#64748b" font-family="system-ui, -apple-system, sans-serif" font-size="11" text-anchor="middle">Kotlin • Jetpack • Architecture</text>
+  </g>
+
+  <!-- Left Stats / Badges -->
+  <g transform="translate(50, 220)">
+    <rect width="340" height="70" rx="14" fill="rgba(255, 255, 255, 0.03)" stroke="rgba(255, 255, 255, 0.08)" />
+    <circle cx="35" cy="35" r="18" fill="rgba(246, 211, 101, 0.15)" />
+    <path d="M 28 35 L 33 40 L 42 30" fill="none" stroke="#f6d365" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="68" y="31" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="700">Digital Transformation</text>
+    <text x="68" y="51" fill="#94a3b8" font-family="system-ui, -apple-system, sans-serif" font-size="12">National Tech Leadership Program</text>
+  </g>
+
+  <g transform="translate(50, 305)">
+    <rect width="340" height="70" rx="14" fill="rgba(255, 255, 255, 0.03)" stroke="rgba(255, 255, 255, 0.08)" />
+    <circle cx="35" cy="35" r="18" fill="rgba(61, 220, 132, 0.15)" />
+    <path d="M 28 35 L 33 40 L 42 30" fill="none" stroke="#3ddc84" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="68" y="31" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="700">Mobile Engineering</text>
+    <text x="68" y="51" fill="#94a3b8" font-family="system-ui, -apple-system, sans-serif" font-size="12">Modern Android SDK &amp; Best Practices</text>
+  </g>
+
+  <g transform="translate(50, 390)">
+    <rect width="340" height="70" rx="14" fill="rgba(255, 255, 255, 0.03)" stroke="rgba(255, 255, 255, 0.08)" />
+    <circle cx="35" cy="35" r="18" fill="rgba(110, 195, 244, 0.15)" />
+    <path d="M 28 35 L 33 40 L 42 30" fill="none" stroke="#6ec3f4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="68" y="31" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="700">Collaborative Projects</text>
+    <text x="68" y="51" fill="#94a3b8" font-family="system-ui, -apple-system, sans-serif" font-size="12">Agile &amp; Industry-Standard Workflows</text>
+  </g>
+</svg>

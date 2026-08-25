@@ -17,7 +17,7 @@ const AndroidEmulatorScreen = ({
 }) => {
   return (
     <div
-      className={`relative w-full aspect-[9/20] rounded-[1.5rem] sm:rounded-[1.7rem] p-[3px] bg-gradient-to-b from-white/30 via-white/10 to-white/20 shadow-[0_20px_45px_rgba(0,0,0,0.9)] border border-white/20 backdrop-blur-sm transition-all duration-500 ${
+      className={`relative w-full aspect-[9/20] rounded-[1.5rem] sm:rounded-[1.7rem] p-[3px] bg-gradient-to-b from-white/30 via-white/10 to-white/20 shadow-[0_20px_45px_rgba(0,0,0,0.9)] border border-white/20 transition-all duration-300 ${
         isCenter
           ? "ring-1 ring-white/30 shadow-[0_25px_55px_-10px_rgba(0,0,0,0.95)]"
           : "opacity-85 brightness-90"
@@ -50,27 +50,8 @@ const AndroidEmulatorScreen = ({
           </AnimatePresence>
         </div>
 
-        {/* Real Device Top Header Scrim Overlay */}
-        <div className="absolute top-0 inset-x-0 z-20 px-2.5 pt-1.5 pb-2 flex items-center justify-between pointer-events-none bg-gradient-to-b from-black/40 via-black/10 to-transparent">
-          {/* Real Device Time on Left */}
-          <span className="text-[7px] sm:text-[7.5px] font-semibold text-white tracking-tight drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]">
-            9:41
-          </span>
-
-          {/* Real Device Battery on Right */}
-          <div className="flex items-center gap-1 text-[7px] text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]">
-            <div className="w-3 h-1.5 rounded-[2px] border border-white/90 p-[0.5px] flex items-center">
-              <div className="w-2 h-full bg-white rounded-[0.5px]" />
-            </div>
-          </div>
-        </div>
-
-        {/* iPhone Dynamic Island: Sleek solid black pill */}
-        <div className="absolute top-1.5 left-1/2 -translate-x-1/2 w-10 h-2.5 sm:w-11 sm:h-2.5 bg-black rounded-full z-30 border border-white/[0.08] shadow-[0_1px_3px_rgba(0,0,0,0.8)] pointer-events-none" />
-
         {/* Screen Glare Overlay */}
         <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/[0.03] to-transparent pointer-events-none z-10" />
-
       </div>
     </div>
   );
@@ -94,18 +75,20 @@ const ProjectTile = ({ project, classes, isDesktop }) => {
       : [image, image, image].filter(Boolean);
 
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
   const additionalClasses = classes || "";
 
-  // Automatic scrolling: Cycles images every 4 seconds (4000ms) continuously
+  // Hover-triggered cycling: Cycles images only while user hovers over the card
   useEffect(() => {
-    if (imagesList.length <= 1) return;
+    const hasMultipleUnique = new Set(imagesList).size > 1;
+    if (!isHovered || !hasMultipleUnique) return;
 
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % imagesList.length);
-    }, 4000); // Exactly 4 seconds
+    }, 2400);
 
     return () => clearInterval(interval);
-  }, [imagesList.length]);
+  }, [isHovered, imagesList]);
 
   // Indices for the 3 visible phones: Left, Center, Right
   const total = imagesList.length;
@@ -116,6 +99,8 @@ const ProjectTile = ({ project, classes, isDesktop }) => {
   return (
     <a
       href={url}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
       className={`group block flex-shrink-0 overflow-hidden rounded-[2rem] transition-all duration-300 ${additionalClasses}`}
       target="_blank"
       rel="noreferrer"
@@ -131,7 +116,7 @@ const ProjectTile = ({ project, classes, isDesktop }) => {
       >
         {/* Ambient Top Glow */}
         <div
-          className="absolute -top-24 -right-24 w-64 h-64 rounded-full blur-[80px] opacity-30 pointer-events-none transition-opacity duration-500 group-hover:opacity-60"
+          className="absolute -top-24 -right-24 w-64 h-64 rounded-full blur-[60px] opacity-25 pointer-events-none transition-opacity duration-500 group-hover:opacity-50"
           style={{ background: gradient[0] }}
         />
 
@@ -142,15 +127,15 @@ const ProjectTile = ({ project, classes, isDesktop }) => {
           className="absolute w-full h-full top-0 left-0 object-cover opacity-10 pointer-events-none"
         />
 
-        {/* Top Header: Compact Android Badge (No Overlap with Mockup) */}
+        {/* Top Header: Project Type Badge (Controlled by project.type) */}
         <div className="flex items-center justify-center z-20 w-full mb-1">
-          <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.06] border border-white/10 backdrop-blur-md shadow-sm">
+          <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#141923] border border-white/10 shadow-sm">
             <span
               className="w-1.5 h-1.5 rounded-full animate-pulse"
               style={{ background: gradient[0] || "#3DDC84" }}
             />
             <span className="text-[10px] font-semibold tracking-wider uppercase text-gray-light-2">
-              Android App
+              {project.type || "Android App"}
             </span>
           </div>
         </div>
@@ -159,12 +144,7 @@ const ProjectTile = ({ project, classes, isDesktop }) => {
         <div className="relative w-full flex-1 flex items-center justify-center my-1 z-10 select-none">
           <div className="relative w-full h-[15.5rem] sm:h-[17rem] flex items-center justify-center">
             {/* 1. LEFT PHONE */}
-            <div
-              className="absolute w-[7.4rem] sm:w-[8.6rem] -translate-x-[4rem] sm:-translate-x-[4.8rem] scale-[0.84] z-10 transition-all duration-300"
-              style={{
-                filter: "drop-shadow(0 15px 25px rgba(0,0,0,0.85))",
-              }}
-            >
+            <div className="absolute w-[7.4rem] sm:w-[8.6rem] -translate-x-[4rem] sm:-translate-x-[4.8rem] scale-[0.84] z-10 transition-all duration-300 shadow-[0_15px_30px_rgba(0,0,0,0.9)] rounded-[1.5rem] sm:rounded-[1.7rem]">
               <AndroidEmulatorScreen
                 src={imagesList[leftIndex]}
                 alt={`${name} screen left`}
@@ -174,12 +154,7 @@ const ProjectTile = ({ project, classes, isDesktop }) => {
             </div>
 
             {/* 2. RIGHT PHONE */}
-            <div
-              className="absolute w-[7.4rem] sm:w-[8.6rem] translate-x-[4rem] sm:translate-x-[4.8rem] scale-[0.84] z-10 transition-all duration-300"
-              style={{
-                filter: "drop-shadow(0 15px 25px rgba(0,0,0,0.85))",
-              }}
-            >
+            <div className="absolute w-[7.4rem] sm:w-[8.6rem] translate-x-[4rem] sm:translate-x-[4.8rem] scale-[0.84] z-10 transition-all duration-300 shadow-[0_15px_30px_rgba(0,0,0,0.9)] rounded-[1.5rem] sm:rounded-[1.7rem]">
               <AndroidEmulatorScreen
                 src={imagesList[rightIndex]}
                 alt={`${name} screen right`}
@@ -189,12 +164,7 @@ const ProjectTile = ({ project, classes, isDesktop }) => {
             </div>
 
             {/* 3. CENTER PHONE */}
-            <div
-              className="relative w-[8.6rem] sm:w-[10rem] z-20 transition-all duration-300 group-hover:scale-[1.03]"
-              style={{
-                filter: "drop-shadow(0 25px 40px rgba(0,0,0,0.95))",
-              }}
-            >
+            <div className="relative w-[8.6rem] sm:w-[10rem] z-20 transition-all duration-300 group-hover:scale-[1.03] shadow-[0_25px_45px_rgba(0,0,0,0.95)] rounded-[1.5rem] sm:rounded-[1.7rem]">
               <AndroidEmulatorScreen
                 src={imagesList[centerIndex]}
                 blurDataURL={blurImage}
@@ -207,7 +177,7 @@ const ProjectTile = ({ project, classes, isDesktop }) => {
         </div>
 
         {/* Bottom Section: Small Title with Refined Shadow & Tech Stack */}
-        <div className="relative z-20 flex flex-col gap-2 p-3.5 sm:p-4 rounded-2xl bg-gradient-to-b from-white/[0.08] to-white/[0.02] border border-white/10 backdrop-blur-xl shadow-[0_12px_32px_rgba(0,0,0,0.85)] group-hover:border-purple/30 group-hover:shadow-[0_15px_35px_rgba(127,82,255,0.2)] transition-all duration-300">
+        <div className="relative z-20 flex flex-col gap-2 p-3.5 sm:p-4 rounded-2xl bg-[#0d121c]/95 border border-white/10 shadow-[0_12px_32px_rgba(0,0,0,0.85)] group-hover:border-purple/30 group-hover:shadow-[0_15px_35px_rgba(127,82,255,0.2)] transition-all duration-300">
           <div className="flex items-center justify-between gap-3">
             <h3 className="font-semibold text-base sm:text-lg text-white tracking-tight group-hover:text-purple-300 transition-colors drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
               {name}

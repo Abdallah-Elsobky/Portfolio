@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGradITI" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#07172c" />
+      <stop offset="50%" stop-color="#0d2440" />
+      <stop offset="100%" stop-color="#040d1a" />
+    </linearGradient>
+    <linearGradient id="itiCyanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00f5d4" />
+      <stop offset="100%" stop-color="#00bbf9" />
+    </linearGradient>
+    <linearGradient id="goldITI" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fee140" />
+      <stop offset="100%" stop-color="#fa709a" />
+    </linearGradient>
+    <pattern id="gridITI" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="rgba(255, 255, 255, 0.04)" stroke-width="1" />
+    </pattern>
+    <filter id="glowITI" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="35" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="500" fill="url(#bgGradITI)" rx="24" />
+  <rect width="800" height="500" fill="url(#gridITI)" rx="24" />
+
+  <!-- Ambient Glows -->
+  <circle cx="680" cy="140" r="160" fill="#00bbf9" opacity="0.25" filter="url(#glowITI)" />
+  <circle cx="150" cy="380" r="150" fill="#00f5d4" opacity="0.15" filter="url(#glowITI)" />
+
+  <!-- Top Badge -->
+  <rect x="50" y="45" width="220" height="36" rx="18" fill="rgba(0, 245, 212, 0.12)" stroke="rgba(0, 245, 212, 0.35)" stroke-width="1.5" />
+  <circle cx="70" cy="63" r="5" fill="#00f5d4" />
+  <text x="86" y="68" fill="#00f5d4" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" letter-spacing="1.5">ITI 9-MONTH PROGRAM</text>
+
+  <!-- Title & Subtitle -->
+  <text x="50" y="130" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="800" letter-spacing="-0.5">Information Technology Institute</text>
+  <text x="50" y="165" fill="#38bdf8" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="500">Mobile Development (Native) Professional Diploma</text>
+
+  <!-- Right Showcase -->
+  <g transform="translate(440, 95)">
+    <!-- Main Device Card -->
+    <rect width="310" height="345" rx="20" fill="rgba(255, 255, 255, 0.04)" stroke="rgba(255, 255, 255, 0.12)" stroke-width="1.5" />
+    
+    <!-- Inner Screen -->
+    <rect x="14" y="14" width="282" height="317" rx="14" fill="#071322" stroke="rgba(0, 187, 249, 0.3)" stroke-width="1" />
+    
+    <!-- Header -->
+    <rect x="25" y="28" width="100" height="12" rx="6" fill="rgba(0, 245, 212, 0.25)" />
+    <circle cx="270" cy="34" r="5" fill="#00f5d4" />
+    <circle cx="254" cy="34" r="5" fill="#00bbf9" />
+
+    <!-- Diploma Badge in Mockup -->
+    <g transform="translate(30, 60)">
+      <rect width="222" height="75" rx="12" fill="rgba(255, 255, 255, 0.04)" stroke="rgba(0, 245, 212, 0.2)" />
+      <circle cx="36" cy="37" r="18" fill="url(#itiCyanGrad)" />
+      <text x="36" y="43" fill="#071322" font-size="16" font-weight="900" text-anchor="middle">ITI</text>
+      <text x="68" y="32" fill="#ffffff" font-size="13" font-weight="800">9-Months Intensive</text>
+      <text x="68" y="52" fill="#38bdf8" font-size="11">Professional Native Track</text>
+    </g>
+
+    <!-- Skills List Mini -->
+    <g transform="translate(30, 150)">
+      <rect width="222" height="110" rx="12" fill="rgba(255, 255, 255, 0.03)" stroke="rgba(255, 255, 255, 0.06)" />
+      <text x="20" y="30" fill="#94a3b8" font-size="11" font-weight="600">KEY FOCUS AREAS:</text>
+      <text x="20" y="52" fill="#e2e8f0" font-size="12">✦ Advanced Kotlin &amp; Coroutines</text>
+      <text x="20" y="74" fill="#e2e8f0" font-size="12">✦ Jetpack Compose &amp; Clean Arch</text>
+      <text x="20" y="96" fill="#e2e8f0" font-size="12">✦ Freelancing &amp; Team Collaboration</text>
+    </g>
+
+    <!-- Bottom Tag -->
+    <rect x="30" y="275" width="222" height="34" rx="8" fill="url(#itiCyanGrad)" />
+    <text x="141" y="297" fill="#071322" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="800" text-anchor="middle">Global Market Readiness</text>
+  </g>
+
+  <!-- Left Feature Pillars -->
+  <g transform="translate(50, 220)">
+    <rect width="340" height="70" rx="14" fill="rgba(255, 255, 255, 0.03)" stroke="rgba(255, 255, 255, 0.08)" />
+    <circle cx="35" cy="35" r="18" fill="rgba(0, 245, 212, 0.15)" />
+    <path d="M 28 35 L 33 40 L 42 30" fill="none" stroke="#00f5d4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="68" y="31" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="700">Elite 9-Month Curriculum</text>
+    <text x="68" y="51" fill="#7dd3fc" font-family="system-ui, -apple-system, sans-serif" font-size="12">Rigorous hands-on engineering standards</text>
+  </g>
+
+  <g transform="translate(50, 305)">
+    <rect width="340" height="70" rx="14" fill="rgba(255, 255, 255, 0.03)" stroke="rgba(255, 255, 255, 0.08)" />
+    <circle cx="35" cy="35" r="18" fill="rgba(0, 187, 249, 0.15)" />
+    <path d="M 28 35 L 33 40 L 42 30" fill="none" stroke="#00bbf9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="68" y="31" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="700">Enterprise Architecture</text>
+    <text x="68" y="51" fill="#7dd3fc" font-family="system-ui, -apple-system, sans-serif" font-size="12">Modularization, Dependency Injection, Testing</text>
+  </g>
+
+  <g transform="translate(50, 390)">
+    <rect width="340" height="70" rx="14" fill="rgba(255, 255, 255, 0.03)" stroke="rgba(255, 255, 255, 0.08)" />
+    <circle cx="35" cy="35" r="18" fill="rgba(254, 225, 64, 0.15)" />
+    <path d="M 28 35 L 33 40 L 42 30" fill="none" stroke="#fee140" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="68" y="31" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="700">Industry &amp; Freelance Prep</text>
+    <text x="68" y="51" fill="#7dd3fc" font-family="system-ui, -apple-system, sans-serif" font-size="12">Graduation projects &amp; client-ready delivery</text>
+  </g>
+</svg>

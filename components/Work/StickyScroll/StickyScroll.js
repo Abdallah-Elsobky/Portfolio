@@ -3,7 +3,7 @@ import { useMotionValueEvent, useScroll, motion } from "framer-motion";
 import DotPattern from "../DotPattern/DotPattern";
 import { cn } from "utils/cn";
 
-const StickyScroll = ({ contentItems }) => {
+const StickyScroll = ({ contentItems, image }) => {
   const [activeCard, setActiveCard] = useState(0);
   const containerRef = useRef(null);
 
@@ -38,6 +38,8 @@ const StickyScroll = ({ contentItems }) => {
     "linear-gradient(to bottom right, #6ec3f4, #7038ff)",
     "linear-gradient(to bottom right, #7038ff, #c9c9c9)",
   ];
+
+  const singleImage = image || contentItems[0]?.image || contentItems[0]?.img;
 
   return (
     <div className="relative">
@@ -94,15 +96,29 @@ const StickyScroll = ({ contentItems }) => {
             <div className="h-40" />
           </div>
         </div>
-        <motion.div
-          animate={{
-            backgroundImage:
-              linearGradients[activeCard % linearGradients.length],
-          }}
-          className="hidden lg:block h-60 w-80 rounded-md bg-white sticky top-10 overflow-hidden"
-        >
-          {contentItems[activeCard].content ?? null}
-        </motion.div>
+        <div className="hidden lg:block h-60 w-80 rounded-2xl sticky top-10 overflow-hidden shrink-0 border border-white/15 shadow-[0_10px_30px_rgba(0,0,0,0.6)] bg-black relative group">
+          {singleImage ? (
+            <div className="relative w-full h-full overflow-hidden rounded-2xl">
+              <img
+                src={singleImage}
+                alt="Work Preview"
+                className="w-full h-full object-cover rounded-2xl group-hover:scale-105 transition-transform duration-700 ease-out"
+              />
+              {/* Subtle inner highlight border & overlay for maximum polish */}
+              <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/10 pointer-events-none" />
+            </div>
+          ) : (
+            <div
+              className="w-full h-full flex items-center justify-center text-white px-4 text-center rounded-2xl"
+              style={{
+                backgroundImage:
+                  linearGradients[activeCard % linearGradients.length],
+              }}
+            >
+              {contentItems[activeCard]?.content ?? null}
+            </div>
+          )}
+        </div>
       </motion.div>
     </div>
   );
