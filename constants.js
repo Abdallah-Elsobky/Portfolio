@@ -81,30 +81,47 @@ export const SOCIAL_LINKS = [
 ];
 
 export const SKILLS = {
-  languagesAndTools: [
-    "android",
-    "kotlin",
-    "api",
-    "java",
-    "dart",
-    "flutter",
-    "figma",
-    "python",
-    "c++",
-    "codeforces",
+  languagesAndCore: [
+    { name: "Kotlin", icon: "kotlin" },
+    { name: "Android SDK", icon: "android" },
+    { name: "Java", icon: "java" },
+    { name: "Dart", icon: "dart" },
+    { name: "C++", icon: "c++" },
+    { name: "Python", icon: "python" },
+  ],
+  uiAndFrameworks: [
+    { name: "Jetpack Compose", icon: "compose" },
+    { name: "Material Design 3", icon: "material3" },
+    { name: "Flutter", icon: "flutter" },
+    { name: "Figma UI/UX", icon: "figma" },
   ],
   librariesAndFrameworks: [
-    "soon",
-    // "react",
-    // "redux",
-    // "nextjs",
-    // "tailwindcss",
-    // "styledcomponents",
-    // "antdesign",
-    // "chakra-ui",
+    { name: "Coroutines & Flow", icon: "coroutines" },
+    { name: "Dagger Hilt", icon: "hilt" },
+    { name: "Navigation 3", icon: "nav3" },
+    { name: "Room ORM", icon: "room" },
+    { name: "Retrofit", icon: "retrofit" },
+    { name: "OkHttp", icon: "okhttp" },
+    { name: "WorkManager", icon: "workmanager" },
+    { name: "Paging 3", icon: "paging" },
+    { name: "Jetpack DataStore", icon: "datastore" },
+    { name: "Koin DI", icon: "koin" },
+    { name: "Coil Image Loader", icon: "coil" },
+    { name: "Ktor Client", icon: "ktor" },
   ],
-  databases: ["mysql", "sqlite","firebase"],
-  other: ["git", "github"],
+  databases: [
+    { name: "Room DB", icon: "room" },
+    { name: "Firebase", icon: "firebase" },
+    { name: "SQLite", icon: "sqlite" },
+    { name: "MySQL", icon: "mysql" },
+  ],
+  testingAndTools: [
+    { name: "Gradle (Kotlin DSL)", icon: "gradle" },
+    { name: "JUnit 5", icon: "junit" },
+    { name: "MockK", icon: "mockk" },
+    { name: "Git", icon: "git" },
+    { name: "GitHub & CI/CD", icon: "github" },
+  ],
 };
 
 export const PROJECTS = [

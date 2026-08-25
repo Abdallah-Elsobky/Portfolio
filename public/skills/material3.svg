@@ -1,0 +1,19 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="m3Grad1" x1="6" y1="6" x2="30" y2="30" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#D0BCFF"/>
+      <stop offset="100%" stop-color="#6750A4"/>
+    </linearGradient>
+    <linearGradient id="m3Grad2" x1="18" y1="18" x2="42" y2="42" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#4F378B"/>
+      <stop offset="100%" stop-color="#381E72"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Official Material Design 3 Dynamic Color Geometry -->
+  <circle cx="18" cy="18" r="14" fill="url(#m3Grad1)"/>
+  <circle cx="30" cy="30" r="14" fill="url(#m3Grad2)"/>
+  <circle cx="30" cy="18" r="8" fill="#EADDFF" opacity="0.85"/>
+  <circle cx="18" cy="30" r="8" fill="#21005D" opacity="0.85"/>
+  <circle cx="24" cy="24" r="5" fill="#FFFFFF"/>
+</svg>

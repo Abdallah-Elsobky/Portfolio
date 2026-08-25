@@ -1,0 +1,32 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="coilGrad1" x1="4" y1="4" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#00C7FF"/>
+      <stop offset="40%" stop-color="#5E5CE6"/>
+      <stop offset="70%" stop-color="#7F52FF"/>
+      <stop offset="100%" stop-color="#3DDC84"/>
+    </linearGradient>
+    <linearGradient id="coilGrad2" x1="12" y1="12" x2="36" y2="36" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#A29BFE"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Outer Aperture Ring -->
+  <circle cx="24" cy="24" r="20" stroke="url(#coilGrad1)" stroke-width="4"/>
+
+  <!-- Coil's Iconic Swirling Camera Lens Aperture Blades / Coiled Spiral Geometry -->
+  <!-- Blade 1 -->
+  <path d="M24 8C32.8366 8 40 15.1634 40 24L24 24L24 8Z" fill="url(#coilGrad1)" opacity="0.9"/>
+  <!-- Blade 2 -->
+  <path d="M40 24C40 32.8366 32.8366 40 24 40L24 24L40 24Z" fill="url(#coilGrad1)" opacity="0.75"/>
+  <!-- Blade 3 -->
+  <path d="M24 40C15.1634 40 8 32.8366 8 24L24 24L24 40Z" fill="url(#coilGrad1)" opacity="0.6"/>
+  <!-- Blade 4 -->
+  <path d="M8 24C8 15.1634 15.1634 8 24 8L24 24L8 24Z" fill="url(#coilGrad1)" opacity="0.85"/>
+
+  <!-- Center Aperture Opening / Coil Lens Pupil -->
+  <circle cx="24" cy="24" r="7" fill="#FFFFFF"/>
+  <circle cx="24" cy="24" r="4.5" fill="#5E5CE6"/>
+  <circle cx="25.5" cy="22.5" r="1.5" fill="#FFFFFF"/>
+</svg>

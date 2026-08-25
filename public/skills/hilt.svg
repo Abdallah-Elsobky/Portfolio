@@ -1,0 +1,37 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="hiltBladeGrad" x1="24" y1="4" x2="24" y2="44" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#00E676"/>
+      <stop offset="50%" stop-color="#00B0FF"/>
+      <stop offset="100%" stop-color="#3DDC84"/>
+    </linearGradient>
+    <linearGradient id="hiltGuardGrad" x1="8" y1="20" x2="40" y2="28" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#00B0FF"/>
+      <stop offset="100%" stop-color="#00E676"/>
+    </linearGradient>
+    <linearGradient id="hiltGlow" x1="24" y1="4" x2="24" y2="38" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.2"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Outer DI Injection Ring / Connection Halo -->
+  <circle cx="24" cy="24" r="18" stroke="url(#hiltBladeGrad)" stroke-width="2.5" stroke-dasharray="4 4" opacity="0.6"/>
+  
+  <!-- Dagger Blade -->
+  <path d="M24 4L28 18V32L24 44L20 32V18L24 4Z" fill="url(#hiltBladeGrad)"/>
+  
+  <!-- Blade Center Ridge Highlight -->
+  <path d="M24 6L24 41" stroke="url(#hiltGlow)" stroke-width="1.8" stroke-linecap="round"/>
+  
+  <!-- Hilt Crossguard with DI Nodes -->
+  <path d="M10 21C10 19.8954 10.8954 19 12 19H36C37.1046 19 38 19.8954 38 21V23C38 24.1046 37.1046 25 36 25H12C10.8954 25 10 24.1046 10 23V21Z" fill="url(#hiltGuardGrad)"/>
+  
+  <!-- Crossguard Dependency Nodes -->
+  <circle cx="12" cy="22" r="3.5" fill="#00E676" stroke="#FFFFFF" stroke-width="1.5"/>
+  <circle cx="36" cy="22" r="3.5" fill="#00B0FF" stroke="#FFFFFF" stroke-width="1.5"/>
+  <circle cx="24" cy="22" r="3" fill="#FFFFFF"/>
+  
+  <!-- Pommel / Top Handle Node -->
+  <circle cx="24" cy="4" r="3" fill="#00E676" stroke="#FFFFFF" stroke-width="1.5"/>
+</svg>

@@ -1,0 +1,14 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="mockkGrad" x1="4" y1="4" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#7F52FF"/>
+      <stop offset="50%" stop-color="#C711E1"/>
+      <stop offset="100%" stop-color="#3DDC84"/>
+    </linearGradient>
+  </defs>
+
+  <!-- MockK Geometric Kotlin-Style 'M' Shield -->
+  <path d="M8 8V40L20 28L32 40V8L24 16L16 8H8Z" fill="url(#mockkGrad)"/>
+  <path d="M24 16L32 8H40V40L32 32L24 40V16Z" fill="#3DDC84"/>
+  <circle cx="24" cy="24" r="3.5" fill="#FFFFFF"/>
+</svg>

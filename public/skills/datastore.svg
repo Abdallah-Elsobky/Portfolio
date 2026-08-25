@@ -1,0 +1,33 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="dsVaultGrad" x1="8" y1="8" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#4285F4"/>
+      <stop offset="50%" stop-color="#00B0FF"/>
+      <stop offset="100%" stop-color="#3DDC84"/>
+    </linearGradient>
+    <linearGradient id="dsKeyGrad" x1="14" y1="14" x2="34" y2="34" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFB300"/>
+      <stop offset="100%" stop-color="#FF6D00"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Jetpack DataStore Modern Safe Vault Hexagon / Shield -->
+  <rect x="6" y="8" width="36" height="32" rx="8" fill="url(#dsVaultGrad)" stroke="#FFFFFF" stroke-width="2"/>
+  
+  <!-- Preference Key-Value Rows / Proto Schema Lines -->
+  <rect x="12" y="14" width="10" height="3" rx="1.5" fill="#FFFFFF"/>
+  <rect x="25" y="14" width="11" height="3" rx="1.5" fill="#E0F2FE" opacity="0.8"/>
+  
+  <rect x="12" y="20" width="13" height="3" rx="1.5" fill="#FFFFFF"/>
+  <rect x="28" y="20" width="8" height="3" rx="1.5" fill="#E0F2FE" opacity="0.8"/>
+
+  <!-- Reactive Flow Wave Indicator -->
+  <path d="M12 28C16 25 20 31 24 28C28 25 32 31 36 28" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M12 33C16 30 20 36 24 33C28 30 32 36 36 33" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+
+  <!-- Key Icon Badge in Bottom Right -->
+  <circle cx="34" cy="34" r="8" fill="url(#dsKeyGrad)" stroke="#FFFFFF" stroke-width="2"/>
+  <!-- Key Glyph -->
+  <circle cx="32.5" cy="32.5" r="2" stroke="#FFFFFF" stroke-width="1.5" fill="none"/>
+  <path d="M34 34L37 37M36 35L37 36" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
+</svg>

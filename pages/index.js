@@ -15,6 +15,7 @@ import Work from "@/components/Work/Work";
 import Collaboration from "@/components/Collaboration/Collaboration";
 import Contact from "@/components/Contact/Contact";
 import Footer from "@/components/Footer/Footer";
+import KotlinMascot from "@/components/Mascot/KotlinMascot";
 import { displayFancyLogs } from "utils/log";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -58,6 +59,7 @@ export default function Home() {
           </Header>
           <ProgressIndicator />
           <Cursor isDesktop={isDesktop} />
+          <KotlinMascot />
           <main className="flex flex-col">
             <div
               role="img"

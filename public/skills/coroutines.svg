@@ -1,0 +1,28 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="ktCoroutinesGrad1" x1="4" y1="8" x2="44" y2="40" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#7F52FF"/>
+      <stop offset="45%" stop-color="#C711E1"/>
+      <stop offset="100%" stop-color="#FF6D3F"/>
+    </linearGradient>
+    <linearGradient id="ktCoroutinesGrad2" x1="12" y1="12" x2="36" y2="36" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#00D2FF"/>
+      <stop offset="100%" stop-color="#7F52FF"/>
+    </linearGradient>
+  </defs>
+  <!-- Outer Asynchronous Flow Loop -->
+  <path d="M14 10C8.477 10 4 14.477 4 20C4 25.523 8.477 30 14 30H34C39.523 30 44 34.477 44 40C44 45.523 39.523 50 34 50" stroke="url(#ktCoroutinesGrad1)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" opacity="0"/>
+  
+  <!-- Official Kotlin Coroutines Dual-Loop Flow Glyph -->
+  <path d="M32 8H16C10.477 8 6 12.477 6 18C6 23.523 10.477 28 16 28H32C37.523 28 42 32.477 42 38C42 43.523 37.523 48 32 48" stroke="url(#ktCoroutinesGrad1)" stroke-width="0" fill="none"/>
+  
+  <!-- Stream 1 (Top Wave) -->
+  <path d="M8 20C8 13.373 13.373 8 20 8H36C40.418 8 44 11.582 44 16C44 20.418 40.418 24 36 24H20C17.791 24 16 25.791 16 28C16 30.209 17.791 32 20 32H38" stroke="url(#ktCoroutinesGrad1)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Stream 2 (Bottom Wave / Parallel Routine) -->
+  <path d="M40 28C40 34.627 34.627 40 28 40H12C7.582 40 4 36.418 4 32C4 27.582 7.582 24 12 24H28C30.209 24 32 22.209 32 20C32 17.791 30.209 16 28 16H10" stroke="url(#ktCoroutinesGrad1)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Reactive Flow Emitting Nodes -->
+  <circle cx="36" cy="16" r="2.5" fill="#FFFFFF"/>
+  <circle cx="12" cy="32" r="2.5" fill="#FFFFFF"/>
+</svg>

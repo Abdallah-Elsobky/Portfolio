@@ -1,0 +1,32 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="retrofitGrad1" x1="6" y1="6" x2="42" y2="42" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0066FF"/>
+      <stop offset="60%" stop-color="#0047BA"/>
+      <stop offset="100%" stop-color="#002D7A"/>
+    </linearGradient>
+    <linearGradient id="retrofitGrad2" x1="14" y1="10" x2="34" y2="38" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#00E5FF"/>
+      <stop offset="100%" stop-color="#00D26A"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Square Open Source Hexagonal REST Network Shield -->
+  <path d="M24 4L41.32 14V34L24 44L6.68 34V14L24 4Z" fill="url(#retrofitGrad1)"/>
+  
+  <!-- Outer Hexagon Accent Stroke -->
+  <path d="M24 4L41.32 14V34L24 44L6.68 34V14L24 4Z" stroke="#4DA3FF" stroke-width="1.5" opacity="0.6"/>
+
+  <!-- Retrofit Stylized 'R' & REST HTTP Interchange Wave -->
+  <path d="M16 13H26C29.3137 13 32 15.6863 32 19C32 22.3137 29.3137 25 26 25H20.5V35H16V13Z" fill="#FFFFFF"/>
+  <path d="M25 24L33 35H27.5L20.5 25H24L25 24Z" fill="#FFFFFF"/>
+  <rect x="20.5" y="17" width="5.5" height="4.5" rx="1.5" fill="url(#retrofitGrad1)"/>
+
+  <!-- HTTP API Data Transfer Endpoints -->
+  <circle cx="24" cy="4" r="2.5" fill="#00E5FF"/>
+  <circle cx="41.32" cy="14" r="2.5" fill="#00D26A"/>
+  <circle cx="41.32" cy="34" r="2.5" fill="#00E5FF"/>
+  <circle cx="24" cy="44" r="2.5" fill="#00D26A"/>
+  <circle cx="6.68" cy="34" r="2.5" fill="#00E5FF"/>
+  <circle cx="6.68" cy="14" r="2.5" fill="#00D26A"/>
+</svg>

@@ -1,0 +1,38 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="koinFacet1" x1="4" y1="4" x2="28" y2="28" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FF5376"/>
+      <stop offset="100%" stop-color="#E03177"/>
+    </linearGradient>
+    <linearGradient id="koinFacet2" x1="16" y1="12" x2="44" y2="40" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#E03177"/>
+      <stop offset="100%" stop-color="#94389E"/>
+    </linearGradient>
+    <linearGradient id="koinFacet3" x1="8" y1="20" x2="36" y2="48" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#94389E"/>
+      <stop offset="100%" stop-color="#4730A3"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Official Insert-Koin Origami Crane / Bird Polygon Geometry -->
+  <!-- Wing Top Facet (Pink/Magenta) -->
+  <path d="M4 14L24 6L30 20L4 14Z" fill="url(#koinFacet1)"/>
+  
+  <!-- Wing Body / Upper Chest Facet -->
+  <path d="M24 6L44 18L30 20L24 6Z" fill="#FF4081"/>
+
+  <!-- Head / Beak Facet (Deep Violet) -->
+  <path d="M44 18L38 28L30 20L44 18Z" fill="#C2185B"/>
+
+  <!-- Main Body / Center Origami Polygon -->
+  <path d="M4 14L30 20L22 36L4 14Z" fill="url(#koinFacet2)"/>
+
+  <!-- Lower Wing / Chest Facet -->
+  <path d="M30 20L38 28L28 42L22 36L30 20Z" fill="url(#koinFacet3)"/>
+
+  <!-- Tail Base Facet (Deep Indigo) -->
+  <path d="M4 14L22 36L12 42L4 14Z" fill="#4730A3"/>
+
+  <!-- Bottom Accent Point -->
+  <path d="M22 36L28 42L18 44L22 36Z" fill="#2C1466"/>
+</svg>
