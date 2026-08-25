@@ -3,7 +3,6 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
 import Loader from "@/components/Loader/Loader";
 import Header from "@/components/Header/Header";
-import Menu from "@/components/Header/Menu/Menu";
 import ProgressIndicator from "@/components/ProgressIndicator/ProgressIndicator";
 import Cursor from "@/components/Cursor/Cursor";
 import Hero from "@/components/Hero/Hero";
@@ -16,6 +15,7 @@ import Collaboration from "@/components/Collaboration/Collaboration";
 import Contact from "@/components/Contact/Contact";
 import Footer from "@/components/Footer/Footer";
 import KotlinMascot from "@/components/Mascot/KotlinMascot";
+import AmbientBackground from "@/components/Background/AmbientBackground";
 import { displayFancyLogs } from "utils/log";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -54,20 +54,18 @@ export default function Home() {
         <Loader />
       ) : (
         <>
-          <Header>
-            <Menu />
-          </Header>
+          <Header />
           <ProgressIndicator />
           <Cursor isDesktop={isDesktop} />
           <KotlinMascot />
-          <main className="flex flex-col">
+          <main className="flex flex-col relative w-full overflow-hidden bg-[#04060A]">
+            <AmbientBackground />
             <div
               role="img"
               className="text-gray-light-1 opacity-10 sm:text-9xl xs:text-8xl inline-block -z-10 absolute rotate-90 right-0 md:top-52 xs:top-96"
             >
               DEV
             </div>
-            <div className="fixed top-0 left-0 h-screen w-screen -z-1" />
             <Hero />
             <About1 clientHeight={clientHeight} />
             <Skills />

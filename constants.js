@@ -44,9 +44,11 @@ export const MENULINKS = [
 ];
 
 export const TYPED_STRINGS = [
-  "A pragmatic Mobile Developer",
-  "I build things for the Mobile",
-  "I create aesthetic and modern apps",
+  "Native Android Developer",
+  "Jetpack Compose & Compose Multiplatform (CMP)",
+  "Clean Architecture, MVI & Reactive Flow",
+  "1st Place Winner @ JETS MobileX 2026",
+  "Top 35 ITI Problem Solver & 2x ECPC Finalist",
 ];
 
 export const SOCIAL_LINKS = [

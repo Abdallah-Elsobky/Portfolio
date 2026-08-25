@@ -13,9 +13,10 @@ filter.removeWords("hell", "god", "shit");
 
 const toastOptions = {
   style: {
-    borderRadius: "10px",
-    background: "#333",
+    borderRadius: "12px",
+    background: "#121722",
     color: "#fff",
+    border: "1px solid rgba(255,255,255,0.1)",
     fontFamily: "sans-serif",
   },
 };
@@ -31,7 +32,7 @@ const error = () =>
   });
 
 const success = () =>
-  toast.success("Message sent successfully", {
+  toast.success("Message sent successfully!", {
     id: "success",
   });
 
@@ -39,7 +40,7 @@ const Contact = () => {
   const initialState = { name: "", email: "", message: "" };
   const [formData, setFormData] = useState(initialState);
   const [mailerResponse, setMailerResponse] = useState("not initiated");
-  const [isSending, setIsSending] = useState(false);
+  const [, setIsSending] = useState(false);
   const buttonElementRef = useRef(null);
   const sectionRef = useRef(null);
 
@@ -99,11 +100,14 @@ const Contact = () => {
   }, [mailerResponse]);
 
   useEffect(() => {
-    buttonElementRef.current.addEventListener("click", (e) => {
-      if (!buttonElementRef.current.classList.contains("active")) {
-        buttonElementRef.current.classList.add("active");
+    const btn = buttonElementRef.current;
+    if (!btn) return;
 
-        gsap.to(buttonElementRef.current, {
+    const handleBtnClick = () => {
+      if (!btn.classList.contains("active")) {
+        btn.classList.add("active");
+
+        gsap.to(btn, {
           keyframes: [
             {
               "--left-wing-first-x": 50,
@@ -112,7 +116,7 @@ const Contact = () => {
               "--right-wing-second-y": 100,
               duration: 0.2,
               onComplete() {
-                gsap.set(buttonElementRef.current, {
+                gsap.set(btn, {
                   "--left-wing-first-y": 0,
                   "--left-wing-second-x": 40,
                   "--left-wing-second-y": 100,
@@ -164,9 +168,9 @@ const Contact = () => {
               duration: 0.375,
               onComplete() {
                 setTimeout(() => {
-                  buttonElementRef.current.removeAttribute("style");
+                  btn.removeAttribute("style");
                   gsap.fromTo(
-                    buttonElementRef.current,
+                    btn,
                     {
                       opacity: 0,
                       y: -8,
@@ -177,7 +181,7 @@ const Contact = () => {
                       clearProps: true,
                       duration: 0.3,
                       onComplete() {
-                        buttonElementRef.current.classList.remove("active");
+                        btn.classList.remove("active");
                       },
                     }
                   );
@@ -187,23 +191,23 @@ const Contact = () => {
           ],
         });
 
-        gsap.to(buttonElementRef.current, {
+        gsap.to(btn, {
           keyframes: [
             {
               "--text-opacity": 0,
               "--border-radius": 0,
-              "--left-wing-background": "#9f55ff",
-              "--right-wing-background": "#9f55ff",
+              "--left-wing-background": "#7F52FF",
+              "--right-wing-background": "#7F52FF",
               duration: 0.11,
             },
             {
-              "--left-wing-background": "#8b31ff",
-              "--right-wing-background": "#8b31ff",
+              "--left-wing-background": "#6335F8",
+              "--right-wing-background": "#6335F8",
               duration: 0.14,
             },
             {
-              "--left-body-background": "#9f55ff",
-              "--right-body-background": "#9f55ff",
+              "--left-body-background": "#7F52FF",
+              "--right-body-background": "#7F52FF",
               duration: 0.25,
               delay: 0.1,
             },
@@ -225,19 +229,22 @@ const Contact = () => {
           ],
         });
       }
-    });
-  }, [buttonElementRef]);
+    };
+
+    btn.addEventListener("click", handleBtnClick);
+    return () => btn.removeEventListener("click", handleBtnClick);
+  }, []);
 
   useEffect(() => {
     const tl = gsap.timeline({ defaults: { ease: "none" } });
 
     tl.from(
       sectionRef.current.querySelectorAll(".staggered-reveal"),
-      { opacity: 0, duration: 0.5, stagger: 0.5 },
+      { opacity: 0, y: 20, duration: 0.5, stagger: 0.15 },
       "<"
     );
 
-    ScrollTrigger.create({
+    const trigger = ScrollTrigger.create({
       trigger: sectionRef.current.querySelector(".contact-wrapper"),
       start: "100px bottom",
       end: "center center",
@@ -245,124 +252,147 @@ const Contact = () => {
       animation: tl,
     });
 
-    return () => tl.kill();
-  }, [sectionRef]);
+    return () => {
+      tl.kill();
+      trigger.kill();
+    };
+  }, []);
 
   return (
     <section
       ref={sectionRef}
       id={MENULINKS[4].ref}
-      className="mt-30 w-full relative select-none bg-black pt-20 sm:pt-10 md:pt-5 lg:pt-1 pb-20"
+      className="w-full relative select-none bg-transparent pt-8 pb-16 overflow-visible"
     >
       <div>
         <Toaster toastOptions={toastOptions} />
       </div>
-      <div className="section-container flex flex-col justify-center">
-        <div className="flex flex-col contact-wrapper">
-          <div className="flex flex-col">
-            <p className="uppercase tracking-widest text-gray-light-1 staggered-reveal">
-              CONTACT
-            </p>
-            <h1 className="text-6xl mt-2 font-medium text-gradient w-fit staggered-reveal">
-              Contact
-            </h1>
-          </div>
-          <h2 className="text-[1.65rem] font-medium md:max-w-lg w-full mt-2 staggered-reveal">
-            Get In Touch.{" "}
+
+      <div className="section-container flex flex-col justify-center relative z-10">
+        <div className="flex flex-col items-center text-center contact-wrapper mb-10">
+          <p className="uppercase tracking-widest text-gray-light-1 staggered-reveal font-semibold text-xs sm:text-sm">
+            LET&apos;S CONNECT
+          </p>
+          <h1 className="text-5xl sm:text-6xl mt-2 font-medium text-gradient w-fit staggered-reveal">
+            Contact Me
+          </h1>
+          <h2 className="text-[1.15rem] sm:text-[1.4rem] font-normal text-gray-light-2 mt-3 max-w-xl staggered-reveal">
+            Have a mobile project or looking for an Android Developer? Let&apos;s build something great together.
           </h2>
+
+          {/* Quick contact direct badges */}
+          <div className="flex flex-wrap justify-center gap-3 mt-6 staggered-reveal">
+            <a
+              href="mailto:its.abdallah.elsobky@gmail.com"
+              className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#111622]/90 border border-white/10 text-xs font-mono text-gray-light-2 hover:text-white hover:border-purple/60 hover:bg-[#182030] transition-all link"
+            >
+              <span>✉️</span>
+              <span>its.abdallah.elsobky@gmail.com</span>
+            </a>
+            <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#111622]/90 border border-white/10 text-xs font-mono text-[#00E676]">
+              <span className="w-2 h-2 rounded-full bg-[#00E676] animate-pulse" />
+              <span>Available Worldwide (Remote / Relocation)</span>
+            </div>
+          </div>
         </div>
 
-        <form className="pt-10 sm:mx-auto sm:w-[30rem] md:w-[35rem] staggered-reveal">
-          <Fade bottom distance={"4rem"}>
-            <div className="relative">
-              <input
-                type="text"
-                id="name"
-                className="block w-full h-12 sm:h-14 px-4 text-xl sm:text-2xl font-mono outline-none border-2 border-purple bg-transparent rounded-[0.6rem] transition-all duration-200"
-                value={formData.name}
-                onChange={handleChange}
-                required
-              />
-              <label
-                htmlFor="name"
-                className="absolute top-0 left-0 h-full flex items-center pl-4 text-lg font-mono transform transition-all"
+        {/* Form Card Container */}
+        <div className="mx-auto w-full max-w-2xl bg-[#0c1017]/90 border border-white/10 rounded-[2rem] p-6 sm:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.85)] backdrop-blur-md staggered-reveal">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+            <Fade bottom distance={"2rem"}>
+              <div className="relative">
+                <input
+                  type="text"
+                  id="name"
+                  className="block w-full h-14 px-4 text-base sm:text-lg font-mono outline-none border border-white/15 focus:border-purple bg-[#121722]/80 rounded-xl transition-all duration-200 text-white placeholder-transparent peer"
+                  value={formData.name}
+                  onChange={handleChange}
+                  placeholder="Your Name"
+                  required
+                />
+                <label
+                  htmlFor="name"
+                  className="absolute top-0 left-0 h-14 flex items-center pl-4 text-sm sm:text-base font-mono text-gray-light-3 transition-all pointer-events-none peer-focus:text-xs peer-focus:-translate-y-4 peer-focus:text-purple peer-valid:text-xs peer-valid:-translate-y-4"
+                >
+                  Your Name
+                </label>
+              </div>
+
+              <div className="relative">
+                <input
+                  type="email"
+                  id="email"
+                  className="block w-full h-14 px-4 text-base sm:text-lg font-mono outline-none border border-white/15 focus:border-purple bg-[#121722]/80 rounded-xl transition-all duration-200 text-white placeholder-transparent peer"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="Your Email"
+                  required
+                />
+                <label
+                  htmlFor="email"
+                  className="absolute top-0 left-0 h-14 flex items-center pl-4 text-sm sm:text-base font-mono text-gray-light-3 transition-all pointer-events-none peer-focus:text-xs peer-focus:-translate-y-4 peer-focus:text-purple peer-valid:text-xs peer-valid:-translate-y-4"
+                >
+                  Your Email Address
+                </label>
+              </div>
+
+              <div className="relative">
+                <textarea
+                  id="message"
+                  className="block w-full min-h-[9rem] max-h-[16rem] py-3.5 px-4 text-base sm:text-lg font-mono outline-none border border-white/15 focus:border-purple bg-[#121722]/80 rounded-xl transition-all duration-200 text-white placeholder-transparent peer"
+                  value={formData.message}
+                  onChange={handleChange}
+                  placeholder="Your Message"
+                  required
+                />
+                <label
+                  htmlFor="message"
+                  className="absolute top-0 left-0 h-14 flex items-center pl-4 text-sm sm:text-base font-mono text-gray-light-3 transition-all pointer-events-none peer-focus:text-xs peer-focus:-translate-y-4 peer-focus:text-purple peer-valid:text-xs peer-valid:-translate-y-4"
+                >
+                  Your Message
+                </label>
+              </div>
+            </Fade>
+
+            <div className="pt-2 flex justify-center link">
+              <button
+                ref={buttonElementRef}
+                className={styles.button}
+                disabled={
+                  formData.name === "" ||
+                  formData.email === "" ||
+                  formData.message === ""
+                }
+                type="submit"
               >
-                Name
-              </label>
+                <span>Send Message -&gt;</span>
+                <span className={styles.success}>
+                  <svg viewBox="0 0 16 16">
+                    <polyline points="3.75 9 7 12 13 5" />
+                  </svg>
+                  Message Sent
+                </span>
+                <svg className={styles.trails} viewBox="0 0 33 64">
+                  <path d="M26,4 C28,13.3333333 29,22.6666667 29,32 C29,41.3333333 28,50.6666667 26,60" />
+                  <path d="M6,4 C8,13.3333333 9,22.6666667 9,32 C9,41.3333333 8,50.6666667 6,60" />
+                </svg>
+                <div className={styles.plane}>
+                  <div className={styles.left} />
+                  <div className={styles.right} />
+                </div>
+              </button>
             </div>
 
-            <div className="relative mt-14">
-              <input
-                type="text"
-                id="email"
-                className="block w-full h-12 sm:h-14 px-4 text-xl sm:text-2xl font-mono outline-none border-2 border-purple bg-transparent rounded-[0.6rem] transition-all duration-200"
-                value={formData.email}
-                onChange={handleChange}
-                required
-              />
-              <label
-                htmlFor="email"
-                className="absolute top-0 left-0 h-full flex items-center pl-4 text-lg font-mono transform transition-all"
-              >
-                Email
-              </label>
-            </div>
-
-            <div className="relative mt-14">
-              <textarea
-                id="message"
-                className="block w-full h-auto min-h-[10rem] max-h-[20rem] sm:h-14 py-2 px-4 text-xl sm:text-2xl font-mono outline-none border-2 border-purple bg-transparent rounded-[0.6rem] transition-all duration-200"
-                value={formData.message}
-                onChange={handleChange}
-                required
-              />
-              <label
-                htmlFor="message"
-                className="absolute top-0 left-0 h-14 flex items-center pl-4 text-lg font-mono transform transition-all"
-              >
-                Message
-              </label>
-            </div>
-          </Fade>
-
-          {mailerResponse !== "not initiated" &&
-            (mailerResponse === "success" ? (
-              <div className="hidden">{success()}</div>
-            ) : (
-              <div className="hidden">{error()}</div>
-            ))}
-        </form>
-        <div className="mt-9 mx-auto link">
-          <button
-            ref={buttonElementRef}
-            className={styles.button}
-            disabled={
-              formData.name === "" ||
-              formData.email === "" ||
-              formData.message === ""
-                ? true
-                : false
-            }
-            onClick={handleSubmit}
-          >
-            <span>Send -&gt;</span>
-            <span className={styles.success}>
-              <svg viewBox="0 0 16 16">
-                <polyline points="3.75 9 7 12 13 5"></polyline>
-              </svg>
-              Sent
-            </span>
-            <svg className={styles.trails} viewBox="0 0 33 64">
-              <path d="M26,4 C28,13.3333333 29,22.6666667 29,32 C29,41.3333333 28,50.6666667 26,60"></path>
-              <path d="M6,4 C8,13.3333333 9,22.6666667 9,32 C9,41.3333333 8,50.6666667 6,60"></path>
-            </svg>
-            <div className={styles.plane}>
-              <div className={styles.left} />
-              <div className={styles.right} />
-            </div>
-          </button>
+            {mailerResponse !== "not initiated" &&
+              (mailerResponse === "success" ? (
+                <div className="hidden">{success()}</div>
+              ) : (
+                <div className="hidden">{error()}</div>
+              ))}
+          </form>
         </div>
       </div>
+
       <style jsx global>{`
         input,
         label,
@@ -372,28 +402,7 @@ const Contact = () => {
 
         input:hover,
         textarea:hover {
-          box-shadow: 0 0 0.3rem #7000ff;
-        }
-
-        input:active,
-        input:focus,
-        textarea:active,
-        textarea:focus {
-          box-shadow: 0 0 0.3rem #000000;
-        }
-
-        input:focus + label,
-        input:valid + label {
-          height: 50%;
-          padding-left: 0;
-          transform: translateY(-100%);
-        }
-
-        textarea:focus + label,
-        textarea:valid + label {
-          height: 17%;
-          padding-left: 0;
-          transform: translateY(-100%);
+          border-color: rgba(127, 82, 255, 0.5);
         }
       `}</style>
     </section>

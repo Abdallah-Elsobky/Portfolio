@@ -68,8 +68,8 @@ const Projects = ({ isDesktop, clientHeight }) => {
           0,
           document.body.clientWidth - innerContainer.clientWidth
         );
-        // Generous breathing room so the last card is 100% visible on screen
-        const endMargin = 220;
+        // Balanced breathing margin so the last card has comfortable right padding
+        const endMargin = 0;
         const elementWidth = sidePadding + cardsTotalWidth + endMargin;
 
         sectionRef.current.style.width = `${elementWidth}px`;
@@ -140,9 +140,8 @@ const Projects = ({ isDesktop, clientHeight }) => {
     <section
       ref={sectionRef}
       id={MENULINKS[2].ref}
-      className={`${
-        isDesktop && "min-h-screen"
-      } w-full relative select-none section-container transform-gpu`}
+      className={`${isDesktop && "min-h-screen"
+        } w-full relative select-none section-container transform-gpu`}
     >
       <div className="flex flex-col justify-center h-full py-8">
         <div
@@ -162,9 +161,8 @@ const Projects = ({ isDesktop, clientHeight }) => {
 
         {/* Horizontal Projects List */}
         <div
-          className={`${
-            clientHeight > 650 ? "mt-12" : "mt-8"
-          } flex flex-nowrap items-center project-wrapper no-scrollbar w-max staggered-reveal py-4`}
+          className={`${clientHeight > 650 ? "mt-12" : "mt-8"
+            } flex flex-nowrap items-center project-wrapper no-scrollbar w-max staggered-reveal py-4`}
         >
           {visibleProjects.map((project) => (
             <ProjectTile
@@ -179,7 +177,7 @@ const Projects = ({ isDesktop, clientHeight }) => {
           {!showAll && remainingCount > 0 && (
             <div
               onClick={() => handleToggleShowAll(true)}
-              className="flex-shrink-0 cursor-pointer group mr-8 xs:mr-10 sm:mr-14"
+              className="flex-shrink-0 cursor-pointer group"
               style={{
                 maxWidth: isDesktop
                   ? "calc(100vw - 2rem)"
@@ -192,9 +190,9 @@ const Projects = ({ isDesktop, clientHeight }) => {
                   handleToggleShowAll(true);
               }}
             >
-              <div className="h-[31rem] sm:h-[33rem] w-[18.5rem] sm:w-[21.5rem] md:w-[23rem] bg-[#0c1017] rounded-[2rem] relative p-6 sm:p-8 flex flex-col items-center justify-between text-center border border-purple/40 hover:border-purple bg-gradient-to-b from-[#140e28]/70 via-[#0A0D14] to-[#05070A] shadow-[0_20px_50px_-15px_rgba(0,0,0,0.85)] hover:shadow-[0_25px_60px_-10px_rgba(127,82,255,0.45)] transition-all duration-300 group-hover:scale-[1.02]">
-                {/* Ambient Top Glow */}
-                <div className="absolute -top-20 -right-20 w-56 h-56 rounded-full blur-[60px] bg-purple/30 pointer-events-none group-hover:opacity-75 transition-opacity" />
+              <div className="h-[31rem] sm:h-[33rem] w-[18.5rem] sm:w-[21.5rem] md:w-[23rem] bg-[#0c1017] rounded-[2rem] overflow-hidden relative p-6 sm:p-8 flex flex-col items-center justify-between text-center border border-purple/40 hover:border-purple bg-gradient-to-b from-[#140e28]/70 via-[#0A0D14] to-[#05070A] shadow-[0_20px_50px_-15px_rgba(0,0,0,0.85)] hover:shadow-[0_25px_60px_-10px_rgba(127,82,255,0.45)] transition-all duration-300 group-hover:scale-[1.02]">
+                {/* Ambient Top Glow strictly contained inside card */}
+                <div className="absolute -top-16 -right-16 w-52 h-52 rounded-full blur-[50px] bg-purple/35 pointer-events-none group-hover:opacity-100 opacity-60 transition-opacity" />
 
                 {/* Top Badge */}
                 <div className="flex items-center justify-center z-20 w-full">
@@ -249,7 +247,7 @@ const Projects = ({ isDesktop, clientHeight }) => {
                   handleToggleShowAll(false);
               }}
             >
-              <div className="h-[31rem] sm:h-[33rem] w-[14rem] sm:w-[16rem] bg-[#0c1017] rounded-[2rem] relative p-6 flex flex-col items-center justify-center text-center border border-white/10 hover:border-purple/50 bg-gradient-to-b from-[#121620] to-[#080B10] shadow-[0_20px_50px_-15px_rgba(0,0,0,0.85)] hover:shadow-[0_20px_40px_rgba(127,82,255,0.3)] transition-all duration-300 group-hover:scale-[1.02]">
+              <div className="h-[31rem] sm:h-[33rem] w-[14rem] sm:w-[16rem] bg-[#0c1017] rounded-[2rem] overflow-hidden relative p-6 flex flex-col items-center justify-center text-center border border-white/10 hover:border-purple/50 bg-gradient-to-b from-[#121620] to-[#080B10] shadow-[0_20px_50px_-15px_rgba(0,0,0,0.85)] hover:shadow-[0_20px_40px_rgba(127,82,255,0.3)] transition-all duration-300 group-hover:scale-[1.02]">
                 <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-4 text-2xl group-hover:scale-110 transition-transform">
                   ⇤
                 </div>
