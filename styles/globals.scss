@@ -51,14 +51,14 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(112, 0, 255, 0.75);
+  background: rgba(61, 220, 132, 0.75);
   opacity: 0.5;
   border-radius: 1rem;
   transition: all 0.2s;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: theme("colors.indigo.dark");
+  background: #00BA5A;
   opacity: 1;
 }
 
@@ -71,13 +71,13 @@ body {
 }
 
 ::-moz-selection {
-  background-color: theme("colors.purple");
-  color: #fff;
+  background-color: #3DDC84;
+  color: #000;
 }
 
 ::selection {
-  background-color: theme("colors.purple");
-  color: #fff;
+  background-color: #3DDC84;
+  color: #000;
 }
 
 .section-container {
@@ -302,8 +302,8 @@ input[type="checkbox"] {
 .text-gradient {
   background: linear-gradient(
     to right,
-    theme("colors.indigo.light"),
-    theme("colors.indigo.dark")
+    #3DDC84,
+    #00E676
   );
   background-clip: text;
   -webkit-background-clip: text;

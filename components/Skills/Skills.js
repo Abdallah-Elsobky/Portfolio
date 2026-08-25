@@ -8,7 +8,7 @@ import { MENULINKS, SKILLS } from "../../constants";
 const SkillBadge = ({ skill }) => {
   return (
     <div
-      className="group flex items-center gap-3 px-4 py-2.5 rounded-2xl bg-[#0d121c]/90 border border-white/[0.08] hover:border-purple/60 hover:bg-[#141b2a] transition-all duration-300 transform hover:-translate-y-1 hover:shadow-[0_10px_25px_-5px_rgba(127,82,255,0.35)] link select-none"
+      className="group flex items-center gap-3 px-4 py-2.5 rounded-2xl bg-[#0d121c]/90 border border-white/[0.08] hover:border-purple/60 hover:bg-[#141b2a] transition-all duration-300 transform hover:-translate-y-1 hover:shadow-[0_10px_25px_-5px_rgba(61,220,132,0.35)] link select-none"
     >
       <div className="relative w-7 h-7 sm:w-8 sm:h-8 flex-shrink-0 flex items-center justify-center">
         <Image
@@ -85,14 +85,14 @@ const Skills = () => {
             </div>
 
             {/* Kodee Kotlin Mascot Accent Pill */}
-            <div className="hidden lg:flex items-center gap-3.5 px-4 py-3 rounded-2xl bg-[#0e131d]/90 border border-purple/30 backdrop-blur-md self-start staggered-reveal link group hover:border-purple/70 transition-all duration-300 shadow-[0_4px_25px_rgba(127,82,255,0.2)]">
+            <div className="hidden lg:flex items-center gap-3.5 px-4 py-3 rounded-2xl bg-[#0e131d]/90 border border-purple/30 backdrop-blur-md self-start staggered-reveal link group hover:border-purple/70 transition-all duration-300 shadow-[0_4px_25px_rgba(61,220,132,0.25)]">
               <div className="relative w-11 h-11 flex-shrink-0">
                 <Image
                   src="/kotlin_mascot/jumping.svg"
                   alt="Kodee Kotlin Mascot"
                   width={44}
                   height={44}
-                  className="object-contain group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-300 drop-shadow-[0_2px_10px_rgba(127,82,255,0.5)]"
+                  className="object-contain group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-300 drop-shadow-[0_2px_10px_rgba(61,220,132,0.5)]"
                 />
               </div>
               <div className="flex flex-col text-xs">
@@ -110,7 +110,7 @@ const Skills = () => {
           {/* Languages & Core Platforms */}
           <div className="mt-12 staggered-reveal">
             <div className="flex items-center gap-2.5 mb-4">
-              <span className="w-2 h-2 rounded-full bg-[#7F52FF] shadow-[0_0_8px_#7F52FF]" />
+              <span className="w-2 h-2 rounded-full bg-[#3DDC84] shadow-[0_0_8px_#3DDC84]" />
               <h3 className="uppercase tracking-wider text-gray-light-1 font-semibold text-xs sm:text-sm">
                 Languages & Core Platforms
               </h3>
@@ -140,7 +140,7 @@ const Skills = () => {
           {/* Libraries & Architecture */}
           <div className="mt-10 staggered-reveal">
             <div className="flex items-center gap-2.5 mb-4">
-              <span className="w-2 h-2 rounded-full bg-indigo-400 shadow-[0_0_8px_rgba(129,140,248,0.8)]" />
+              <span className="w-2 h-2 rounded-full bg-[#3DDC84] shadow-[0_0_8px_#3DDC84]" />
               <h3 className="uppercase tracking-wider text-gray-light-1 font-semibold text-xs sm:text-sm">
                 Jetpack Architecture & Core Libraries
               </h3>
@@ -172,7 +172,7 @@ const Skills = () => {
             {/* Testing, Build & DevOps */}
             <div className="staggered-reveal">
               <div className="flex items-center gap-2.5 mb-4">
-                <span className="w-2 h-2 rounded-full bg-purple shadow-[0_0_8px_#8B31FF]" />
+                <span className="w-2 h-2 rounded-full bg-[#3DDC84] shadow-[0_0_8px_#3DDC84]" />
                 <h3 className="uppercase tracking-wider text-gray-light-1 font-semibold text-xs sm:text-sm">
                   Testing, Build & DevOps
                 </h3>

@@ -97,14 +97,14 @@ const Hero = () => {
 
       {/* Smoothly feathered ambient background glow accents - zero hard cutoffs */}
       <div
-        className={`absolute top-0 left-0 w-[500px] h-[500px] rounded-full bg-purple/15 ${styles.glowBlob}`}
+        className={`absolute top-0 left-0 w-[500px] h-[500px] rounded-full bg-[#3DDC84]/12 ${styles.glowBlob}`}
         style={{
           maskImage: "radial-gradient(circle at center, black 25%, transparent 75%)",
           WebkitMaskImage: "radial-gradient(circle at center, black 25%, transparent 75%)",
         }}
       />
       <div
-        className={`absolute top-1/4 right-0 w-[450px] h-[450px] rounded-full bg-indigo-600/15 ${styles.glowBlob}`}
+        className={`absolute top-1/4 right-0 w-[450px] h-[450px] rounded-full bg-[#00BA5A]/10 ${styles.glowBlob}`}
         style={{
           maskImage: "radial-gradient(circle at center, black 25%, transparent 75%)",
           WebkitMaskImage: "radial-gradient(circle at center, black 25%, transparent 75%)",
@@ -156,7 +156,7 @@ const Hero = () => {
 
           {/* Key Highlights / Badges */}
           <div className="flex flex-wrap gap-2.5 my-4 staggered-reveal">
-            <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-purple/10 border border-purple/30 text-purple-300 text-xs font-medium shadow-sm hover:border-purple/60 transition-colors">
+            <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-purple/10 border border-purple/30 text-purple text-xs font-medium shadow-sm hover:border-purple/60 transition-colors">
               <span>🏆</span>
               <span>1st Place Winner @ JETS MobileX 2026</span>
             </div>
@@ -170,7 +170,7 @@ const Hero = () => {
           <div className="flex flex-wrap items-center gap-4 pt-4 mb-6 staggered-reveal">
             <a
               href={`#${MENULINKS[2].ref}`}
-              className="group link px-7 py-3.5 rounded-2xl bg-gradient-to-r from-[#7F52FF] via-[#6335F8] to-[#7F52FF] bg-[length:200%_auto] text-white font-semibold text-sm shadow-[0_10px_30px_rgba(127,82,255,0.45)] hover:shadow-[0_15px_40px_rgba(127,82,255,0.65)] hover:-translate-y-0.5 active:translate-y-0 flex items-center gap-2.5 transition-all duration-300"
+              className="group link px-7 py-3.5 rounded-2xl bg-gradient-to-r from-[#00BA5A] via-[#3DDC84] to-[#00BA5A] bg-[length:200%_auto] text-black font-bold text-sm shadow-[0_10px_30px_rgba(61,220,132,0.45)] hover:shadow-[0_15px_40px_rgba(61,220,132,0.65)] hover:-translate-y-0.5 active:translate-y-0 flex items-center gap-2.5 transition-all duration-300"
             >
               <span>Explore Projects</span>
               <span className="text-base transition-transform group-hover:translate-x-1">➔</span>
@@ -178,7 +178,7 @@ const Hero = () => {
 
             <a
               href={`#${MENULINKS[4].ref}`}
-              className="group link px-7 py-3.5 rounded-2xl bg-[#111622]/90 hover:bg-[#161d2d] text-white border border-white/10 hover:border-purple/60 font-semibold text-sm shadow-[0_10px_30px_rgba(0,0,0,0.6)] hover:shadow-[0_10px_30px_rgba(127,82,255,0.2)] hover:-translate-y-0.5 active:translate-y-0 backdrop-blur-md flex items-center gap-2.5 transition-all duration-300"
+              className="group link px-7 py-3.5 rounded-2xl bg-[#111622]/90 hover:bg-[#161d2d] text-white border border-white/10 hover:border-purple/60 font-semibold text-sm shadow-[0_10px_30px_rgba(0,0,0,0.6)] hover:shadow-[0_10px_30px_rgba(61,220,132,0.2)] hover:-translate-y-0.5 active:translate-y-0 backdrop-blur-md flex items-center gap-2.5 transition-all duration-300"
             >
               <span>Let&apos;s Talk</span>
               <span className="transition-transform group-hover:scale-110">💬</span>
@@ -194,7 +194,7 @@ const Hero = () => {
         {/* Right Column: Interactive Android Studio Architecture & Code Console */}
         <div className="lg:col-span-5 w-full flex justify-center lg:justify-end staggered-reveal">
           <div
-            className={`w-full max-w-[480px] rounded-[1.75rem] bg-[#0c1017]/95 border border-white/10 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.95)] overflow-hidden transition-all duration-300 hover:border-purple/50 hover:shadow-[0_25px_60px_-10px_rgba(127,82,255,0.35)] ${styles.ideContainer}`}
+            className={`w-full max-w-[480px] rounded-[1.75rem] bg-[#0c1017]/95 border border-white/10 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.95)] overflow-hidden transition-all duration-300 hover:border-purple/50 hover:shadow-[0_25px_60px_-10px_rgba(61,220,132,0.35)] ${styles.ideContainer}`}
           >
             {/* IDE Header Bar */}
             <div className="flex items-center justify-between px-4 py-3 bg-[#111622] border-b border-white/[0.08]">
@@ -206,7 +206,7 @@ const Hero = () => {
 
               {/* Active Tab */}
               <div className="flex items-center gap-2 px-3 py-1 rounded-lg bg-[#182030] border border-white/[0.08] text-xs font-mono text-gray-light-2">
-                <span className="text-[#7F52FF] font-bold">kt</span>
+                <span className="text-[#3DDC84] font-bold">kt</span>
                 <span>MainActivity.kt</span>
               </div>
 
@@ -306,7 +306,7 @@ const Hero = () => {
                 <span>Compose 1.7</span>
               </div>
               <div className="flex items-center gap-1.5 text-gray-light-2">
-                <span className="text-[#7F52FF]">●</span>
+                <span className="text-[#3DDC84]">●</span>
                 <span>Kotlin 2.0</span>
               </div>
               <div className="flex items-center gap-1.5 text-gray-light-2">
@@ -314,7 +314,7 @@ const Hero = () => {
                 <span>Clean Architecture</span>
               </div>
               <div className="flex items-center gap-1.5 text-gray-light-2">
-                <span className="text-indigo-400">●</span>
+                <span className="text-[#00E676]">●</span>
                 <span>Hilt & Flow</span>
               </div>
             </div>

@@ -90,7 +90,7 @@ const StickyScroll = ({ contentItems, image }) => {
                       className={cn(
                         "text-[10px] font-mono uppercase tracking-wider px-2.5 py-0.5 rounded-full border transition-all duration-300",
                         isActive
-                          ? "bg-purple/20 border-purple/50 text-purple-300 shadow-[0_0_12px_rgba(127,82,255,0.3)]"
+                          ? "bg-[#3DDC84]/20 border-[#3DDC84]/50 text-[#3DDC84] shadow-[0_0_12px_rgba(61,220,132,0.35)]"
                           : "bg-white/5 border-white/10 text-gray-500"
                       )}
                     >

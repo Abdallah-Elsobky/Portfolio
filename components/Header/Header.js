@@ -50,7 +50,7 @@ const Header = () => {
       <nav className="w-full fixed top-0 py-4 sm:py-5 z-50 select-none bg-[#0a0d14]/80 backdrop-blur-md border-b border-white/[0.06] shadow-[0_10px_30px_rgba(0,0,0,0.5)] transition-all duration-300">
         <div className="flex justify-between items-center section-container">
           <a href="#home" className="link flex items-center gap-2.5 group">
-            <div className="relative w-8 h-8 rounded-xl bg-white/[0.05] border border-white/10 flex items-center justify-center p-1.5 group-hover:border-purple/60 group-hover:shadow-[0_0_15px_rgba(127,82,255,0.4)] transition-all duration-300">
+            <div className="relative w-8 h-8 rounded-xl bg-white/[0.05] border border-white/10 flex items-center justify-center p-1.5 group-hover:border-purple/60 group-hover:shadow-[0_0_15px_rgba(61,220,132,0.4)] transition-all duration-300">
               <Image
                 src="/logo.svg"
                 alt="Logo - Abdallah Elsobky"

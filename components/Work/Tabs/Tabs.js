@@ -20,7 +20,7 @@ const Tab = ({ index, tab, activeTab, handleOnClick, setIsHovering }) => {
         <motion.div
           layoutId="clickedbutton"
           transition={{ type: "spring", bounce: 0.2, duration: 0.55 }}
-          className="absolute inset-0 bg-[#161d2d] border border-purple/60 shadow-[0_0_20px_rgba(127,82,255,0.4)] rounded-full"
+          className="absolute inset-0 bg-[#161d2d] border border-purple/60 shadow-[0_0_20px_rgba(61,220,132,0.4)] rounded-full"
         />
       )}
 

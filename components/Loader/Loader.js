@@ -53,13 +53,13 @@ const Loader = () => {
           />
 
           {/* Inner Glowing Badge Container */}
-          <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-[#0c1017] border border-white/15 flex items-center justify-center p-3 shadow-[0_10px_30px_rgba(127,82,255,0.35)] backdrop-blur-xl group">
+          <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-[#0c1017] border border-white/15 flex items-center justify-center p-3 shadow-[0_10px_30px_rgba(61,220,132,0.35)] backdrop-blur-xl group">
             <Image
               src="/logo.svg"
               alt="Logo"
               width={48}
               height={48}
-              className="object-contain drop-shadow-[0_0_12px_rgba(127,82,255,0.6)] animate-pulse"
+              className="object-contain drop-shadow-[0_0_12px_rgba(61,220,132,0.6)] animate-pulse"
               priority
             />
           </div>

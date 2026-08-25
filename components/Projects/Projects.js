@@ -190,13 +190,13 @@ const Projects = ({ isDesktop, clientHeight }) => {
                   handleToggleShowAll(true);
               }}
             >
-              <div className="h-[31rem] sm:h-[33rem] w-[18.5rem] sm:w-[21.5rem] md:w-[23rem] bg-[#0c1017] rounded-[2rem] overflow-hidden relative p-6 sm:p-8 flex flex-col items-center justify-between text-center border border-purple/40 hover:border-purple bg-gradient-to-b from-[#140e28]/70 via-[#0A0D14] to-[#05070A] shadow-[0_20px_50px_-15px_rgba(0,0,0,0.85)] hover:shadow-[0_25px_60px_-10px_rgba(127,82,255,0.45)] transition-all duration-300 group-hover:scale-[1.02]">
+              <div className="h-[31rem] sm:h-[33rem] w-[18.5rem] sm:w-[21.5rem] md:w-[23rem] bg-[#0c1017] rounded-[2rem] overflow-hidden relative p-6 sm:p-8 flex flex-col items-center justify-between text-center border border-purple/40 hover:border-purple bg-gradient-to-b from-[#0e1d14]/70 via-[#0A0D14] to-[#05070A] shadow-[0_20px_50px_-15px_rgba(0,0,0,0.85)] hover:shadow-[0_25px_60px_-10px_rgba(61,220,132,0.45)] transition-all duration-300 group-hover:scale-[1.02]">
                 {/* Ambient Top Glow strictly contained inside card */}
-                <div className="absolute -top-16 -right-16 w-52 h-52 rounded-full blur-[50px] bg-purple/35 pointer-events-none group-hover:opacity-100 opacity-60 transition-opacity" />
+                <div className="absolute -top-16 -right-16 w-52 h-52 rounded-full blur-[50px] bg-[#3DDC84]/25 pointer-events-none group-hover:opacity-100 opacity-60 transition-opacity" />
 
                 {/* Top Badge */}
                 <div className="flex items-center justify-center z-20 w-full">
-                  <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#1e1533] border border-purple/50 shadow-sm">
+                  <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#112419] border border-[#3DDC84]/50 shadow-sm">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#00E676] animate-pulse" />
                     <span className="text-[10px] font-semibold tracking-wider uppercase text-white">
                       +{remainingCount} More Projects
@@ -206,7 +206,7 @@ const Projects = ({ isDesktop, clientHeight }) => {
 
                 {/* Center Icon & Illustration */}
                 <div className="relative z-10 flex flex-col items-center justify-center my-auto py-6">
-                  <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-3xl bg-purple/15 border border-purple/40 flex items-center justify-center mb-5 shadow-[0_10px_30px_rgba(139,49,255,0.3)] group-hover:scale-110 group-hover:bg-purple/25 transition-all duration-300">
+                  <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-3xl bg-[#3DDC84]/15 border border-[#3DDC84]/40 flex items-center justify-center mb-5 shadow-[0_10px_30px_rgba(61,220,132,0.3)] group-hover:scale-110 group-hover:bg-[#3DDC84]/25 transition-all duration-300">
                     <span className="text-4xl sm:text-5xl">📱</span>
                   </div>
                   <h3 className="font-bold text-xl sm:text-2xl text-white mb-2 tracking-tight">
@@ -219,7 +219,7 @@ const Projects = ({ isDesktop, clientHeight }) => {
 
                 {/* Bottom Action Button */}
                 <div className="relative z-20 w-full">
-                  <button className="link w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-purple via-indigo-600 to-purple bg-[length:200%_auto] text-white font-medium text-xs sm:text-sm shadow-[0_8px_25px_rgba(139,49,255,0.4)] group-hover:shadow-[0_12px_32px_rgba(139,49,255,0.6)] flex items-center justify-center gap-2 transition-all">
+                  <button className="link w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-[#00BA5A] via-[#3DDC84] to-[#00BA5A] bg-[length:200%_auto] text-black font-bold text-xs sm:text-sm shadow-[0_8px_25px_rgba(61,220,132,0.4)] group-hover:shadow-[0_12px_32px_rgba(61,220,132,0.6)] flex items-center justify-center gap-2 transition-all">
                     <span>See More Projects</span>
                     <span className="text-sm transition-transform group-hover:translate-x-1">
                       ➔
@@ -247,7 +247,7 @@ const Projects = ({ isDesktop, clientHeight }) => {
                   handleToggleShowAll(false);
               }}
             >
-              <div className="h-[31rem] sm:h-[33rem] w-[14rem] sm:w-[16rem] bg-[#0c1017] rounded-[2rem] overflow-hidden relative p-6 flex flex-col items-center justify-center text-center border border-white/10 hover:border-purple/50 bg-gradient-to-b from-[#121620] to-[#080B10] shadow-[0_20px_50px_-15px_rgba(0,0,0,0.85)] hover:shadow-[0_20px_40px_rgba(127,82,255,0.3)] transition-all duration-300 group-hover:scale-[1.02]">
+              <div className="h-[31rem] sm:h-[33rem] w-[14rem] sm:w-[16rem] bg-[#0c1017] rounded-[2rem] overflow-hidden relative p-6 flex flex-col items-center justify-center text-center border border-white/10 hover:border-purple/50 bg-gradient-to-b from-[#121620] to-[#080B10] shadow-[0_20px_50px_-15px_rgba(0,0,0,0.85)] hover:shadow-[0_20px_40px_rgba(61,220,132,0.3)] transition-all duration-300 group-hover:scale-[1.02]">
                 <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-4 text-2xl group-hover:scale-110 transition-transform">
                   ⇤
                 </div>

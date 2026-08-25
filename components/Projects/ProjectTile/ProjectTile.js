@@ -109,7 +109,7 @@ const ProjectTile = ({ project, classes, isDesktop }) => {
       }}
     >
       <div
-        className={`h-[31rem] sm:h-[33rem] w-[21.5rem] sm:w-[25.5rem] md:w-[28rem] bg-[#0c1017] ${styles.projectTile} rounded-[2rem] relative p-5 sm:p-6 flex flex-col justify-between max-w-full border border-white/[0.08] hover:border-purple/60 hover:shadow-[0_25px_60px_-10px_rgba(127,82,255,0.35)] transition-all duration-300 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.85)]`}
+        className={`h-[31rem] sm:h-[33rem] w-[21.5rem] sm:w-[25.5rem] md:w-[28rem] bg-[#0c1017] ${styles.projectTile} rounded-[2rem] relative p-5 sm:p-6 flex flex-col justify-between max-w-full border border-white/[0.08] hover:border-purple/60 hover:shadow-[0_25px_60px_-10px_rgba(61,220,132,0.35)] transition-all duration-300 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.85)]`}
         style={{
           background: `linear-gradient(150deg, ${gradient[0]}33 0%, #0A0D14 55%, #05070A 100%)`,
         }}
@@ -177,7 +177,7 @@ const ProjectTile = ({ project, classes, isDesktop }) => {
         </div>
 
         {/* Bottom Section: Small Title with Refined Shadow & Tech Stack */}
-        <div className="relative z-20 flex flex-col gap-2 p-3.5 sm:p-4 rounded-2xl bg-[#0d121c]/95 border border-white/10 shadow-[0_12px_32px_rgba(0,0,0,0.85)] group-hover:border-purple/30 group-hover:shadow-[0_15px_35px_rgba(127,82,255,0.2)] transition-all duration-300">
+        <div className="relative z-20 flex flex-col gap-2 p-3.5 sm:p-4 rounded-2xl bg-[#0d121c]/95 border border-white/10 shadow-[0_12px_32px_rgba(0,0,0,0.85)] group-hover:border-purple/30 group-hover:shadow-[0_15px_35px_rgba(61,220,132,0.2)] transition-all duration-300">
           <div className="flex items-center justify-between gap-3">
             <h3 className="font-semibold text-base sm:text-lg text-white tracking-tight group-hover:text-purple-300 transition-colors drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
               {name}

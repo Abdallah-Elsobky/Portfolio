@@ -22,7 +22,7 @@ const SoundBar = () => {
       title={isPlaying ? "Pause background music" : "Play background music"}
       className={`link relative w-10 h-10 rounded-xl bg-[#111622] border flex items-center justify-center transition-all duration-300 shadow-sm ${
         isPlaying
-          ? "border-purple/70 bg-[#161d2d] shadow-[0_0_15px_rgba(127,82,255,0.4)]"
+          ? "border-purple/70 bg-[#161d2d] shadow-[0_0_15px_rgba(61,220,132,0.4)]"
           : "border-white/10 hover:border-purple/60 hover:bg-[#182030]"
       }`}
     >
