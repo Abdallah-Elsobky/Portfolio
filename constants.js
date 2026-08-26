@@ -1,23 +1,25 @@
 export const METADATA = {
   author: "Abdallah Elsobky",
-  title: "Portfolio | Abdallah Elsobky",
+  title: "Abdallah Elsobky | Android Developer",
   description:
-    "Abdallah Elsobky is a passionate Mobile Developer, dedicated to crafting seamless and innovative mobile applications that captivate and engage users.",
-  siteUrl: "",
+    "Native Android Developer specializing in Jetpack Compose, Kotlin Multiplatform (CMP), and Clean Architecture (MVI). Explore featured projects, live mobile demos, and case studies.",
+  siteUrl: "https://abdullah-elsobky.web.app/",
   twitterHandle: "@AbdallahElsobk4",
   keywords: [
     "Abdallah Elsobky",
-    "Mobile Engineer",
-    "Kotlin Developer",
-    "Software Engineer",
+    "Android Developer",
+    "Mobile Developer",
+    "Jetpack Compose",
+    "Kotlin Multiplatform",
+    "CMP",
+    "Clean Architecture",
+    "MVI",
+    "Android Engineer",
     "Portfolio",
-    "Devfolio",
-    "Folio",
   ].join(", "),
-  image:
-    "https://res.cloudinary.com/dywdhyojt/image/upload/v1721378510/social-preview.png",
+  image: "https://abdullah-elsobky.web.app/projects/preview.png",
   language: "English",
-  themeColor: "#000000",
+  themeColor: "#04070c",
 };
 
 export const MENULINKS = [
