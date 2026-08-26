@@ -45,10 +45,10 @@ export const MENULINKS = [
 
 export const TYPED_STRINGS = [
   "Native Android Developer",
-  "Jetpack Compose & Compose Multiplatform (CMP)",
-  "Clean Architecture, MVI & Reactive Flow",
+  "Jetpack Compose & CMP Specialist",
+  "Clean Architecture & Reactive Flow",
   "1st Place Winner @ JETS MobileX 2026",
-  "Top 35 ITI Problem Solver & 2x ECPC Finalist",
+  "Top 35 ITI Solver & 2x ECPC Finalist",
 ];
 
 export const SOCIAL_LINKS = [
@@ -58,7 +58,7 @@ export const SOCIAL_LINKS = [
   },
   {
     name: "linkedin",
-    url: "https://www.linkedin.com/in/abdallah-elsobky-5150701a6/",
+    url: "https://www.linkedin.com/in/abdallahelsobky/",
   },
   {
     name: "github",
@@ -83,16 +83,99 @@ export const SOCIAL_LINKS = [
 ];
 
 export const SKILLS = {
+  categories: [
+    {
+      id: "core",
+      title: "Core & Native Languages",
+      badge: "6 Languages",
+      description: "Foundational programming languages for native mobile engineering & high-performance computing.",
+      skills: [
+        { name: "Kotlin 2.0", icon: "kotlin", tag: "Primary", desc: "Coroutines, Flow, CMP & Modern Android" },
+        { name: "Android SDK", icon: "android", tag: "Platform", desc: "Jetpack APIs, Services, NDK & Lifecycles" },
+        { name: "Java", icon: "java", tag: "Core", desc: "OOP, Multithreading & Legacy Interop" },
+        { name: "C++", icon: "c++", tag: "Algorithms", desc: "Problem Solving, Data Structures & STL" },
+        { name: "Dart", icon: "dart", tag: "Cross-Platform", desc: "Asynchronous UI & Multiplatform Logic" },
+        { name: "Python", icon: "python", tag: "Scripting", desc: "Automation, Tooling & REST APIs" },
+      ],
+    },
+    {
+      id: "ui",
+      title: "UI & Declarative Frameworks",
+      badge: "5 Frameworks",
+      description: "Modern declarative UI toolkits, design systems, and cross-platform mobile frameworks.",
+      skills: [
+        { name: "Jetpack Compose", icon: "compose", tag: "Modern UI", desc: "Declarative UI, Custom Modifiers & Canvas" },
+        { name: "Compose Multiplatform", icon: "cmp", tag: "CMP / KMP", desc: "Shared UI across Android, iOS & Desktop" },
+        { name: "Material Design 3", icon: "material3", tag: "Design Tokens", desc: "Dynamic Color, Theming & Typography" },
+        { name: "Flutter", icon: "flutter", tag: "Cross-Platform", desc: "Stateful Widgets, Custom Painters & Blocs" },
+        { name: "Figma UI/UX", icon: "figma", tag: "Design Systems", desc: "Component Libraries, Wireframes & Specs" },
+      ],
+    },
+    {
+      id: "architecture",
+      title: "Architecture, DI & Reactive Stack",
+      badge: "7 Libraries",
+      description: "Enterprise-grade Clean Architecture, reactive asynchronous pipelines, and dependency injection.",
+      skills: [
+        { name: "Coroutines & Flow", icon: "coroutines", tag: "Reactive", desc: "StateFlow, SharedFlow & Concurrency" },
+        { name: "Dagger Hilt", icon: "hilt", tag: "DI Engine", desc: "Compile-Time Dependency Injection & Scoping" },
+        { name: "Navigation 3", icon: "nav3", tag: "Routing", desc: "Type-Safe Navigation for Compose & CMP" },
+        { name: "WorkManager", icon: "workmanager", tag: "Background", desc: "Guaranteed & Deferrable Background Jobs" },
+        { name: "Paging 3", icon: "paging", tag: "Data Streaming", desc: "Reactive Large Dataset Pagination" },
+        { name: "Jetpack DataStore", icon: "datastore", tag: "Preferences", desc: "Async Key-Value & Proto Persistence" },
+        { name: "Koin DI", icon: "koin", tag: "Multiplatform", desc: "Pragmatic DI for Kotlin & CMP Projects" },
+      ],
+    },
+    {
+      id: "networking",
+      title: "Networking & Media Pipelines",
+      badge: "4 Engines",
+      description: "Type-safe networking engines, REST/GraphQL clients, interceptors, and async image pipelines.",
+      skills: [
+        { name: "Ktor Client", icon: "ktor", tag: "KMP Network", desc: "Multiplatform Asynchronous HTTP Engine" },
+        { name: "Retrofit", icon: "retrofit", tag: "REST Client", desc: "Type-Safe HTTP Client with Moshi/Gson" },
+        { name: "OkHttp", icon: "okhttp", tag: "HTTP Core", desc: "Interceptors, Connection Pools & WebSockets" },
+        { name: "Coil Image Loader", icon: "coil", tag: "Media Pipeline", desc: "Kotlin-First Async Image Pipeline for Compose" },
+      ],
+    },
+    {
+      id: "data",
+      title: "Databases & Cloud Infrastructure",
+      badge: "4 Systems",
+      description: "Offline-first local relational persistence, SQLite caching, and real-time cloud backend services.",
+      skills: [
+        { name: "Room ORM", icon: "room", tag: "Offline First", desc: "Type-Safe SQLite Abstraction & Flow Queries" },
+        { name: "Firebase Suite", icon: "firebase", tag: "Cloud", desc: "Firestore, Auth, Cloud Messaging & Analytics" },
+        { name: "SQLite", icon: "sqlite", tag: "Local DB", desc: "Relational Queries, Indexing & Transactions" },
+        { name: "MySQL", icon: "mysql", tag: "Backend", desc: "Relational Database Schemas & Optimization" },
+      ],
+    },
+    {
+      id: "testing",
+      title: "Testing, Build & DevOps",
+      badge: "5 Tools",
+      description: "Automated unit & UI testing suites, Kotlin DSL build systems, and CI/CD pipelines.",
+      skills: [
+        { name: "Gradle (Kotlin DSL)", icon: "gradle", tag: "Build System", desc: "Version Catalogs, Convention Plugins & Optimization" },
+        { name: "JUnit 5", icon: "junit", tag: "Unit Tests", desc: "Parameterized Testing & Test Automation" },
+        { name: "MockK", icon: "mockk", tag: "Mocking", desc: "Mocking, Coroutine & Flow Verification" },
+        { name: "Espresso", icon: "espresso", tag: "UI Testing", desc: "Automated Android UI & Interaction Testing" },
+        { name: "Git & GitHub CI/CD", icon: "github", tag: "Version Control", desc: "GitFlow, GitHub Actions & Release Automation" },
+      ],
+    },
+  ],
+  // Legacy arrays for backward compatibility
   languagesAndCore: [
-    { name: "Kotlin", icon: "kotlin" },
+    { name: "Kotlin 2.0", icon: "kotlin" },
     { name: "Android SDK", icon: "android" },
     { name: "Java", icon: "java" },
-    { name: "Dart", icon: "dart" },
     { name: "C++", icon: "c++" },
+    { name: "Dart", icon: "dart" },
     { name: "Python", icon: "python" },
   ],
   uiAndFrameworks: [
     { name: "Jetpack Compose", icon: "compose" },
+    { name: "Compose Multiplatform", icon: "cmp" },
     { name: "Material Design 3", icon: "material3" },
     { name: "Flutter", icon: "flutter" },
     { name: "Figma UI/UX", icon: "figma" },
@@ -121,14 +204,14 @@ export const SKILLS = {
     { name: "Gradle (Kotlin DSL)", icon: "gradle" },
     { name: "JUnit 5", icon: "junit" },
     { name: "MockK", icon: "mockk" },
-    { name: "Git", icon: "git" },
-    { name: "GitHub & CI/CD", icon: "github" },
+    { name: "Espresso", icon: "espresso" },
+    { name: "Git & GitHub CI/CD", icon: "github" },
   ],
 };
 
 export const PROJECTS = [
   {
-    name: "Awan ⏳",
+    name: "Awan",
     type: "Android App",
     image: "/projects/awan15.jpg",
     images: [
@@ -149,13 +232,13 @@ export const PROJECTS = [
       "/projects/awan3.jpg",
     ],
     blurImage: "/projects/blur/tictac-blur.jpg",
-    description: "⏳ AI-assisted adaptive scheduling Android app with Clean Architecture, 100% Jetpack Compose, Zone routines, and gamification.",
+    description: "AI-assisted adaptive scheduling Android app with Clean Architecture, 100% Jetpack Compose, Zone routines, and gamified task tracking.",
     gradient: ["#6366F1", "#3730A3"],
     url: "https://github.com/Awan-app/Awan-Android",
     tech: ["kotlin", "android", "sqlite", "api", "github"],
   },
   {
-    name: "Carto 🛍️",
+    name: "Carto",
     type: "Android App",
     image: "/projects/carto8.jpg",
     images: [
@@ -175,7 +258,7 @@ export const PROJECTS = [
       "/projects/carto14.jpg",
     ],
     blurImage: "/projects/blur/tictac-blur.jpg",
-    description: "🏆 1st Place Winner – JETS MobileX 2026. Native Shopify e-commerce platform with embedded AI Shopping Assistant, Clean Architecture, and Compose.",
+    description: "1st Place Winner – JETS MobileX 2026. Native Shopify e-commerce platform with embedded AI Shopping Assistant, Clean Architecture, and Compose.",
     gradient: ["#8B5CF6", "#4C1D95"],
     url: "https://github.com/Big-OO/carto",
     tech: ["kotlin", "android", "api", "sqlite", "github"],
@@ -190,13 +273,13 @@ export const PROJECTS = [
       "/projects/trendo3.jpg",
     ],
     blurImage: "/projects/blur/trendify.jpg",
-    description: "📰 Real-time trending news app with category filtering, region picker, offline-first Room caching, and favorites.",
+    description: "Real-time trending news app with category filtering, region picker, offline-first Room caching, and Compose Multiplatform UI.",
     gradient: ["#1E3C72", "#2A5298"],
     url: "https://github.com/Abdallah-Elsobky/Trendo",
     tech: ["kotlin", "cmp", "api", "sqlite", "github"],
   },
   {
-    name: "Tempo 🌦️",
+    name: "Tempo",
     type: "Android App",
     image: "/projects/tempo3.jpg",
     images: [
@@ -207,7 +290,7 @@ export const PROJECTS = [
       "/projects/tempo1.jpg",
     ],
     blurImage: "/projects/blur/weather.jpg",
-    description: "🌦️ Modern Android weather app with Jetpack Compose, detailed forecasts, map location picker, and smart WorkManager alerts.",
+    description: "Modern Android weather app with Jetpack Compose, detailed forecasts, map location picker, and smart WorkManager alerts.",
     gradient: ["#4B0082", "#2E004D"],
     url: "https://github.com/Abdallah-Elsobky/Tempo",
     tech: ["kotlin", "android", "sqlite", "api", "github"],
@@ -224,13 +307,13 @@ export const PROJECTS = [
       "/projects/fodo5.png",
     ],
     blurImage: "/projects/blur/tictac-blur.jpg",
-    description: "🍽️ Feature-rich Android meal planner & recipe management app with global recipes, date planning, favorites, and shopping cart.",
+    description: "Feature-rich Android meal planner and recipe management app with global recipes, date planning, favorites, and shopping cart.",
     gradient: ["#E64A19", "#BF360C"],
     url: "https://github.com/Abdallah-Elsobky/Foodo",
     tech: ["android", "java", "sqlite", "api", "github"],
   },
   {
-    name: "Islami 📖",
+    name: "Islami",
     type: "Android App",
     image: "/projects/quran1.png",
     images: [
@@ -239,7 +322,7 @@ export const PROJECTS = [
       "/projects/quran3.png",
     ],
     blurImage: "/projects/blur/tictac-blur.jpg",
-    description: "🕌 Comprehensive Islamic Android app featuring the complete Holy Quran, Ahadith, electronic Sebha, and Islamic radio streams.",
+    description: "Comprehensive Islamic Android app featuring the complete Holy Quran, Ahadith, electronic Sebha, and Islamic radio streams.",
     gradient: ["#B8860B", "#705305"],
     url: "https://github.com/Abdallah-Elsobky/Islami",
     tech: ["kotlin", "android", "sqlite", "api", "github"],
@@ -254,7 +337,7 @@ export const PROJECTS = [
       "/projects/trendify1.png",
     ],
     blurImage: "/projects/blur/trendify.jpg",
-    description: "📰 Trendify – Fast, reliable news at your fingertips! 🚀",
+    description: "Fast, reliable news discovery Android application with curated feeds and offline caching.",
     gradient: ["#1E3C72", "#2A5298"],
     url: "https://github.com/Abdallah-Elsobky/Trendify",
     tech: ["kotlin", "android", "api", "sqlite", "github"],
@@ -271,7 +354,7 @@ export const PROJECTS = [
       "/projects/xo5.png",
     ],
     blurImage: "/projects/blur/tictac-blur.jpg",
-    description: "Experience Tic Tac Toe with customizable modes, AI challenges 🎮",
+    description: "Tic Tac Toe with customizable game modes, intelligent AI challenges, and responsive layout.",
     gradient: ["#FF6347", "#CC4F39"],
     url: "https://www.amazon.com/dp/B0DNCNV9SD/ref=apps_sf_sta",
     tech: ["java", "android", "sqlite", "github"],
@@ -286,7 +369,7 @@ export const PROJECTS = [
       "/projects/tasko2.jpg",
     ],
     blurImage: "/projects/blur/tictac-blur.jpg",
-    description: "📝 Tasko – Organize, prioritize, and track your tasks effortlessly! 🚀",
+    description: "Task management and productivity application to organize, prioritize, and track tasks effortlessly.",
     gradient: ["#2F4F4F", "#1C2E2E"],
     url: "https://github.com/Abdallah-Elsobky/Tasko",
     tech: ["flutter", "android", "sqlite", "github"],
@@ -299,7 +382,7 @@ export const PROJECTS = [
       "/projects/bmi.jpg",
     ],
     blurImage: "/projects/blur/bmi-blur.jpg",
-    description: "Quick, accurate BMI results with a simple interface and custom themes.",
+    description: "Quick, accurate BMI calculation with an intuitive user interface and custom theme metrics.",
     gradient: ["#4A90E2", "#0033A0"],
     url: "https://github.com/Abdallah-Elsobky/BMI_APP",
     tech: ["flutter", "android", "github", "dart"],
@@ -312,17 +395,11 @@ export const PROJECTS = [
       "/projects/natiga.jpg",
     ],
     blurImage: "/projects/blur/natiga-blur.jpg",
-    description: "Natiga lets secondary students easily check their exam results by ID or name. 🧑‍🎓",
+    description: "Educational portal enabling secondary students to query and check examination results by ID or student name.",
     gradient: ["#0F2027", "#203A43"],
     url: "https://github.com/Abdallah-Elsobky/Natiga",
     tech: ["java", "android", "sqlite", "github"],
   },
-  // {
-  //   name: "Music Player",
-  //   image: "/projects/music.jpg",
-  //   blurImage: "/projects/blur/music-blur.jpg",
-  //   description: "Music Player app offers easy playback with a sleek design and customizable features.🎵",
-  //   gradient: ["#6D6D6D", "#1A1A1A"],
   //   url: "https://github.com/Abdallah-Elsobky/Music_player",
   //   tech: ["java", "android", "github", "sqlite"],
   // }

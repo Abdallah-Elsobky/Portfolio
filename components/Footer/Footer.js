@@ -49,7 +49,7 @@ const Footer = () => {
               classes="link"
               type="secondary"
             >
-              Get In Touch 💬
+              Get In Touch
             </Button>
           </div>
 

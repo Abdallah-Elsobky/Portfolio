@@ -69,7 +69,7 @@ const Projects = ({ isDesktop, clientHeight }) => {
           document.body.clientWidth - innerContainer.clientWidth
         );
         // Balanced breathing margin so the last card has comfortable right padding
-        const endMargin = 0;
+        const endMargin = 100;
         const elementWidth = sidePadding + cardsTotalWidth + endMargin;
 
         sectionRef.current.style.width = `${elementWidth}px`;

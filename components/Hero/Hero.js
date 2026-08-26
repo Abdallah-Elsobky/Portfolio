@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useLayoutEffect } from "react";
 import gsap from "gsap";
 import Profiles from "../Profiles/Profiles";
+import AndroidMockup from "./AndroidMockup";
 import styles from "./Hero.module.scss";
 import { MENULINKS, TYPED_STRINGS } from "../../constants";
 
@@ -43,9 +44,9 @@ const TypewriterText = ({ strings }) => {
   }, [currentText, isDeleting, currentStringIndex, strings]);
 
   return (
-    <span className="inline-flex items-center">
-      <span>{currentText}</span>
-      <span className="w-[2px] h-[1.25em] bg-purple inline-block ml-1 animate-[cursor-blink_0.9s_infinite] shadow-[0_0_8px_#7F52FF]" />
+    <span className="inline-flex items-center whitespace-nowrap">
+      <span className="whitespace-nowrap">{currentText}</span>
+      <span className="w-[2px] h-[1.15em] bg-[#3DDC84] inline-block ml-1 animate-[cursor-blink_0.9s_infinite] shadow-[0_0_8px_#3DDC84]" />
     </span>
   );
 };
@@ -147,9 +148,9 @@ const Hero = () => {
             <span className="staggered-reveal text-gradient"> Elsobky</span>
           </h1>
 
-          {/* Dynamic Smooth Custom React Typewriter Line */}
-          <div className="min-h-[64px] sm:min-h-[52px] md:min-h-[48px] mb-4 flex items-center staggered-reveal w-full">
-            <p className="text-xl sm:text-2xl md:text-3xl text-gray-light-2 font-mono font-medium leading-relaxed break-words w-full">
+          {/* Dynamic Smooth Custom React Typewriter Line (Strict Single Line) */}
+          <div className="min-h-[40px] sm:min-h-[46px] md:min-h-[50px] mb-4 flex items-center staggered-reveal w-full overflow-hidden">
+            <p className="text-base sm:text-xl md:text-2xl lg:text-[1.7rem] text-gray-light-2 font-mono font-medium leading-none whitespace-nowrap overflow-hidden text-ellipsis max-w-full">
               <TypewriterText strings={TYPED_STRINGS} />
             </p>
           </div>
@@ -191,134 +192,9 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Right Column: Interactive Android Studio Architecture & Code Console */}
+        {/* Right Column: Interactive Flagship Android Device Showcase */}
         <div className="lg:col-span-5 w-full flex justify-center lg:justify-end staggered-reveal">
-          <div
-            className={`w-full max-w-[480px] rounded-[1.75rem] bg-[#0c1017]/95 border border-white/10 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.95)] overflow-hidden transition-all duration-300 hover:border-purple/50 hover:shadow-[0_25px_60px_-10px_rgba(61,220,132,0.35)] ${styles.ideContainer}`}
-          >
-            {/* IDE Header Bar */}
-            <div className="flex items-center justify-between px-4 py-3 bg-[#111622] border-b border-white/[0.08]">
-              <div className="flex items-center gap-2">
-                <span className="w-3 h-3 rounded-full bg-[#FF5F56] border border-[#E0443E]" />
-                <span className="w-3 h-3 rounded-full bg-[#FFBD2E] border border-[#DEA123]" />
-                <span className="w-3 h-3 rounded-full bg-[#27C93F] border border-[#1AAB29]" />
-              </div>
-
-              {/* Active Tab */}
-              <div className="flex items-center gap-2 px-3 py-1 rounded-lg bg-[#182030] border border-white/[0.08] text-xs font-mono text-gray-light-2">
-                <span className="text-[#3DDC84] font-bold">kt</span>
-                <span>MainActivity.kt</span>
-              </div>
-
-              {/* Build Status Indicator */}
-              <div className="flex items-center gap-1.5 text-[10px] font-mono text-[#00E676] bg-[#00E676]/10 px-2 py-0.5 rounded-full border border-[#00E676]/30">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#00E676] animate-pulse" />
-                <span>BUILD: SUCCESS</span>
-              </div>
-            </div>
-
-            {/* Code Body */}
-            <div className="p-5 font-mono text-xs sm:text-[13px] leading-relaxed text-gray-light-2 overflow-x-auto select-text">
-              <div className="flex gap-3">
-                <div className="text-gray-600 select-none text-right font-mono pr-2 border-r border-white/5 flex flex-col">
-                  <span>01</span>
-                  <span>02</span>
-                  <span>03</span>
-                  <span>04</span>
-                  <span>05</span>
-                  <span>06</span>
-                  <span>07</span>
-                  <span>08</span>
-                  <span>09</span>
-                  <span>10</span>
-                  <span>11</span>
-                </div>
-
-                <div className="flex-1">
-                  <div>
-                    <span className="text-[#FF7B72]">@Composable</span>
-                  </div>
-                  <div>
-                    <span className="text-[#79C0FF]">fun </span>
-                    <span className="text-[#D2A8FF]">ModernAndroidApp</span>
-                    <span className="text-gray-light-3">() &#123;</span>
-                  </div>
-                  <div className="pl-4">
-                    <span className="text-[#79C0FF]">val </span>
-                    <span className="text-white">architect </span>
-                    <span className="text-[#FF7B72]">= </span>
-                    <span className="text-[#FFA657]">AwanEngine</span>
-                    <span className="text-gray-light-3">(</span>
-                  </div>
-                  <div className="pl-8">
-                    <span className="text-indigo-300">ui </span>
-                    <span className="text-[#FF7B72]">= </span>
-                    <span className="text-[#7EE787]">JetpackCompose</span>
-                    <span className="text-gray-light-3">(</span>
-                    <span className="text-[#A5D6FF]">&quot;Material3&quot;</span>
-                    <span className="text-gray-light-3">),</span>
-                  </div>
-                  <div className="pl-8">
-                    <span className="text-indigo-300">arch </span>
-                    <span className="text-[#FF7B72]">= </span>
-                    <span className="text-[#FFA657]">CleanArchitecture</span>
-                    <span className="text-gray-light-3">.</span>
-                    <span className="text-[#7EE787]">MVI</span>
-                    <span className="text-gray-light-3">,</span>
-                  </div>
-                  <div className="pl-8">
-                    <span className="text-indigo-300">concurrency </span>
-                    <span className="text-[#FF7B72]">= </span>
-                    <span className="text-[#7EE787]">Coroutines </span>
-                    <span className="text-[#FF7B72]">+ </span>
-                    <span className="text-[#7EE787]">Flow</span>
-                    <span className="text-gray-light-3">,</span>
-                  </div>
-                  <div className="pl-8">
-                    <span className="text-indigo-300">di </span>
-                    <span className="text-[#FF7B72]">= </span>
-                    <span className="text-[#7EE787]">Hilt</span>
-                    <span className="text-gray-light-3">, </span>
-                    <span className="text-indigo-300">storage </span>
-                    <span className="text-[#FF7B72]">= </span>
-                    <span className="text-[#7EE787]">Room</span>
-                  </div>
-                  <div className="pl-4">
-                    <span className="text-gray-light-3">)</span>
-                  </div>
-                  <div className="pl-4">
-                    <span className="text-white">architect</span>
-                    <span className="text-gray-light-3">.</span>
-                    <span className="text-[#D2A8FF]">launchProduction</span>
-                    <span className="text-gray-light-3">()</span>
-                  </div>
-                  <div>
-                    <span className="text-gray-light-3">&#125;</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Architecture Stack Badges */}
-            <div className="px-4 py-3 bg-[#0e131d] border-t border-white/[0.08] flex flex-wrap items-center justify-between gap-2 text-[11px] font-mono text-gray-light-3">
-              <div className="flex items-center gap-1.5 text-gray-light-2">
-                <span className="text-[#3DDC84]">●</span>
-                <span>Compose 1.7</span>
-              </div>
-              <div className="flex items-center gap-1.5 text-gray-light-2">
-                <span className="text-[#3DDC84]">●</span>
-                <span>Kotlin 2.0</span>
-              </div>
-              <div className="flex items-center gap-1.5 text-gray-light-2">
-                <span className="text-[#00E676]">●</span>
-                <span>Clean Architecture</span>
-              </div>
-              <div className="flex items-center gap-1.5 text-gray-light-2">
-                <span className="text-[#00E676]">●</span>
-                <span>Hilt & Flow</span>
-              </div>
-            </div>
-          </div>
+          <AndroidMockup />
         </div>
       </div>
     </section>

@@ -176,10 +176,11 @@ const ProjectTile = ({ project, classes, isDesktop }) => {
           </div>
         </div>
 
-        {/* Bottom Section: Small Title with Refined Shadow & Tech Stack */}
-        <div className="relative z-20 flex flex-col gap-2 p-3.5 sm:p-4 rounded-2xl bg-[#0d121c]/95 border border-white/10 shadow-[0_12px_32px_rgba(0,0,0,0.85)] group-hover:border-purple/30 group-hover:shadow-[0_15px_35px_rgba(61,220,132,0.2)] transition-all duration-300">
+        {/* Bottom Section: Seamless Edge-to-Edge Frosted Blur Overlay with Title & Tech Stack */}
+        <div className="relative z-20 -mx-5 -mb-5 sm:-mx-6 sm:-mb-6 p-5 sm:p-6 pt-5 bg-gradient-to-t from-[#05080e]/95 via-[#070b12]/80 to-transparent backdrop-blur-md border-t border-white/[0.06] flex flex-col gap-1.5 transition-all duration-300">
+          {/* Title Row: Name + Tech Stack Badges */}
           <div className="flex items-center justify-between gap-3">
-            <h3 className="font-semibold text-base sm:text-lg text-white tracking-tight group-hover:text-purple-300 transition-colors drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
+            <h3 className="font-semibold text-lg sm:text-xl text-white tracking-tight group-hover:text-[#3DDC84] transition-colors">
               {name}
             </h3>
 
@@ -188,25 +189,28 @@ const ProjectTile = ({ project, classes, isDesktop }) => {
               {tech.slice(0, 4).map((el) => (
                 <div
                   key={el}
-                  className="w-6 h-6 rounded-lg bg-white/[0.06] border border-white/10 p-1 flex items-center justify-center hover:scale-110 hover:border-purple/50 transition-transform"
+                  className="w-6 h-6 rounded-lg bg-white/[0.05] border border-white/[0.1] p-1 flex items-center justify-center group-hover:border-[#3DDC84]/35 hover:scale-110 transition-all shadow-inner"
                   title={el}
                 >
-                  <img
+                  <Image
                     src={`/projects/tech/${el}.svg`}
                     alt={el}
+                    width={18}
+                    height={18}
                     className="w-full h-full object-contain"
                   />
                 </div>
               ))}
               {tech.length > 4 && (
-                <span className="text-[10px] text-gray-light-3 font-medium px-1">
+                <span className="text-[10px] font-mono text-[#3DDC84] bg-[#3DDC84]/10 border border-[#3DDC84]/20 px-1.5 py-0.5 rounded-md font-medium">
                   +{tech.length - 4}
                 </span>
               )}
             </div>
           </div>
 
-          <p className="text-xs text-gray-light-2 line-clamp-1 font-normal drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]">
+          {/* Clean 2-line Description directly on blur */}
+          <p className="text-[11.5px] sm:text-xs text-gray-light-2 group-hover:text-gray-light-1 leading-relaxed line-clamp-2 transition-colors">
             {description}
           </p>
         </div>
