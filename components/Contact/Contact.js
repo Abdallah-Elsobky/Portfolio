@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from "react";
-import Filter from "bad-words";
 import toast, { Toaster } from "react-hot-toast";
 import Fade from "react-reveal/Fade";
 import gsap from "gsap";
@@ -7,9 +6,6 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import mail from "./mailer";
 import styles from "./Contact.module.scss";
 import { MENULINKS } from "../../constants";
-
-const filter = new Filter();
-filter.removeWords("hell", "god", "shit");
 
 const toastOptions = {
   style: {
@@ -21,84 +17,70 @@ const toastOptions = {
   },
 };
 
-const empty = () =>
-  toast.error("Please fill the required fields", {
-    id: "error",
-  });
-
-const error = () =>
-  toast.error("Error sending your message. Please contact me via email.", {
-    id: "error",
-  });
-
-const success = () =>
-  toast.success("Message sent successfully!", {
-    id: "success",
-  });
-
 const Contact = () => {
   const initialState = { name: "", email: "", message: "" };
   const [formData, setFormData] = useState(initialState);
-  const [mailerResponse, setMailerResponse] = useState("not initiated");
-  const [, setIsSending] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const buttonElementRef = useRef(null);
   const sectionRef = useRef(null);
 
-  const handleChange = ({ target }) => {
-    const { id, value } = target;
-    value.length === 0 ? setIsSending(false) : setIsSending(true);
-    setFormData((prevVal) => {
-      if (
-        value.trim() !== prevVal[id] &&
-        value.trim().length > prevVal[id].trim().length
-      ) {
-        return { ...prevVal, [id]: filter.clean(value.trim()) };
-      } else {
-        return { ...prevVal, [id]: value };
-      }
-    });
+  // Safe handler that supports ALL languages (Arabic, English, German, French, Spanish, emojis, etc.)
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [id]: value,
+    }));
   };
 
   const emptyForm = () => {
     setFormData(initialState);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const { name, email, message } = {
-      name: formData.name,
-      email: formData.email,
-      message: formData.message,
-    };
+    const name = formData.name.trim();
+    const email = formData.email.trim();
+    const message = formData.message.trim();
 
-    if (name === "" || email === "" || message === "") {
-      empty();
-      return setMailerResponse("empty");
+    if (!name || !email || !message) {
+      toast.error("Please fill in all required fields", { id: "contact-validation" });
+      return;
     }
 
-    setIsSending(true);
-    mail({ name, email, message })
-      .then((res) => {
-        if (res.status === 200) {
-          setMailerResponse("success");
-          emptyForm();
-        } else {
-          setMailerResponse("error");
-        }
-      })
-      .catch((err) => {
-        setMailerResponse("error");
-        console.error(err);
+    // Basic email validation check
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      toast.error("Please enter a valid email address", { id: "contact-email" });
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const res = await mail({ name, email, message });
+      if (res && (res.status === 200 || res.text === "OK")) {
+        toast.success("Message sent successfully! I will reply soon 🚀", {
+          id: "contact-success",
+        });
+        emptyForm();
+      } else {
+        toast.error("Could not send message. Please email me directly!", {
+          id: "contact-error",
+        });
+      }
+    } catch (err) {
+      console.error("Mail send error:", err);
+      toast.error("Error sending message. Please contact me via direct email.", {
+        id: "contact-error",
       });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
-  useEffect(() => {
-    setTimeout(() => {
-      setMailerResponse("not initiated");
-    }, 10000);
-  }, [mailerResponse]);
-
+  // Button submission animation with GSAP
   useEffect(() => {
     const btn = buttonElementRef.current;
     if (!btn) return;
@@ -236,6 +218,7 @@ const Contact = () => {
   }, []);
 
   useEffect(() => {
+    if (!sectionRef.current) return;
     const tl = gsap.timeline({ defaults: { ease: "none" } });
 
     tl.from(
@@ -284,7 +267,7 @@ const Contact = () => {
           <div className="flex flex-wrap justify-center gap-3 mt-6 staggered-reveal">
             <a
               href="mailto:its.abdallah.elsobky@gmail.com"
-              className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#111622]/90 border border-white/10 text-xs font-mono text-gray-light-2 hover:text-white hover:border-purple/60 hover:bg-[#182030] transition-all link"
+              className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#111622]/90 border border-white/10 text-xs font-mono text-gray-light-2 hover:text-white hover:border-[#3DDC84]/60 hover:bg-[#182030] transition-all link"
             >
               <span>✉️</span>
               <span>its.abdallah.elsobky@gmail.com</span>
@@ -304,7 +287,7 @@ const Contact = () => {
                 <input
                   type="text"
                   id="name"
-                  className="block w-full h-14 px-4 text-base sm:text-lg font-mono outline-none border border-white/15 focus:border-purple bg-[#121722]/80 rounded-xl transition-all duration-200 text-white placeholder-transparent peer"
+                  className="block w-full h-14 px-4 text-base sm:text-lg font-mono outline-none border border-white/15 focus:border-[#3DDC84] bg-[#121722]/80 rounded-xl transition-all duration-200 text-white placeholder-transparent peer"
                   value={formData.name}
                   onChange={handleChange}
                   placeholder="Your Name"
@@ -312,7 +295,7 @@ const Contact = () => {
                 />
                 <label
                   htmlFor="name"
-                  className="absolute top-0 left-0 h-14 flex items-center pl-4 text-sm sm:text-base font-mono text-gray-light-3 transition-all pointer-events-none peer-focus:text-xs peer-focus:-translate-y-4 peer-focus:text-purple peer-valid:text-xs peer-valid:-translate-y-4"
+                  className="absolute top-0 left-0 h-14 flex items-center pl-4 text-sm sm:text-base font-mono text-gray-light-3 transition-all pointer-events-none peer-focus:text-xs peer-focus:-translate-y-4 peer-focus:text-[#3DDC84] peer-valid:text-xs peer-valid:-translate-y-4"
                 >
                   Your Name
                 </label>
@@ -322,7 +305,7 @@ const Contact = () => {
                 <input
                   type="email"
                   id="email"
-                  className="block w-full h-14 px-4 text-base sm:text-lg font-mono outline-none border border-white/15 focus:border-purple bg-[#121722]/80 rounded-xl transition-all duration-200 text-white placeholder-transparent peer"
+                  className="block w-full h-14 px-4 text-base sm:text-lg font-mono outline-none border border-white/15 focus:border-[#3DDC84] bg-[#121722]/80 rounded-xl transition-all duration-200 text-white placeholder-transparent peer"
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="Your Email"
@@ -330,7 +313,7 @@ const Contact = () => {
                 />
                 <label
                   htmlFor="email"
-                  className="absolute top-0 left-0 h-14 flex items-center pl-4 text-sm sm:text-base font-mono text-gray-light-3 transition-all pointer-events-none peer-focus:text-xs peer-focus:-translate-y-4 peer-focus:text-purple peer-valid:text-xs peer-valid:-translate-y-4"
+                  className="absolute top-0 left-0 h-14 flex items-center pl-4 text-sm sm:text-base font-mono text-gray-light-3 transition-all pointer-events-none peer-focus:text-xs peer-focus:-translate-y-4 peer-focus:text-[#3DDC84] peer-valid:text-xs peer-valid:-translate-y-4"
                 >
                   Your Email Address
                 </label>
@@ -339,7 +322,7 @@ const Contact = () => {
               <div className="relative">
                 <textarea
                   id="message"
-                  className="block w-full min-h-[9rem] max-h-[16rem] py-3.5 px-4 text-base sm:text-lg font-mono outline-none border border-white/15 focus:border-purple bg-[#121722]/80 rounded-xl transition-all duration-200 text-white placeholder-transparent peer"
+                  className="block w-full min-h-[9rem] max-h-[16rem] py-3.5 px-4 text-base sm:text-lg font-mono outline-none border border-white/15 focus:border-[#3DDC84] bg-[#121722]/80 rounded-xl transition-all duration-200 text-white placeholder-transparent peer"
                   value={formData.message}
                   onChange={handleChange}
                   placeholder="Your Message"
@@ -347,7 +330,7 @@ const Contact = () => {
                 />
                 <label
                   htmlFor="message"
-                  className="absolute top-0 left-0 h-14 flex items-center pl-4 text-sm sm:text-base font-mono text-gray-light-3 transition-all pointer-events-none peer-focus:text-xs peer-focus:-translate-y-4 peer-focus:text-purple peer-valid:text-xs peer-valid:-translate-y-4"
+                  className="absolute top-0 left-0 h-14 flex items-center pl-4 text-sm sm:text-base font-mono text-gray-light-3 transition-all pointer-events-none peer-focus:text-xs peer-focus:-translate-y-4 peer-focus:text-[#3DDC84] peer-valid:text-xs peer-valid:-translate-y-4"
                 >
                   Your Message
                 </label>
@@ -359,13 +342,14 @@ const Contact = () => {
                 ref={buttonElementRef}
                 className={styles.button}
                 disabled={
-                  formData.name === "" ||
-                  formData.email === "" ||
-                  formData.message === ""
+                  isSubmitting ||
+                  !formData.name.trim() ||
+                  !formData.email.trim() ||
+                  !formData.message.trim()
                 }
                 type="submit"
               >
-                <span>Send Message -&gt;</span>
+                <span>{isSubmitting ? "Sending..." : "Send Message ->"}</span>
                 <span className={styles.success}>
                   <svg viewBox="0 0 16 16">
                     <polyline points="3.75 9 7 12 13 5" />
@@ -382,13 +366,6 @@ const Contact = () => {
                 </div>
               </button>
             </div>
-
-            {mailerResponse !== "not initiated" &&
-              (mailerResponse === "success" ? (
-                <div className="hidden">{success()}</div>
-              ) : (
-                <div className="hidden">{error()}</div>
-              ))}
           </form>
         </div>
       </div>
@@ -402,7 +379,7 @@ const Contact = () => {
 
         input:hover,
         textarea:hover {
-          border-color: rgba(127, 82, 255, 0.5);
+          border-color: rgba(61, 220, 132, 0.5);
         }
       `}</style>
     </section>
