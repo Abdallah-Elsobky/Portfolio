@@ -34,22 +34,22 @@ const About2 = ({ clientHeight }) => {
     <section ref={sectionRef} className="w-full relative select-none">
       <div
         className={`${
-          clientHeight > 650 ? "py-60" : "py-56"
+          clientHeight > 650 ? "py-52" : "py-44"
         } section-container flex flex-col items-center justify-center`}
       >
-        {/* Subtle Eyebrow Pill */}
+        {/* Eyebrow Pill */}
         <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#111622] border border-white/10 mb-6 shadow-sm">
           <span className="w-2 h-2 rounded-full bg-[#3DDC84] animate-pulse" />
           <span className="text-[11px] font-mono uppercase tracking-widest text-gray-light-2">
-            Quality & Craftsmanship
+            Engineering Values
           </span>
         </div>
 
         <h1
           ref={quoteRef}
-          className="font-medium text-[2.4rem] md:text-5xl lg:text-[3.75rem] text-center max-w-4xl tracking-tight leading-snug"
+          className="font-medium text-[2.2rem] md:text-5xl lg:text-[3.5rem] text-center max-w-4xl tracking-tight leading-snug text-gray-light-1"
         >
-          I have an uncompromising{" "}
+          I focus on building{" "}
           <span
             className="about-3 font-bold"
             style={{
@@ -60,9 +60,9 @@ const About2 = ({ clientHeight }) => {
               WebkitTextFillColor: "transparent",
             }}
           >
-            obsession
+            fast & reliable
           </span>{" "}
-          for architectural excellence & micro-interaction detail.
+          Android apps with clean code, solid architecture, and smooth interactions.
         </h1>
       </div>
     </section>

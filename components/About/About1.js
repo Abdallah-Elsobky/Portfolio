@@ -56,24 +56,24 @@ const About1 = ({ clientHeight }) => {
           <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#111622] border border-white/10 mb-6 shadow-sm">
             <span className="w-2 h-2 rounded-full bg-[#7F52FF] animate-pulse" />
             <span className="text-[11px] font-mono uppercase tracking-widest text-gray-light-2">
-              Engineering Philosophy
+              Engineering Focus
             </span>
           </div>
 
           <h1
             ref={quoteRef}
-            className="font-medium text-[2.4rem] md:text-5xl lg:text-[3.75rem] text-center max-w-5xl leading-snug tracking-tight"
+            className="font-medium text-[2.2rem] md:text-5xl lg:text-[3.5rem] text-center max-w-5xl leading-snug tracking-tight text-gray-light-1"
           >
             <span className="about-1 leading-tight">
-              I&apos;m a dedicated Android Engineer focused on architecting{" "}
+              I&apos;m a Native Android Developer passionate about building{" "}
               <span className="text-white font-semibold">
-                scalable, offline-first, and reactive mobile apps.
+                scalable, offline-first mobile applications.
               </span>{" "}
             </span>
             <span className="about-2 leading-tight">
-              Crafting seamless, 60 FPS user experiences using{" "}
+              I specialize in writing clean, testable code with{" "}
               <span className="text-white font-semibold">
-                Jetpack Compose, Clean Architecture, and MVI best practices.
+                Kotlin, Jetpack Compose, Coroutines, and Clean Architecture (MVI).
               </span>
             </span>
           </h1>
