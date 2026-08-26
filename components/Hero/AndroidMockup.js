@@ -177,7 +177,7 @@ const CodeTerminal = ({ onComplete }) => {
   }, [stage, onComplete]);
 
   return (
-    <div className="relative w-full max-w-[340px] sm:max-w-[380px] lg:max-w-[400px] rounded-2xl bg-[#0c1017]/95 border border-white/10 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.95)] overflow-hidden font-mono select-none">
+    <div className="relative w-full max-w-[340px] sm:max-w-[380px] lg:max-w-[400px] rounded-2xl bg-[#0c1017]/95 border border-white/10 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.95)] overflow-hidden font-mono select-none pointer-events-none">
       {/* IDE Window Header Bar */}
       <div className="flex items-center justify-between px-3.5 py-2.5 bg-[#111622] border-b border-white/[0.08]">
         <div className="flex items-center gap-1.5">
@@ -301,10 +301,10 @@ const CodeTerminal = ({ onComplete }) => {
   );
 };
 
-// 2. Android Launcher Home Screen Component
-const AndroidHomeScreen = ({ apps, targetAppId, isTapping, onAppClick }) => {
+// 2. Android Launcher Home Screen Component (Autonomous simulation without user clicks)
+const AndroidHomeScreen = ({ apps, targetAppId, isTapping }) => {
   return (
-    <div className="relative w-full h-full bg-gradient-to-b from-[#0b121e] via-[#080d16] to-[#04070c] p-3 flex flex-col justify-between select-none overflow-hidden">
+    <div className="relative w-full h-full bg-gradient-to-b from-[#0b121e] via-[#080d16] to-[#04070c] p-3 flex flex-col justify-between select-none pointer-events-none overflow-hidden">
       {/* Abstract Material You Wallpaper Accents */}
       <div className="absolute top-10 -left-10 w-44 h-44 rounded-full bg-[#3DDC84]/15 blur-[40px] pointer-events-none" />
       <div className="absolute bottom-16 -right-10 w-44 h-44 rounded-full bg-[#6366F1]/15 blur-[40px] pointer-events-none" />
@@ -337,8 +337,7 @@ const AndroidHomeScreen = ({ apps, targetAppId, isTapping, onAppClick }) => {
           return (
             <div
               key={app.id}
-              onClick={() => onAppClick && onAppClick(app.id)}
-              className="flex flex-col items-center gap-1 cursor-pointer group"
+              className="flex flex-col items-center gap-1 select-none pointer-events-none"
             >
               <div className="relative">
                 {/* App Icon Box */}
@@ -356,7 +355,7 @@ const AndroidHomeScreen = ({ apps, targetAppId, isTapping, onAppClick }) => {
                       : { scale: 1 }
                   }
                   transition={{ duration: 0.6, ease: "easeInOut" }}
-                  className={`w-9 h-9 rounded-2xl bg-gradient-to-br ${app.iconBg} border border-white/20 p-1.5 flex items-center justify-center shadow-lg transition-transform group-hover:scale-105`}
+                  className={`w-9 h-9 rounded-2xl bg-gradient-to-br ${app.iconBg} border border-white/20 p-1.5 flex items-center justify-center shadow-lg`}
                 >
                   {app.iconSvg}
                 </motion.div>
@@ -372,7 +371,7 @@ const AndroidHomeScreen = ({ apps, targetAppId, isTapping, onAppClick }) => {
                 )}
               </div>
 
-              <span className="text-[9px] font-medium text-gray-light-2 group-hover:text-white tracking-tight truncate max-w-[65px] text-center">
+              <span className="text-[9px] font-medium text-gray-light-2 tracking-tight truncate max-w-[65px] text-center">
                 {app.name}
               </span>
             </div>
@@ -410,15 +409,14 @@ const AndroidMockup = () => {
   // View states in EMULATOR: 'HOME' | 'APP' | 'EXITING' | 'LAUNCHING'
   const [viewState, setViewState] = useState("HOME");
   const [isTapping, setIsTapping] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
 
   const currentApp = showcaseApps[activeAppIndex];
   const screens = currentApp.screens;
 
   // 1. Screen Slideshow in APP:
-  // Shows EVERY screen of the current app for 2.0s before exiting to home and navigating to the next app
+  // Shows EVERY screen of the current app sequentially for 2.0s before smoothly exiting to home and launching the next app
   useEffect(() => {
-    if (phase !== "EMULATOR" || isHovered || viewState !== "APP") return;
+    if (phase !== "EMULATOR" || viewState !== "APP") return;
 
     const timer = setTimeout(() => {
       if (screenIndex < screens.length - 1) {
@@ -431,11 +429,11 @@ const AndroidMockup = () => {
     }, 2000); // 2.0s per screen
 
     return () => clearTimeout(timer);
-  }, [phase, viewState, screenIndex, screens.length, activeAppIndex, showcaseApps.length, isHovered]);
+  }, [phase, viewState, screenIndex, screens.length, activeAppIndex, showcaseApps.length]);
 
-  // 2. OS Navigation Lifecycle in EMULATOR:
+  // 2. Autonomous OS Navigation Lifecycle in EMULATOR:
   useEffect(() => {
-    if (phase !== "EMULATOR" || isHovered) return;
+    if (phase !== "EMULATOR") return;
 
     let timeoutId;
 
@@ -471,28 +469,7 @@ const AndroidMockup = () => {
     }
 
     return () => clearTimeout(timeoutId);
-  }, [phase, viewState, activeAppIndex, targetAppIndex, isHovered]);
-
-  // Manual interactive app switch handler
-  const handleManualSwitch = (index) => {
-    if (index === activeAppIndex && viewState === "APP") return;
-    setTargetAppIndex(index);
-    setViewState("HOME");
-    setIsTapping(false);
-
-    setTimeout(() => {
-      setIsTapping(true);
-      setTimeout(() => {
-        setViewState("LAUNCHING");
-        setTimeout(() => {
-          setActiveAppIndex(index);
-          setScreenIndex(0);
-          setIsTapping(false);
-          setViewState("APP");
-        }, 500);
-      }, 700);
-    }, 400);
-  };
+  }, [phase, viewState, activeAppIndex, targetAppIndex]);
 
   return (
     <div className="relative w-full flex flex-col items-center justify-center min-h-[420px]">
@@ -515,45 +492,38 @@ const AndroidMockup = () => {
             <CodeTerminal onComplete={() => setPhase("EMULATOR")} />
           </motion.div>
         ) : (
-          /* PHASE 2: Flagship Android Emulator Device Showcase */
+          /* PHASE 2: Autonomous Flagship Android Emulator Device Showcase */
           <motion.div
             key="android-emulator"
             initial={{ opacity: 0, scale: 0.9, y: 25 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.65, ease: [0.25, 1, 0.5, 1] }}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-            className="relative w-full max-w-[185px] sm:max-w-[205px] lg:max-w-[220px] flex flex-col items-center select-none mx-auto"
+            className="relative w-full max-w-[185px] sm:max-w-[205px] lg:max-w-[220px] flex flex-col items-center select-none pointer-events-none mx-auto"
           >
-            {/* Compact Interactive App Tabs Selector */}
-            <div className="flex items-center gap-1 p-0.5 rounded-lg bg-[#0e141f]/90 border border-white/[0.08] backdrop-blur-md mb-2 shadow-md z-30 flex-wrap justify-center">
+            {/* Live Active Showcase Indicator Pills (Read-only status badges) */}
+            <div className="flex items-center gap-1 p-0.5 rounded-lg bg-[#0e141f]/90 border border-white/[0.08] backdrop-blur-md mb-2 shadow-md z-30 flex-wrap justify-center pointer-events-none select-none">
               {showcaseApps.map((app, idx) => {
                 const isActive = idx === (viewState === "APP" ? activeAppIndex : targetAppIndex);
                 return (
-                  <button
+                  <div
                     key={app.id}
-                    onClick={() => handleManualSwitch(idx)}
-                    className={`link px-1.5 py-0.5 rounded-md text-[9px] font-mono font-semibold transition-all duration-300 flex items-center gap-1 cursor-pointer ${
+                    className={`px-1.5 py-0.5 rounded-md text-[9px] font-mono font-semibold transition-all duration-300 flex items-center gap-1 select-none ${
                       isActive
                         ? "bg-[#3DDC84] text-black shadow-[0_2px_8px_rgba(61,220,132,0.4)]"
-                        : "text-gray-light-3 hover:text-white hover:bg-white/[0.05]"
+                        : "text-gray-500"
                     }`}
                   >
                     {isActive && (
                       <span className="w-1 h-1 rounded-full bg-black animate-pulse" />
                     )}
                     <span>{app.name}</span>
-                  </button>
+                  </div>
                 );
               })}
             </div>
 
             {/* Flagship Android Device Frame with Exact 9:20 Ratio */}
-            <motion.div
-              whileHover={{ scale: 1.02 }}
-              transition={{ duration: 0.3 }}
-              className="relative w-full aspect-[9/20] rounded-[1.65rem] p-[2.5px] bg-gradient-to-b from-white/30 via-white/10 to-white/20 shadow-[0_20px_50px_-10px_rgba(0,0,0,0.95)] border border-white/20"
-            >
+            <div className="relative w-full aspect-[9/20] rounded-[1.65rem] p-[2.5px] bg-gradient-to-b from-white/30 via-white/10 to-white/20 shadow-[0_20px_50px_-10px_rgba(0,0,0,0.95)] border border-white/20 pointer-events-none">
               {/* Device Screen Bezel */}
               <div className="relative w-full h-full rounded-[1.5rem] overflow-hidden bg-black flex flex-col justify-between">
                 {/* Animated Viewport: App Screen OR Home Launcher */}
@@ -603,10 +573,6 @@ const AndroidMockup = () => {
                           apps={showcaseApps}
                           targetAppId={showcaseApps[targetAppIndex].id}
                           isTapping={isTapping}
-                          onAppClick={(id) => {
-                            const idx = showcaseApps.findIndex((a) => a.id === id);
-                            if (idx !== -1) handleManualSwitch(idx);
-                          }}
                         />
 
                         {/* Subtle Glare Reflection */}
@@ -616,7 +582,7 @@ const AndroidMockup = () => {
                   </AnimatePresence>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
