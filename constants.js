@@ -17,7 +17,7 @@ export const METADATA = {
     "Android Engineer",
     "Portfolio",
   ].join(", "),
-  image: "https://abdullah-elsobky.web.app/projects/preview.png",
+  image: "https://abdullah-elsobky.web.app/projects/preview.jpg",
   language: "English",
   themeColor: "#04070c",
 };
