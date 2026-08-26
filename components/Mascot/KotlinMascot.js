@@ -74,7 +74,7 @@ const KotlinMascot = () => {
   const [currentSection, setCurrentSection] = useState("home");
   const [currentPool, setCurrentPool] = useState(SECTION_GUIDES.home);
   const [messageIndex, setMessageIndex] = useState(0);
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false); // Closed by default on Home!
   const [userDismissed, setUserDismissed] = useState(false);
   const [isMascotHovered, setIsMascotHovered] = useState(false);
   const [bubbleKey, setBubbleKey] = useState(0);
@@ -110,20 +110,7 @@ const KotlinMascot = () => {
     startAutoCloseTimer(DISPLAY_DURATION);
   };
 
-  // Initial greeting prompt on load
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsOpen(true);
-      startAutoCloseTimer(7500); // Give 7.5s for initial greeting
-    }, 2800);
-
-    return () => {
-      clearTimeout(timer);
-      clearAutoCloseTimer();
-    };
-  }, [startAutoCloseTimer, clearAutoCloseTimer]);
-
-  // Section observer via scroll position to update companion dialog
+  // Section observer via scroll position: Opens Kodee only when scrolling AWAY from home
   useEffect(() => {
     const handleScroll = () => {
       const scrollPos = window.scrollY + window.innerHeight * 0.45;
@@ -142,10 +129,14 @@ const KotlinMascot = () => {
               setMessageIndex(0);
               setBubbleKey((prev) => prev + 1);
 
-              // If the user hasn't permanently dismissed it, open for this section and auto-close
-              if (!userDismissed) {
+              // Auto-open only when scrolling away from home to another section!
+              if (!userDismissed && sectionId !== "home") {
                 setIsOpen(true);
                 startAutoCloseTimer(DISPLAY_DURATION);
+              } else if (sectionId === "home") {
+                // If scrolling back to home, keep it closed
+                clearAutoCloseTimer();
+                setIsOpen(false);
               }
             }
             break;
@@ -158,8 +149,9 @@ const KotlinMascot = () => {
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      clearAutoCloseTimer();
     };
-  }, [currentSection, userDismissed, startAutoCloseTimer]);
+  }, [currentSection, userDismissed, startAutoCloseTimer, clearAutoCloseTimer]);
 
   // User manually closes the speech bubble
   const handleManualClose = (e) => {
