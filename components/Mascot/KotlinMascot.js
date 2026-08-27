@@ -68,14 +68,14 @@ const SECTION_GUIDES = {
   ],
 };
 
-const DISPLAY_DURATION = 6500; // 6.5s auto-close
+const DISPLAY_DURATION = 6500; // 6.5s auto-close when opened
 
 const KotlinMascot = () => {
   const [currentSection, setCurrentSection] = useState("home");
   const [currentPool, setCurrentPool] = useState(SECTION_GUIDES.home);
   const [messageIndex, setMessageIndex] = useState(0);
-  const [isOpen, setIsOpen] = useState(false); // Closed by default on Home!
-  const [userDismissed, setUserDismissed] = useState(false);
+  const [isOpen, setIsOpen] = useState(false); // Closed by default!
+  const [isNudging, setIsNudging] = useState(false); // 6s periodic animation
   const [isMascotHovered, setIsMascotHovered] = useState(false);
   const [bubbleKey, setBubbleKey] = useState(0);
 
@@ -91,7 +91,7 @@ const KotlinMascot = () => {
     }
   }, []);
 
-  // Helper to start auto-close countdown
+  // Helper to start auto-close countdown when guide is opened
   const startAutoCloseTimer = useCallback(
     (duration = DISPLAY_DURATION) => {
       clearAutoCloseTimer();
@@ -102,15 +102,21 @@ const KotlinMascot = () => {
     [clearAutoCloseTimer]
   );
 
-  // Cycle to next tip in section pool
-  const nextMessage = (e) => {
-    if (e) e.stopPropagation();
-    setMessageIndex((prev) => (prev + 1) % currentPool.length);
-    setBubbleKey((prev) => prev + 1);
-    startAutoCloseTimer(DISPLAY_DURATION);
-  };
+  // Periodic 6-second "Open me! ✦" animation soundwave / nudge when closed
+  useEffect(() => {
+    if (isOpen) return;
 
-  // Section observer via scroll position: Opens Kodee only when scrolling AWAY from home
+    const interval = setInterval(() => {
+      setIsNudging(true);
+      setTimeout(() => {
+        setIsNudging(false);
+      }, 2500);
+    }, 6000);
+
+    return () => clearInterval(interval);
+  }, [isOpen]);
+
+  // Section observer to update contextual tips (stays closed by default)
   useEffect(() => {
     const handleScroll = () => {
       const scrollPos = window.scrollY + window.innerHeight * 0.45;
@@ -128,16 +134,6 @@ const KotlinMascot = () => {
               setCurrentPool(guides);
               setMessageIndex(0);
               setBubbleKey((prev) => prev + 1);
-
-              // Auto-open only when scrolling away from home to another section!
-              if (!userDismissed && sectionId !== "home") {
-                setIsOpen(true);
-                startAutoCloseTimer(DISPLAY_DURATION);
-              } else if (sectionId === "home") {
-                // If scrolling back to home, keep it closed
-                clearAutoCloseTimer();
-                setIsOpen(false);
-              }
             }
             break;
           }
@@ -151,27 +147,32 @@ const KotlinMascot = () => {
       window.removeEventListener("scroll", handleScroll);
       clearAutoCloseTimer();
     };
-  }, [currentSection, userDismissed, startAutoCloseTimer, clearAutoCloseTimer]);
+  }, [currentSection, clearAutoCloseTimer]);
+
+  // Cycle to next tip in section pool
+  const nextMessage = (e) => {
+    if (e) e.stopPropagation();
+    setMessageIndex((prev) => (prev + 1) % currentPool.length);
+    setBubbleKey((prev) => prev + 1);
+    startAutoCloseTimer(DISPLAY_DURATION);
+  };
 
   // User manually closes the speech bubble
   const handleManualClose = (e) => {
     if (e) e.stopPropagation();
     clearAutoCloseTimer();
     setIsOpen(false);
-    setUserDismissed(true); // Flag that user closed it, so scroll will not re-open automatically
   };
 
-  // Toggle mascot when avatar button is clicked
+  // Toggle mascot open/closed
   const handleToggleMascot = () => {
     if (isOpen) {
-      // User clicked while open -> close and mark as dismissed
       handleManualClose();
     } else {
-      // User clicked while closed -> open, reset dismissed state (user wants to interact)
-      setUserDismissed(false);
       setIsOpen(true);
+      setIsNudging(false);
       setBubbleKey((prev) => prev + 1);
-      startAutoCloseTimer(6500);
+      startAutoCloseTimer(DISPLAY_DURATION);
     }
   };
 
@@ -197,8 +198,8 @@ const KotlinMascot = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 8, scale: 0.94 }}
             transition={{ type: "spring", stiffness: 350, damping: 25 }}
-            onMouseEnter={clearAutoCloseTimer} // Pause auto-close while user is reading/hovering
-            onMouseLeave={() => startAutoCloseTimer(3000)} // Resume auto-close when user moves cursor away
+            onMouseEnter={clearAutoCloseTimer}
+            onMouseLeave={() => startAutoCloseTimer(3000)}
             className="pointer-events-auto mb-3.5 max-w-[270px] sm:max-w-[310px] p-4 rounded-2xl bg-[#0b1210]/95 border border-[#3DDC84]/35 backdrop-blur-xl shadow-[0_12px_40px_rgba(61,220,132,0.25)] text-white text-xs relative overflow-hidden"
           >
             {/* Ambient background glow inside card */}
@@ -217,7 +218,6 @@ const KotlinMascot = () => {
               </div>
 
               <div className="flex items-center gap-1.5">
-                {/* Next tip mini-button */}
                 {currentPool.length > 1 && (
                   <button
                     onClick={nextMessage}
@@ -229,7 +229,6 @@ const KotlinMascot = () => {
                   </button>
                 )}
 
-                {/* Explicit Close Button ('✕') */}
                 <button
                   onClick={handleManualClose}
                   title="Close guide"
@@ -263,7 +262,7 @@ const KotlinMascot = () => {
               </div>
             )}
 
-            {/* Auto-cycle / Auto-close progress bar at bottom */}
+            {/* Auto-close progress bar */}
             <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-white/5 overflow-hidden">
               <motion.div
                 key={`progress-${bubbleKey}-${messageIndex}-${isOpen}`}
@@ -281,19 +280,49 @@ const KotlinMascot = () => {
       </AnimatePresence>
 
       {/* Mascot Avatar Trigger */}
-      <div className="pointer-events-auto relative">
+      <div className="pointer-events-auto relative flex flex-col items-end">
+        {/* Animated "Open Me! ✦" Audio Soundwave Pill (Fires every 6 sec when closed) */}
+        <AnimatePresence>
+          {!isOpen && isNudging && (
+            <motion.div
+              initial={{ opacity: 0, y: 10, scale: 0.8 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -6, scale: 0.85 }}
+              transition={{ duration: 0.35, ease: "easeOut" }}
+              className="mb-2 px-2.5 py-1 rounded-full bg-gradient-to-r from-[#00BA5A] to-[#3DDC84] text-black font-mono font-bold text-[10px] shadow-[0_4px_18px_rgba(61,220,132,0.6)] flex items-center gap-1.5 pointer-events-auto cursor-pointer border border-white/30"
+              onClick={handleToggleMascot}
+            >
+              {/* Soundwave Bars Animation */}
+              <div className="flex items-center gap-0.5">
+                <span className="w-[2px] h-2.5 bg-black rounded-full animate-bounce [animation-delay:-0.3s]" />
+                <span className="w-[2px] h-3.5 bg-black rounded-full animate-bounce [animation-delay:-0.15s]" />
+                <span className="w-[2px] h-2 bg-black rounded-full animate-bounce" />
+              </div>
+              <span>Open me! ✦</span>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
         <motion.button
           onClick={handleToggleMascot}
           onMouseEnter={() => setIsMascotHovered(true)}
           onMouseLeave={() => setIsMascotHovered(false)}
           whileHover={{ scale: 1.08 }}
           whileTap={{ scale: 0.92 }}
-          animate={{ y: [0, -4, 0] }}
-          transition={{
-            repeat: Infinity,
-            duration: 3,
-            ease: "easeInOut",
-          }}
+          animate={
+            isNudging && !isOpen
+              ? {
+                  y: [0, -7, 2, -4, 0],
+                  rotate: [0, -10, 10, -6, 6, 0],
+                  scale: [1, 1.12, 1],
+                }
+              : { y: [0, -3, 0] }
+          }
+          transition={
+            isNudging && !isOpen
+              ? { duration: 0.8, ease: "easeInOut" }
+              : { repeat: Infinity, duration: 3, ease: "easeInOut" }
+          }
           className={`link group relative cursor-pointer flex items-center justify-center rounded-2xl transition-all duration-300 ${
             isOpen
               ? "p-2.5 sm:p-3 bg-[#0d1612]/95 border border-[#3DDC84]/50 shadow-[0_8px_32px_rgba(61,220,132,0.35)] backdrop-blur-xl"
@@ -302,10 +331,13 @@ const KotlinMascot = () => {
           title={isOpen ? "Click to close Kodee" : "Click to open Kodee Guide ✦"}
           aria-label={isOpen ? "Close Kodee guide" : "Open Kodee guide"}
         >
-          {/* Subtle pulsating glow aura */}
-          <div className="absolute -inset-1 rounded-2xl bg-gradient-to-tr from-[#3DDC84]/25 via-[#00E676]/10 to-transparent blur-md opacity-70 group-hover:opacity-100 transition-opacity pointer-events-none" />
+          {/* Pulsating glow aura */}
+          <div
+            className={`absolute -inset-1 rounded-2xl bg-gradient-to-tr from-[#3DDC84]/30 via-[#00E676]/15 to-transparent blur-md transition-opacity pointer-events-none ${
+              isNudging ? "opacity-100 animate-pulse" : "opacity-60 group-hover:opacity-100"
+            }`}
+          />
 
-          {/* Floating Avatar & Badge (Open) VS Minimized Sleek Pill (Closed) */}
           {isOpen ? (
             <div className="relative flex flex-col items-center">
               {/* Mascot Badge: Kodee */}
@@ -325,20 +357,6 @@ const KotlinMascot = () => {
                   priority
                 />
               </div>
-
-              {/* Tooltip hint on hover */}
-              <AnimatePresence>
-                {isMascotHovered && (
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.85, y: 5 }}
-                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.85, y: 5 }}
-                    className="absolute -top-8 right-0 whitespace-nowrap px-2 py-0.5 rounded-md bg-black/90 border border-white/15 text-[9px] font-mono text-gray-light-2 pointer-events-none z-30 shadow-lg"
-                  >
-                    Click to close
-                  </motion.div>
-                )}
-              </AnimatePresence>
             </div>
           ) : (
             /* Minimized Sleek Pill State */
@@ -359,20 +377,6 @@ const KotlinMascot = () => {
                 </span>
                 <span className="text-[9px] text-gray-light-3">Guide</span>
               </div>
-
-              {/* Tooltip hint on hover */}
-              <AnimatePresence>
-                {isMascotHovered && (
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.85, y: 5 }}
-                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.85, y: 5 }}
-                    className="absolute -top-7 right-0 whitespace-nowrap px-2 py-0.5 rounded-md bg-black/90 border border-white/15 text-[9px] font-mono text-gray-light-2 pointer-events-none z-30 shadow-lg"
-                  >
-                    Click for guide ✦
-                  </motion.div>
-                )}
-              </AnimatePresence>
             </div>
           )}
         </motion.button>

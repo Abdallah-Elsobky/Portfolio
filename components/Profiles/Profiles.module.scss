@@ -4,12 +4,17 @@
   gap: 1.5rem;
 
   & > a {
+    color: currentColor;
     &:hover,
     &:focus {
       filter: drop-shadow(0 0 1rem theme("colors.indigo.light"));
       filter: brightness(1.1);
+      color: theme("colors.indigo.light");
       svg {
         stroke: theme("colors.indigo.light");  
+      }
+      svg.feather-upwork {
+        fill: theme("colors.indigo.light");
       }
     }
   }

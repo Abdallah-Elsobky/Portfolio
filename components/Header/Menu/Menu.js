@@ -66,6 +66,19 @@ const Menu = ({ isMenuOpen, closeMenu }) => {
 
           {/* Bottom Profiles & Signature */}
           <div className="flex flex-col items-center gap-4 relative z-10 pt-6 border-t border-white/[0.06] w-full max-w-md">
+            <a
+              href="/Abdallah_Elsobky.pdf"
+              download="Abdallah_Elsobky_Android_Developer.pdf"
+              target="_blank"
+              rel="noreferrer"
+              onClick={closeMenu}
+              className="link flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#00BA5A] via-[#3DDC84] to-[#00BA5A] text-black font-bold text-xs shadow-[0_8px_25px_rgba(61,220,132,0.45)] hover:shadow-[0_12px_30px_rgba(61,220,132,0.65)] transition-all hover:scale-105"
+            >
+              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+              </svg>
+              <span>Download CV</span>
+            </a>
             <Profiles />
             <span className="text-xs font-mono text-gray-light-3">
               Abdallah Elsobky • Android Developer

@@ -1,7 +1,6 @@
 import { useState, useCallback, useEffect } from "react";
 import Image from "next/image";
 import { Howl } from "howler";
-import SoundBar from "./SoundBar/SoundBar";
 import Menu from "./Menu/Menu";
 
 const multiPop = new Howl({
@@ -64,8 +63,21 @@ const Header = () => {
             </span>
           </a>
 
-          <div className="flex items-center gap-5 sm:gap-6">
-            <SoundBar />
+          <div className="flex items-center gap-3 sm:gap-4">
+            {/* Quick CV Download Link */}
+            <a
+              href="/Abdallah_Elsobky.pdf"
+              download="Abdallah_Elsobky_Android_Developer.pdf"
+              target="_blank"
+              rel="noreferrer"
+              className="link flex items-center gap-1.5 px-3 py-2 rounded-xl bg-[#111622] hover:bg-[#161d2d] border border-[#3DDC84]/40 hover:border-[#3DDC84] text-white text-xs font-semibold shadow-sm hover:shadow-[0_0_15px_rgba(61,220,132,0.3)] transition-all duration-300 group"
+              title="Download Resume / CV"
+            >
+              <svg className="w-3.5 h-3.5 text-[#3DDC84] transition-transform group-hover:translate-y-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+              </svg>
+              <span className="font-mono text-[11px]">CV</span>
+            </a>
 
             {/* Modern Hamburger / Close Button */}
             <button
