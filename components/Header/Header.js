@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import Image from "next/image";
 import { Howl } from "howler";
 import Menu from "./Menu/Menu";
@@ -9,6 +9,46 @@ const multiPop = new Howl({
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const lastScrollY = useRef(0);
+
+  // Hide header on scroll down, show on scroll up (like Facebook / iOS native bars)
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      // Always show when near the very top of the page
+      if (currentScrollY < 60) {
+        setIsVisible(true);
+        lastScrollY.current = currentScrollY;
+        return;
+      }
+
+      // Keep visible while menu overlay is open
+      if (isMenuOpen) {
+        setIsVisible(true);
+        return;
+      }
+
+      // Small jitter buffer
+      if (Math.abs(currentScrollY - lastScrollY.current) < 8) {
+        return;
+      }
+
+      if (currentScrollY > lastScrollY.current) {
+        // Scrolling DOWN -> Hide
+        setIsVisible(false);
+      } else {
+        // Scrolling UP -> Reveal
+        setIsVisible(true);
+      }
+
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isMenuOpen]);
 
   const toggleMenu = useCallback(() => {
     setIsMenuOpen((prev) => {
@@ -46,7 +86,11 @@ const Header = () => {
 
   return (
     <>
-      <nav className="w-full fixed top-0 py-4 sm:py-5 z-50 select-none bg-[#0a0d14]/80 backdrop-blur-md border-b border-white/[0.06] shadow-[0_10px_30px_rgba(0,0,0,0.5)] transition-all duration-300">
+      <nav
+        className={`w-full fixed top-0 py-4 sm:py-5 z-50 select-none bg-[#0a0d14]/80 backdrop-blur-md border-b border-white/[0.06] shadow-[0_10px_30px_rgba(0,0,0,0.5)] transition-transform duration-300 ease-in-out ${
+          isVisible ? "translate-y-0" : "-translate-y-full shadow-none"
+        }`}
+      >
         <div className="flex justify-between items-center section-container">
           <a href="#home" className="link flex items-center gap-2.5 group">
             <div className="relative w-8 h-8 rounded-xl bg-white/[0.05] border border-white/10 flex items-center justify-center p-1.5 group-hover:border-purple/60 group-hover:shadow-[0_0_15px_rgba(61,220,132,0.4)] transition-all duration-300">
